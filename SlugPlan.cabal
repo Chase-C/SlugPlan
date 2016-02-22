@@ -23,6 +23,8 @@ library
                      Handler.Common
                      Handler.Home
                      Handler.Comment
+                     Scraper.UCSC
+                     Scraper.Subjects
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
@@ -84,6 +86,8 @@ library
                  , time
                  , case-insensitive
                  , wai
+                 , pdf-toolbox-document          >= 0.0.7.0
+                 , parsec                        >= 3.1.0
 
 executable         SlugPlan
     if flag(library-only)

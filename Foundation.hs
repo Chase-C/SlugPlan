@@ -118,6 +118,9 @@ instance Yesod App where
 
     makeLogger = return . appLogger
 
+    maximumContentLength _ _ = Just $ 20 * 1024 * 1024 -- 20 MB
+
+
 -- How to run database actions.
 instance YesodPersist App where
     type YesodPersistBackend App = SqlBackend

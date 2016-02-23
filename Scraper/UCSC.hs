@@ -41,8 +41,16 @@ printMap =
 test :: UCSCParser a -> UCSCParser a
 test p = Parsec.try $ (Parsec.try p) <|> (Parsec.anyChar >> test p)
 
-getSubjectMap :: String -> String -> Maybe SubjectMap
-getSubjectMap input filename =
+getSubjectMap :: FilePath -> IO SubjectMap
+getSubjectMap filename = do
+    input <- readFile filename
+    let classes = getSubjectMap' input filename
+    case classes of
+        (Just cs) -> return cs
+        _         -> return Map.empty
+
+getSubjectMap' :: String -> String -> Maybe SubjectMap
+getSubjectMap' input filename =
     let classes = Parsec.parse getAllSubjectCourses filename input
     in case classes of
         (Right cs) -> Just cs
@@ -116,8 +124,7 @@ courseHeader = do
     (Parsec.string "LOWER-DIVISION")
         <|> (Parsec.string "UPPER-DIVISION")
         <|> (Parsec.string "GRADUATE")
-    Parsec.space
-    Parsec.string "COURSES"
+    Parsec.string " COURSES"
 
 classNumName :: UCSCParser (String, String)
 classNumName = do
@@ -135,25 +142,24 @@ classNumber = do
 
 className :: UCSCParser String
 className =
-    Parsec.many1 (Parsec.alphaNum <|> Parsec.oneOf " ,()\\") <* periodBreak
+    Parsec.many1 (Parsec.alphaNum <|> Parsec.oneOf " ,()\n") <* periodBreak
 
 periodBreak :: UCSCParser ()
-periodBreak = Parsec.char '.' >> Parsec.spaces
+periodBreak = Parsec.char '.' >> spaces
 
 classBreak :: UCSCParser ()
 classBreak = do
     (Parsec.try newline' <|> Parsec.try (void courseHeader))
-    Parsec.spaces >> newline' >> Parsec.spaces
+    spaces >> newline' >> spaces
 
 newline' :: UCSCParser ()
-newline' = Parsec.string "\\n" >> return ()
+newline' = void $ Parsec.newline
+
+spaces :: UCSCParser ()
+spaces = void $ Parsec.many $ Parsec.char ' '
 
 removeNewlines :: String -> String
-removeNewlines []     = []
-removeNewlines (x:[]) = x:[]
-removeNewlines (x:y:xs)
-    | (x:y:[]) == "\\n" = removeNewlines xs
-    | otherwise         = x : removeNewlines (y:xs)
+removeNewlines = filter ((/=) '\n')
 
 parsePdf :: FilePath -> IO String
 parsePdf filename =

@@ -69,11 +69,12 @@ postPdfR = do
     pdfSub <- case result of
         FormSuccess res -> do
             text <- liftIO $ parsePdf $ Data.Text.unpack $ fileName res
-            let subMap = getSubjectMap text $ Data.Text.unpack $ fileName res
+            let subMap = getSubjectMap' text $ Data.Text.unpack $ fileName res
+            --subMap <- liftIO $ getSubjectMap $ Data.Text.unpack $ fileName res
+            --return $ Just $ (show $ take 10000 text) ++ " : " ++ (show $ take 4 keys)
             case subMap of
                 (Just m) -> do
-                    let subCourses = M.toList m
-                    keys <- insertSubjectMap subCourses
+                    keys <- insertSubjectMap m
                     return $ Just $ (show $ m) ++ " : " ++ (show $ take 4 keys)
                     --return $ Just $ show keys
                 _        -> return Nothing
@@ -85,17 +86,17 @@ postPdfR = do
         setTitle "Welcome To Yesod!"
         $(widgetFile "homepage")
 
-insertSubjectMap :: [(Subject, [(String, String)])] -> Handler [Key Course]
+insertSubjectMap :: SubjectMap -> Handler [Key Course]
 --insertSubjectMap :: String -> Handler (Key Course)
 --insertSubjectMap subMap = runDB $ insert $ Course "Pwning" "101" "How to Pwn"
-insertSubjectMap subMap = runDB $ concat <$> mapM (\(sub, courses) ->
-    --let subCourses = M.toList subMap
-    --in  runDB $ concat <$> mapM (\(sub, courses) ->
+insertSubjectMap subMap = --runDB $ concat <$> mapM (\(sub, courses) ->
+    let subCourses = M.toList subMap
+    in  runDB $ concat <$> mapM (\(sub, courses) ->
             let subName = pack $ subjectName sub
             in  mapM (\(num, name) -> insert $ Course subName (pack num) (pack name)
                 ) courses
-            ) subMap
-            --) subCourses
+            ) subCourses
+            --) subMap
 
 sampleForm :: Form (FileInfo, Text)
 sampleForm = renderBootstrap3 BootstrapBasicForm $ (,)

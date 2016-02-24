@@ -42,7 +42,11 @@ getHomeR = do
         let (commentFormId, commentTextareaId, commentListId) = commentIds
         aDomId <- newIdent
         setTitle "Welcome To Yesod!"
+        [whamlet|
+            <button .btn .btn-primary href=@{AllCoursesR}>Browse Courses
+            <a href=@{AllCoursesR}>Browse courses|]
         $(widgetFile "homepage")
+
 
 postHomeR :: Handler Html
 postHomeR = do
@@ -86,6 +90,32 @@ postPdfR = do
         setTitle "Welcome To Yesod!"
         $(widgetFile "homepage")
 
+getAllCoursesR :: Handler Html
+getAllCoursesR = do
+    courses <- runDB $ selectList [] [Asc CourseSubject, Asc CourseNumber]
+    defaultLayout
+        [whamlet|
+            <table style="width:100%">
+                <tr>
+                    <th>Subject
+                    <th>Course Number
+                    <th>Course Name
+                    <th>Description
+                $forall Entity courseid course <- courses
+                    <tr>
+                        <td>#{courseSubject course}
+                        <td>#{courseNumber course}
+                        <td><a href=@{CourseR courseid}>#{courseName course}
+        |]
+--            <ul>
+ --               $forall Entity courseid course <- courses
+   --                 <li>
+     --                   <a href=@{CourseR courseid}>#{courseSubject course} #{courseNumber course}
+getCourseR :: CourseId -> Handler String
+getCourseR courseId = do
+    course <- runDB $ get404 courseId
+    return $ show course
+
 insertSubjectMap :: SubjectMap -> Handler [Key Course]
 --insertSubjectMap :: String -> Handler (Key Course)
 --insertSubjectMap subMap = runDB $ insert $ Course "Pwning" "101" "How to Pwn"
@@ -108,3 +138,4 @@ pdfForm = renderBootstrap3 BootstrapBasicForm $ fileAFormReq "Choose a PDF to pa
 
 commentIds :: (Text, Text, Text)
 commentIds = ("js-commentForm", "js-createCommentTextarea", "js-commentList")
+

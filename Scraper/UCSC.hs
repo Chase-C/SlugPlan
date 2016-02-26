@@ -20,26 +20,8 @@ import qualified Data.Map.Strict as Map
 
 import Scraper.Subjects
 
-type SubjectMap   = Map.Map Subject [(String, String)]
+type SubjectMap   = Map.Map Subject [(String, String, Maybe String)]
 type UCSCParser a = Parsec.Parsec String () a
-
-parseText :: FilePath -> IO ()
-parseText filename = do
-    input <- readFile filename
-    let classes = Parsec.parse getAllSubjectCourses filename input
-    case classes of
-        (Right cs) -> printMap cs
-        (Left err) -> print err
-
-printMap :: SubjectMap -> IO ()
-printMap =
-    mapM_ (\(subject, classes) -> do
-        putStrLn $ subjectName subject
-        mapM_ (\(num, name) -> putStrLn $ num ++ ". " ++ name) classes
-        ) . Map.toList
-
-test :: UCSCParser a -> UCSCParser a
-test p = Parsec.try $ (Parsec.try p) <|> (Parsec.anyChar >> test p)
 
 getSubjectMap :: FilePath -> IO SubjectMap
 getSubjectMap filename = do
@@ -59,7 +41,7 @@ getSubjectMap' input filename =
 getAllSubjectCourses :: UCSCParser SubjectMap
 getAllSubjectCourses = Map.fromList <$> (Parsec.many $ Parsec.try getNextSubjectCourses)
 
-getNextSubjectCourses :: UCSCParser (Subject, [(String, String)])
+getNextSubjectCourses :: UCSCParser (Subject, [(String, String, Maybe String)])
 getNextSubjectCourses = do
     subject <- gotoNextSubject
     ( Parsec.try $ do
@@ -76,7 +58,7 @@ gotoNextSubject = do
             (Parsec.try $ Parsec.lookAhead anySubjectHeader)
             <|> (Parsec.anyChar >> getSubStrn)
 
-getSubjectCourses :: Subject -> UCSCParser [(String, String)]
+getSubjectCourses :: Subject -> UCSCParser [(String, String, Maybe String)]
 getSubjectCourses sub = do
     subjectCoursesOpen sub
     Parsec.many getNextClass
@@ -101,8 +83,8 @@ createMultiParser strns
             out <- createMultiParser $ map tail $ filter ((==) c . head) filtered
             return $ c : out
 
-getNextClass :: UCSCParser (String, String)
-getNextClass = Parsec.try $ Parsec.try classNumName
+getNextClass :: UCSCParser (String, String, Maybe String)
+getNextClass = Parsec.try $ Parsec.try classInfo
     <|> (Parsec.notFollowedBy (Parsec.string "Revised: " <|> anySubjectHeader)
             >> Parsec.anyChar
             >> getNextClass)
@@ -126,12 +108,13 @@ courseHeader = do
         <|> (Parsec.string "GRADUATE")
     Parsec.string " COURSES"
 
-classNumName :: UCSCParser (String, String)
-classNumName = do
+classInfo :: UCSCParser (String, String, Maybe String)
+classInfo = do
     classBreak
-    num  <- classNumber
-    name <- className
-    return (num, removeNewlines name)
+    num   <- classNumber
+    name  <- className
+    preqs <- classPrereqs
+    return (num, removeNewlines name, removeNewlines <$> preqs)
 
 classNumber :: UCSCParser String
 classNumber = do
@@ -143,6 +126,18 @@ classNumber = do
 className :: UCSCParser String
 className =
     Parsec.many1 (Parsec.alphaNum <|> Parsec.oneOf " ,()\n") <* periodBreak
+
+classPrereqs :: UCSCParser (Maybe String)
+classPrereqs = Parsec.try getPrereqs
+    <|> (Parsec.try (Parsec.lookAhead classBreak) >> return Nothing)
+    <|> (Parsec.anyChar >> classPrereqs)
+
+getPrereqs :: UCSCParser (Maybe String)
+getPrereqs = do
+    Parsec.string "Prerequisite(s): "
+    prereqs <- Parsec.manyTill Parsec.anyChar $ Parsec.try
+                                              $ Parsec.lookAhead classBreak
+    return $ Just prereqs
 
 periodBreak :: UCSCParser ()
 periodBreak = Parsec.char '.' >> spaces
@@ -172,25 +167,9 @@ parsePdf filename =
             count    <- pageNodeNKids rootNode
 
             concat <$> mapM (getPageText rootNode) [3..(count - 1)]
-            --mapM_ printKid kids
-            --page <- pageNodePageByNum rootNode 2
-            --printPage page
         case res of
             (Left err)   -> print err >> return ""
             (Right strn) -> return strn
-
-printKid :: (MonadPdf m, MonadIO m) => Ref -> PdfE m ()
-printKid kid = do
-    pageNode <- loadPageNode kid
-    case pageNode of
-        (PageTreeNode node) -> do
-            kids <- pageNodeKids node
-            count <- pageNodeNKids node
-            liftIO $ print $ "Node with " ++ show count ++ " children"
-            mapM_ printKid kids
-        (PageTreeLeaf leaf) -> do
-            text <- pageExtractText leaf
-            liftIO $ print text
 
 getPageText :: (MonadPdf m, MonadIO m) => PageNode -> Int -> PdfE m String
 getPageText node n = do

@@ -17,6 +17,7 @@ Course
     subject Text
     number  Text
     name    Text
+    preqs   Text
     deriving Show
     
 

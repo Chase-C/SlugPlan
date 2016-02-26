@@ -68,16 +68,17 @@ postPdfR = do
     let submission  = Nothing :: Maybe (FileInfo, Text)
     pdfSub <- case result of
         FormSuccess res -> do
-            text <- liftIO $ parsePdf $ Data.Text.unpack $ fileName res
-            let subMap = getSubjectMap' text $ Data.Text.unpack $ fileName res
-            --subMap <- liftIO $ getSubjectMap $ Data.Text.unpack $ fileName res
-            --return $ Just $ (show $ take 10000 text) ++ " : " ++ (show $ take 4 keys)
-            case subMap of
-                (Just m) -> do
-                    keys <- insertSubjectMap m
-                    return $ Just $ (show $ m) ++ " : " ++ (show $ take 4 keys)
-                    --return $ Just $ show keys
-                _        -> return Nothing
+            --text <- liftIO $ parsePdf $ Data.Text.unpack $ fileName res
+            --let subMap = getSubjectMap' text $ Data.Text.unpack $ fileName res
+            subMap <- liftIO $ getSubjectMap $ Data.Text.unpack $ fileName res
+            keys <- insertSubjectMap subMap
+            return $ Just $ (show $ subMap) ++ " : " ++ (show $ take 4 keys)
+            --case subMap of
+            --    (Just m) -> do
+            --        keys <- insertSubjectMap m
+            --        return $ Just $ (show $ m) ++ " : " ++ (show $ take 4 keys)
+            --        --return $ Just $ show keys
+            --    _        -> return Nothing
         _                -> return Nothing
 
     defaultLayout $ do
@@ -93,7 +94,8 @@ insertSubjectMap subMap = --runDB $ concat <$> mapM (\(sub, courses) ->
     let subCourses = M.toList subMap
     in  runDB $ concat <$> mapM (\(sub, courses) ->
             let subName = pack $ subjectName sub
-            in  mapM (\(num, name) -> insert $ Course subName (pack num) (pack name)
+            in  mapM (\(num, name, preq) ->
+                insert $ Course subName (pack num) (pack name) $ pack $ show preq
                 ) courses
             ) subCourses
             --) subMap

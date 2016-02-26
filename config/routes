@@ -7,3 +7,5 @@
 /         HomeR    GET POST
 /pdf      PdfR         POST
 /comments CommentR     POST
+/allCourses AllCoursesR GET
+/course/#CourseId CourseR GET

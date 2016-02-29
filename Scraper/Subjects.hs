@@ -271,5 +271,3 @@ subjectPrefix TheaterArts          = "THEA"
 subjectPrefix UCDC                 = "UCDC"
 subjectPrefix Writing              = "WRIT"
 subjectPrefix Yiddish              = "YIDD"
-
-

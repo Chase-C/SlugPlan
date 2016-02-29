@@ -125,7 +125,7 @@ classNumber = do
 
 className :: UCSCParser String
 className =
-    Parsec.many1 (Parsec.alphaNum <|> Parsec.oneOf " ,()\n") <* periodBreak
+    Parsec.many1 (Parsec.alphaNum <|> Parsec.oneOf " ,():\n") <* periodBreak
 
 classPrereqs :: UCSCParser (Maybe String)
 classPrereqs = Parsec.try getPrereqs

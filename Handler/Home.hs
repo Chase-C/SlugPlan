@@ -123,9 +123,14 @@ insertSubjectMap :: SubjectMap -> Handler [Key Course]
 insertSubjectMap subMap = --runDB $ concat <$> mapM (\(sub, courses) ->
     let subCourses = M.toList subMap
     in  runDB $ concat <$> mapM (\(sub, courses) ->
-            let subName = pack $ subjectName sub
+            let subName = pack $ subjectName   sub
+                subPrex = pack $ subjectPrefix sub
             in  mapM (\(num, name, preq) ->
-                insert $ Course subName (pack num) (pack name) $ pack $ show preq
+                insert $ Course subName
+                                subPrex
+                                (pack num)
+                                (pack name)
+                                (pack $ show preq)
                 ) courses
             ) subCourses
             --) subMap

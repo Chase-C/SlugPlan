@@ -15,6 +15,7 @@ Comment json -- Adding "json" causes ToJSON and FromJSON instances to be derived
     deriving Show
 Course
     subject Text
+    acronym Text
     number  Text
     name    Text
     preqs   Text

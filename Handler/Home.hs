@@ -43,8 +43,7 @@ getHomeR = do
         aDomId <- newIdent
         setTitle "Welcome To Yesod!"
         [whamlet|
-            <button .btn .btn-primary href=@{AllCoursesR}>Browse Courses
-            <a href=@{AllCoursesR}>Browse courses|]
+            <a .btn .btn-primary href=@{AllCoursesR}>Browse courses|]
         $(widgetFile "homepage")
 
 
@@ -96,6 +95,8 @@ getAllCoursesR = do
     courses <- runDB $ selectList [] [Asc CourseSubject, Asc CourseNumber]
     defaultLayout
         [whamlet|
+            <h1>
+            <a .btn .btn-primary href=@{HomeR}> <- Home
             <table style="width:100%">
                 <tr>
                     <th>Subject
@@ -113,6 +114,8 @@ getCourseR courseId = do
     course <- runDB $ get404 courseId
     defaultLayout $ do
             [whamlet|
+                <h1>
+                <a .btn .btn-primary href=@{AllCoursesR}> <- Back to Browse
                 <title> #{courseName course}
                 <h1>#{courseName course} (#{courseSubject course} #{courseNumber course})
                 <ul>Pre-requisites:

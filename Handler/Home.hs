@@ -93,7 +93,32 @@ postPdfR = do
 
 getAllCoursesR :: Handler Html
 getAllCoursesR = do
+    (widget, enctype)         <- generateFormPost searchForm
     courses <- runDB $ selectList [] [Asc CourseSubject, Asc CourseNumber]
+    defaultLayout
+        [whamlet|
+        <form method=post action=@{AllCoursesR} enctype=#{enctype}>
+                ^{widget}
+            <table style="width:100%">
+                <tr>
+                    <th>Subject
+                    <th>Course Number
+                    <th>Course Name
+                    <th>Description
+                $forall Entity courseid course <- courses
+                    <tr>
+                        <td>#{courseSubject course}
+                        <td>#{courseNumber course}
+                        <td><a href=@{CourseR courseid}>#{courseName course}
+        |]
+
+
+postAllCoursesR :: Handler Html
+postAllCoursesR = do
+    ((result, _), _)        <- runFormPost searchForm
+    courses <- case result of
+        FormSuccess numString -> runDB $ selectList [CourseNumber ==. toUpper(numString)] [Asc CourseSubject, Asc CourseNumber]
+        _                        -> runDB $ selectList [] [Asc CourseSubject, Asc CourseNumber]
     defaultLayout
         [whamlet|
             <table style="width:100%">
@@ -108,18 +133,14 @@ getAllCoursesR = do
                         <td>#{courseNumber course}
                         <td><a href=@{CourseR courseid}>#{courseName course}
         |]
---            <ul>
- --               $forall Entity courseid course <- courses
-   --                 <li>
-     --                   <a href=@{CourseR courseid}>#{courseSubject course} #{courseNumber course}
+
+
 getCourseR :: CourseId -> Handler String
 getCourseR courseId = do
     course <- runDB $ get404 courseId
     return $ show course
 
 insertSubjectMap :: SubjectMap -> Handler [Key Course]
---insertSubjectMap :: String -> Handler (Key Course)
---insertSubjectMap subMap = runDB $ insert $ Course "Pwning" "101" "How to Pwn"
 insertSubjectMap subMap = --runDB $ concat <$> mapM (\(sub, courses) ->
     let subCourses = M.toList subMap
     in  runDB $ concat <$> mapM (\(sub, courses) ->
@@ -140,4 +161,8 @@ pdfForm = renderBootstrap3 BootstrapBasicForm $ fileAFormReq "Choose a PDF to pa
 
 commentIds :: (Text, Text, Text)
 commentIds = ("js-commentForm", "js-createCommentTextarea", "js-commentList")
+
+searchForm :: Form Text
+searchForm = renderBootstrap3 BootstrapBasicForm $ areq textField "Search a class by class" Nothing
+ 
 

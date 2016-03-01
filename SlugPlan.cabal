@@ -23,6 +23,7 @@ library
                      Handler.Common
                      Handler.Home
                      Handler.Comment
+                     Handler.Planner
                      Scraper.UCSC
                      Scraper.Subjects
 

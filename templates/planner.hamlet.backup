@@ -1,0 +1,15 @@
+<h1.jumbotron>
+  Course Planner
+
+<.page-header><h2>Quarter
+
+<section.page-header>
+  <h2>JSON
+
+  <p>
+    <form ##{courseFormId}>
+      <.form-group>
+      <button .btn .btn-primary type="submit">
+        Add course
+
+    <ul ##{courseListId}>

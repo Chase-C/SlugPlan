@@ -4,8 +4,9 @@
 /favicon.ico FaviconR GET
 /robots.txt RobotsR GET
 
-/         HomeR    GET POST
-/pdf      PdfR         POST
-/comments CommentR     POST
-/allCourses AllCoursesR GET
-/course/#CourseId CourseR GET
+/                 HomeR       GET POST
+/pdf              PdfR            POST
+/comments         CommentR        POST
+/planner          PlannerR    GET
+/allCourses       AllCoursesR GET
+/course/#CourseId CourseR     GET

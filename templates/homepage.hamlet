@@ -1,3 +1,5 @@
+<a .btn .btn-primary href=@{PlannerR}>Goto Course Planner
+
 <h1.jumbotron>
   Welcome to Yesod!
 

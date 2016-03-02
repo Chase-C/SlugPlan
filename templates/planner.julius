@@ -1,10 +1,43 @@
 $(function() {
-  var addCourse = function(event) {
-    event.preventDefault();
+  var addCourse = function() {
+    var newNode = $("<div class='course-container course-display'> \
+                       <form class='course-search-form'>           \
+                         <input type='text'                        \
+                                class='course-search'              \
+                                placeholder='Search Class...'      \
+                                autocomplete='off'                 \
+                                autocapitalize='off'               \
+                                autocorrect='off'>                 \
+                         <div class='search-suggestions'           \
+                              style='display: none;'>              \
+                           <div class='search-sug'>...</div>       \
+                         </div>                                    \
+                       </form>                                     \
+                     </div>");
 
-    var newNode = $("<div class='course-container course-display'></div>");
-    newNode.text("this is some text");
-    $("#container-" + this.id).before(newNode);
+    var butNode  = $('#container-' + this.id);
+    var prevNode = butNode.prev('.course-container').last();
+    var baseId   = butNode.prop('id');
+    var newId    = baseId + '-course-' + 1;
+    var formId   = baseId + '-form-'   + 1;
+    var barId    = baseId + '-bar-'    + 1;
+    var prevId   = prevNode.prop('id');
+    console.log(prevNode);
+    if (prevId) {
+      var extId = Number(prevId.replace( /\D+\d+\D+/g, '')) + 1;
+      newId     = baseId + '-course-' + extId;
+      formId    = baseId + '-form-'   + extId;
+      barId     = baseId + '-bar-'    + extId;
+    }
+
+    newNode.prop('id', newId);
+    newNode.find('.course-search-form').prop('id', formId);
+    newNode.find('.course-search').prop('id', barId);
+    newNode.find('.course-search').on('focus', showSuggestions);
+    newNode.find('.course-search').on('blur',  hideSuggestions);
+    newNode.find('.course-search').on('keyup', searchCourse);
+
+    butNode.before(newNode);
 
     $.ajax({
       url: '@{NewCourseR}',
@@ -17,6 +50,30 @@ $(function() {
         alert("Error creating course: " + data);
       },
     });
+  };
+
+  var searchCourse = function(event) {
+    console.log(event);
+
+    $.ajax({
+      url: '@{NewCourseR}',
+      type: 'POST',
+      contentType: "application/json",
+      data: "",
+      success: function (data) {
+      },
+      error: function (data) {
+        alert("Error creating course: " + data);
+      }
+    });
+  };
+
+  var showSuggestions = function(event) {
+    $(this).next('.search-suggestions').css('display', 'block');
+  };
+
+  var hideSuggestions = function(event) {
+    $(this).next('.search-suggestions').css('display', 'none');
   };
 
   var nextQuarter = function(strn) {
@@ -32,35 +89,31 @@ $(function() {
     }
   };
 
-  $(".course-form").submit(addCourse);
-  $(".quarter-form").submit(function(event) {
-    event.preventDefault();
-
-    var prevId  = $('.course-form').last().prop('id');
+  $(".course-add-button").click(addCourse);
+  $(".quarter-add-button").click(function() {
+    var prevId  = $('.course-add-button').last().prop('id');
     var prevQtr = $('#quarter-' + prevId).text();
     var idNum   = Number(prevId.replace( /^\D+/g, '')) + 1;
     var newId   = '#{rawJS courseListId}' + idNum;
     var newQtr  = nextQuarter(prevQtr);
-    var newNode = $("<tr>                                                         \
-                       <td class='quarter-container'>                             \
-                         <h4 class='quarter-header'></h4>                         \
-                       </td>                                                      \
-                       <td>                                                       \
-                         <div class='course-wrapper'>                             \
-                           <div class='course-container'>                         \
-                             <form class='course-form'>                           \
-                               <button class='course-add-button' type='submit' /> \
-                             </form>                                              \
-                           </div>                                                 \
-                         </div>                                                   \
-                       </td>                                                      \
+    var newNode = $("<tr>                                         \
+                       <td class='quarter-container'>             \
+                         <h4 class='quarter-header'></h4>         \
+                       </td>                                      \
+                       <td>                                       \
+                         <div class='course-wrapper'>             \
+                           <div class='course-container'>         \
+                             <button class='course-add-button' /> \
+                           </div>                                 \
+                         </div>                                   \
+                       </td>                                      \
                      </tr>");
 
     newNode.find('.quarter-header').text(newQtr);
     newNode.find('.quarter-header').prop('id', 'quarter-' + newId);
     newNode.find('.course-container').prop('id', 'container-' + newId);
-    newNode.find('.course-form').prop('id', newId);
-    newNode.find('.course-form').submit(addCourse);
+    newNode.find('.course-add-button').prop('id', newId);
+    newNode.find('.course-add-button').click(addCourse);
     $("#add-quarter").before(newNode);
 
     $.ajax({
@@ -72,7 +125,7 @@ $(function() {
       },
       error: function (data) {
         alert("Error creating quarter: " + data);
-      },
+      }
     });
   });
 });

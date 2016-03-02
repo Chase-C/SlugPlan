@@ -91,7 +91,7 @@ getCourseR :: CourseId -> Handler Html
 getCourseR courseId = do
     course <- runDB $ get404 courseId
     defaultLayout $ do
-        setTitle $ "SlugPlan:" ++ (show #{courseName course})
+        setTitle "SlugPlan: View Course"
         $(widgetFile "course")
 
 insertSubjectMap :: SubjectMap -> Handler [Key Course]

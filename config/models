@@ -13,7 +13,7 @@ Comment json -- Adding "json" causes ToJSON and FromJSON instances to be derived
     userId UserId Maybe
     deriving Eq
     deriving Show
-Course
+Course json
     subject Text
     acronym Text
     number  Text

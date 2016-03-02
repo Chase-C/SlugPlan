@@ -8,5 +8,7 @@
 /pdf              PdfR            POST
 /comments         CommentR        POST
 /planner          PlannerR    GET
+/planner/course   NewCourseR  GET POST
+/planner/quarter  NewQuarterR     POST
 /allCourses       AllCoursesR GET
 /course/#CourseId CourseR     GET

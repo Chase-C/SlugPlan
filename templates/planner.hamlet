@@ -7,29 +7,39 @@
     <table .planner-table>
       <tr>
         <td .quarter-container>
-          <h4.quarter-header>Spring 2016
-        <td .course-container>
-          <a .course-add-button>Add
+          <h4.quarter-header #quarter-#{courseListId}1>Spring 2016
+        <td>
+          <div .course-wrapper>
+            <div .course-container #container-#{courseListId}1>
+              <form .course-form ##{courseListId}1>
+                <button .course-add-button type="submit">
       <tr>
         <td .quarter-container>
-          <h4.quarter-header>Fall 2016
-        <td .course-container>
-          <form .course-form ##{courseFormId}>
-            <.form-group>
-            <button .course-add-button type="submit">
-              Add
+          <h4.quarter-header #quarter-#{courseListId}2>Fall 2016
+        <td>
+          <div .course-wrapper>
+            <div .course-container #container-#{courseListId}2>
+              <form .course-form ##{courseListId}2>
+                <button .course-add-button type="submit">
       <tr>
         <td .quarter-container>
-          <h4.quarter-header>Winter 2017
-        <td .course-container>
-          <form .course-form ##{courseFormId}>
-            <.form-group>
-            <button .course-add-button type="submit">
-              Add
+          <h4.quarter-header #quarter-#{courseListId}3>Winter 2017
+        <td>
+          <div .course-wrapper>
+            <div .course-container #container-#{courseListId}3>
+              <form .course-form ##{courseListId}3>
+                <button .course-add-button type="submit">
       <tr>
         <td .quarter-container>
-          <h4.quarter-header>Spring 2017
-        <td .course-container>
-          <form .course-form ##{courseFormId}>
-            <button .course-add-button type="submit">
-              Add
+          <h4.quarter-header #quarter-#{courseListId}4>Spring 2017
+        <td>
+          <div .course-wrapper>
+            <div .course-container #container-#{courseListId}4>
+              <form .course-form ##{courseListId}4>
+                <button .course-add-button type="submit">
+      <tr #add-quarter>
+        <td .quarter-container>
+          <form .quarter-form #quarterzzz>
+            <button .quarter-add-button type="submit">
+        <td>
+          <div .course-wrapper>

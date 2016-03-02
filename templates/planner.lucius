@@ -39,42 +39,60 @@ table.planner-table {
     }
 
     td {
-        border: 1px solid #eee;
-        border: collapse;
-        padding: 8px;
-
         vertical-align: top;
     }
 }
 
 .quarter-container {
+    border: 1px solid #eee;
+    border: collapse;
+    border-radius: 4px;
+    padding: 8px;
+
     height: 180px;
-    width: 180px;
+    width: 160px;
 }
 
 .quarter-header {
     text-align: center;
     background-color: #eee;
+    border-radius: 3px;
 }
 
-.course-form {
-    margin: 0px;
-    padding: 0px;
+.course-wrapper {
+    position: absolute;
+    overflow: auto;
+    display: table;
+    width: auto;
+}
+
+.course-container {
+    top: 0px;
+    width: 240px;
+    height: 162px;
+    margin: 8px;
+
+    border: 1px solid transparent;
+    border: collapse;
+    border-radius: 4px;
+
+    vertical-align: top;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.course-display {
+    background-color: #eee;
 }
 
 .course-add-button {
-    padding: 12px 12px;
     margin: 4px;
     border: 1px solid transparent;
     border-radius: 4px;
+    border-color: #357ebd;
 
-    width: auto;
-    height: auto;
-
-    font-size: 14px;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
+    width: 96px;
+    height: 96px;
 
     cursor: pointer;
     -webkit-user-select: none;
@@ -82,7 +100,31 @@ table.planner-table {
         -ms-user-select: none;
             user-select: none;
 
-    color: #fff;
+    background-image: url(@{StaticR img_add_png});
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 25px 25px;
     background-color: #428bca;
-    border-color: #357ebd;
+}
+
+.quarter-add-button {
+    margin: 4px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    border-color: #ddd;
+
+    width: 142px;
+    height: 64px;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    background-image: url(@{StaticR img_add_png});
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 25px 25px;
+    background-color: #eee;
 }

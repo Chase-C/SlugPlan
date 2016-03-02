@@ -1,10 +1,10 @@
 
-<div .base-layout>
-  <h1.jumbotron>
+<body .base-layout>
+  <h1.jumbotron .header-lg>
     Course Planner
 
   <.page-header>
-    <h2>Quarter
+    <h2 .header-sm>Quarter
     <div .planner-container>
       <table .planner-table>
         <tr>

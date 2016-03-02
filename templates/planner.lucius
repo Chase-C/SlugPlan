@@ -17,7 +17,26 @@ footer {
     text-align: center
 }
 .base-layout{
-    background-color:black;
+    background-image: url(@{StaticR img_redwoodtrail_jpg});
+}
+.header-lg{
+    color:white;
+    font-size:80px;
+    text-shadow: 5px 5px black;
+    background-color:rgba(0, 0, 0, 0.5);
+}
+.header-md{
+    color:white;
+    font-size:45px;
+    text-shadow: 1px 1px black;
+    background-color:rgba(0, 0, 0, 0.5);
+    margin-right:10px;
+}
+.header-sm{
+    color:white;
+    font-size:45px;
+    text-shadow: 2px 2px black;
+
 }
 .input-sm {
     margin-left: 20px

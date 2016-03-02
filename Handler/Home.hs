@@ -163,6 +163,6 @@ commentIds :: (Text, Text, Text)
 commentIds = ("js-commentForm", "js-createCommentTextarea", "js-commentList")
 
 searchForm :: Form Text
-searchForm = renderBootstrap3 BootstrapBasicForm $ areq textField "Search a class by class" Nothing
+searchForm = renderBootstrap3 BootstrapBasicForm $ areq textField "Search a class by Number" Nothing
  
 

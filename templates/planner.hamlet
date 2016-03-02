@@ -1,6 +1,8 @@
 <h1.jumbotron>
   Course Planner
 
+<a .btn .btn-primary href=@{HomeR}> <- Home
+
 <.page-header>
   <h2>Quarter
   <div .planner-container>

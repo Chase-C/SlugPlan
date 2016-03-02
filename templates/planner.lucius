@@ -1,3 +1,7 @@
+
+
+
+
 h1 {
     text-align: center;
     margin-bottom: 30px
@@ -11,6 +15,9 @@ ol {
 }
 footer {
     text-align: center
+}
+.base-layout{
+    background-color:black;
 }
 .input-sm {
     margin-left: 20px

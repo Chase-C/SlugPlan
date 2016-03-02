@@ -1,19 +1,21 @@
-<h1.jumbotron>
-  Course Planner
 
-<.page-header>
-  <h2>Quarter
-  <div .planner-container>
-    <table .planner-table>
-      <tr>
-        <td .quarter-container>
-          <h4.quarter-header #quarter-#{courseListId}1>Spring 2016
-        <td>
-          <div .course-wrapper>
-            <div .course-container #container-#{courseListId}1>
-              <button .course-add-button ##{courseListId}1>
-      <tr #add-quarter>
-        <td .quarter-container>
-          <button .quarter-add-button>
-        <td>
-          <div .course-wrapper>
+<div .base-layout>
+  <h1.jumbotron>
+    Course Planner
+
+  <.page-header>
+    <h2>Quarter
+    <div .planner-container>
+      <table .planner-table>
+        <tr>
+          <td .quarter-container>
+            <h4.quarter-header #quarter-#{courseListId}1>Spring 2016
+          <td>
+            <div .course-wrapper>
+              <div .course-container #container-#{courseListId}1>
+                <button .course-add-button ##{courseListId}1>
+        <tr #add-quarter>
+          <td .quarter-container>
+            <button .quarter-add-button>
+          <td>
+            <div .course-wrapper>

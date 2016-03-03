@@ -16,7 +16,7 @@ import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3,
 import Text.Julius (RawJS (..))
 
 import Database.Persist
-import Database.Persist.Sqlite
+import Database.Persist.MySQL
 
 import Data.Text (unpack)
 import qualified Data.Map as M

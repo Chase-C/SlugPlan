@@ -19,7 +19,9 @@ import Text.Julius (RawJS (..))
 import Data.Aeson.Types (Result (..))
 
 import Database.Persist
-import Database.Persist.Sqlite
+import Database.Persist.MySQL
+
+--import Data.List (intercalate)
 
 --------------------------------------------------------------------------------
 
@@ -51,10 +53,20 @@ postNewQuarterR =
     returnJson ("ok" :: Text)
 
 getSearchCourseR :: Text -> Handler Value
-getSearchCourseR searchStr = do
-    courses <- runDB $ selectList [CourseNumber ==. toUpper(searchStr)]
-                                  [Asc CourseSubject, Asc CourseNumber]
+getSearchCourseR searchStrn = do
+    courses <- runDB $ matchCourses searchStrn
     returnJson $ take 7 courses
 
 courseIds :: (Text, Text)
 courseIds = ("js-courseForm", "js-courseList")
+
+matchCourses :: MonadIO m => Text -> ReaderT SqlBackend m [Entity Course]
+matchCourses strn = rawSql sqlStrn values
+    where fields     = ["subject", "acronym", "number", "name"]
+          strns      = words strn
+          numStrns   = length strns
+          searchOrs  = intercalate " or " $ map (\f -> f ++ " like ?") fields
+          searchAnds = intercalate " and " $ replicate numStrns ("(" ++ searchOrs ++ ")")
+          sqlStrn    = "select ?? from course where " ++ searchAnds
+          values     = concat $ map (\s -> map PersistText $ replicate 4 $ surr s) strns
+          surr s     = "%" ++ s ++ "%"

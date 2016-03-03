@@ -1,4 +1,10 @@
 $(function() {
+  $("body").on('click', function(event) {
+    if (!$(event.target).parents().hasClass('course-search-form')) {
+      $('.search-suggestions').css('display', 'none');
+    }
+  });
+
   var addCourse = function() {
     var newNode = $("<div class='course-container course-display'> \
                        <form class='course-search-form'>           \
@@ -22,7 +28,6 @@ $(function() {
     var formId   = baseId + '-form-'   + 1;
     var barId    = baseId + '-bar-'    + 1;
     var prevId   = prevNode.prop('id');
-    console.log(prevNode);
     if (prevId) {
       var extId = Number(prevId.replace( /\D+\d+\D+/g, '')) + 1;
       newId     = baseId + '-course-' + extId;
@@ -30,12 +35,23 @@ $(function() {
       barId     = baseId + '-bar-'    + extId;
     }
 
+    var courseSearch = newNode.find('.course-search');
+    var searchForm   = newNode.find('.course-search-form');
+
     newNode.prop('id', newId);
-    newNode.find('.course-search-form').prop('id', formId);
-    newNode.find('.course-search').prop('id', barId);
-    newNode.find('.course-search').on('focus', showSuggestions);
-    newNode.find('.course-search').on('blur',  hideSuggestions);
-    newNode.find('.course-search').on('keyup', searchCourse);
+    searchForm.prop('id', formId);
+    courseSearch.prop('id', barId);
+    courseSearch.on('focus', function(event) {
+      $(this).next('.search-suggestions').css('display', 'block');
+    });
+    courseSearch.on('blur', function(event) {
+      if (!$(this).parent().hasClass('js-focus')) {
+        $(this).next('.search-suggestions').css('display', 'none');
+      }
+    });
+    courseSearch.on('keyup'
+      , newNode.find('.search-suggestions')
+      , searchCourse);
 
     butNode.before(newNode);
 
@@ -53,27 +69,55 @@ $(function() {
   };
 
   var searchCourse = function(event) {
-    console.log(event);
-
     $.ajax({
-      url: '@{NewCourseR}',
-      type: 'POST',
-      contentType: "application/json",
-      data: "",
+      url: '/planner/search/' + $(this).val(),
+      type: 'GET',
       success: function (data) {
+        var divs = data.map(function(course) {
+          var sug = $("<div class='search-sug'></div>");
+          sug.text(course.subject + " " + course.number + ": " + course.name);
+          sug.on('mouseover', function(event) {
+            sug.css('background-color', '#eee');
+            sug.css('display', 'inline-block');
+            sug.css('z-index', '1');
+            sug.parent().parent().addClass('js-focus');
+          });
+          sug.on('mouseout', function(event) {
+            sug.css('background-color', '#fff');
+            sug.css('display', 'block');
+            sug.css('z-index', 'initial');
+            sug.parent().parent().removeClass('js-focus');
+          });
+          sug.on('click', course, selectCourse);
+
+          return sug;
+        });
+        if (divs.length === 0) {
+          event.data.html("<div class='search-sug'> ...</div>");
+        } else {
+          event.data.html(divs);
+        }
       },
       error: function (data) {
-        alert("Error creating course: " + data);
+        event.data.html("<div class='search-sug'>...</div>");
+        console.log("Error getting course: " + data);
       }
     });
   };
 
-  var showSuggestions = function(event) {
-    $(this).next('.search-suggestions').css('display', 'block');
-  };
-
-  var hideSuggestions = function(event) {
-    $(this).next('.search-suggestions').css('display', 'none');
+  var selectCourse = function(event) {
+    $.ajax({
+      url: '@{NewCourseR}',
+      type: 'PUT',
+      contentType: 'application/json',
+      data: JSON.stringify(event.data.name),
+      success: function (data) {
+        console.log(data);
+      },
+      error: function (data) {
+        console.log(data);
+      },
+    });
   };
 
   var nextQuarter = function(strn) {

@@ -16,6 +16,7 @@ import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3,
 import Settings
 import Settings.StaticFiles
 import Text.Julius (RawJS (..))
+import Data.Aeson.Types (Result (..))
 
 import Database.Persist
 import Database.Persist.Sqlite
@@ -29,17 +30,31 @@ getPlannerR = do
         setTitle "Course Planner"
         $(widgetFile "planner")
 
+putNewCourseR :: Handler Value
+putNewCourseR = do
+    courseName <- (requireJsonBody :: Handler Text)
+    mCourse    <- runDB $ selectFirst [CourseName ==. courseName] []
+    case mCourse of
+        (Just course) -> returnJson course
+        _             -> notFound
+
 postNewCourseR :: Handler Value
 postNewCourseR =
-    returnJson ("bueno" :: Text)
+    returnJson ("ok" :: Text)
 
 getNewCourseR :: Handler Value
 getNewCourseR =
-    returnJson ("bueno" :: Text)
+    returnJson ("ok" :: Text)
 
 postNewQuarterR :: Handler Value
 postNewQuarterR =
-    returnJson ("bueno" :: Text)
+    returnJson ("ok" :: Text)
+
+getSearchCourseR :: Text -> Handler Value
+getSearchCourseR searchStr = do
+    courses <- runDB $ selectList [CourseNumber ==. toUpper(searchStr)]
+                                  [Asc CourseSubject, Asc CourseNumber]
+    returnJson $ take 7 courses
 
 courseIds :: (Text, Text)
 courseIds = ("js-courseForm", "js-courseList")

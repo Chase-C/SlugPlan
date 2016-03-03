@@ -16,11 +16,13 @@ footer {
     text-align: center
 }
 .base-layout{
-    background-image: url(@{StaticR img_redwoodtrail_jpg});
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(@{StaticR img_redwoods_jpg});
+    background-size:100%;
+    background-attachment: fixed;
 }
 .header-lg{
     color:white;
-    font-size:80px;
+    font-size:70px;
     text-shadow: 5px 5px black;
     background-color:rgba(0, 0, 0, 0.5);
 }

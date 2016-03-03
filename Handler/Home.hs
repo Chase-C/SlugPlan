@@ -34,11 +34,13 @@ import Scraper.Subjects
 
 getHomeR :: Handler Html
 getHomeR = do
+    (formWidget, formEnctype) <- generateFormPost sampleForm
     (pdfWidget,  pdfEnctype)  <- generateFormPost pdfForm
     let submission = Nothing :: Maybe (FileInfo, Text)
         pdfSub     = Nothing :: Maybe String
         handlerName = "getHomeR" :: Text
     defaultLayout $ do
+        let (commentFormId, commentTextareaId, commentListId) = commentIds
         aDomId <- newIdent
         setTitle "SlugPlan"
         $(widgetFile "homepage")
@@ -46,17 +48,23 @@ getHomeR = do
 
 postHomeR :: Handler Html
 postHomeR = do
+    ((result, formWidget), formEnctype) <- runFormPost sampleForm
     (pdfWidget,  pdfEnctype)            <- generateFormPost pdfForm
     let handlerName = "postHomeR" :: Text
+        submission  = case result of
+            FormSuccess res -> Just res
+            _               -> Nothing
         pdfSub      = Nothing :: Maybe String
 
     defaultLayout $ do
+        let (commentFormId, commentTextareaId, commentListId) = commentIds
         aDomId <- newIdent
         setTitle "SlugPlan"
         $(widgetFile "homepage")
 
 postPdfR :: Handler Html
 postPdfR = do
+    (formWidget, formEnctype)         <- generateFormPost sampleForm
     ((result, pdfWidget), pdfEnctype) <- runFormPost pdfForm
     let handlerName = "postPdfR" :: Text
     let submission  = Nothing :: Maybe (FileInfo, Text)
@@ -76,6 +84,7 @@ postPdfR = do
         _                -> return Nothing
 
     defaultLayout $ do
+        let (commentFormId, commentTextareaId, commentListId) = commentIds
         aDomId <- newIdent
         setTitle "SlugPlan"
         $(widgetFile "homepage")
@@ -98,17 +107,20 @@ getAllCoursesR = do
                         <td>#{courseNumber course}
                         <td><a href=@{CourseR courseid}>#{courseName course}
         |]
-    defaultLayout $ do
-        setTitle "SlugPlan: Browse Courses"
-        $(widgetFile "allcourses")
-
 
 getCourseR :: CourseId -> Handler Html
 getCourseR courseId = do
     course <- runDB $ get404 courseId
     defaultLayout $ do
-        setTitle "SlugPlan: View Course"
-        $(widgetFile "course")
+            [whamlet|
+                <h1>
+                <a .btn .btn-primary href=@{AllCoursesR}> <- Back to Browse
+                <title> #{courseName course}
+                <h1>#{courseName course} (#{courseSubject course} #{courseNumber course})
+                <ul>Pre-requisites:
+                    <!-- $forall something something for when the prereqs are in list form -->
+                        <li>#{coursePreqs course}
+            |]
 
 insertSubjectMap :: SubjectMap -> Handler [Key Course]
 --insertSubjectMap :: String -> Handler (Key Course)
@@ -128,14 +140,14 @@ insertSubjectMap subMap = --runDB $ concat <$> mapM (\(sub, courses) ->
             ) subCourses
             --) subMap
 
--- sampleForm :: Form (FileInfo, Text)
--- sampleForm = renderBootstrap3 BootstrapBasicForm $ (,)
---     <$> fileAFormReq "Choose a file"
---     <*> areq textField (withSmallInput "What's on the file?") Nothing
+sampleForm :: Form (FileInfo, Text)
+sampleForm = renderBootstrap3 BootstrapBasicForm $ (,)
+    <$> fileAFormReq "Choose a file"
+    <*> areq textField (withSmallInput "What's on the file?") Nothing
 
 pdfForm :: Form FileInfo
 pdfForm = renderBootstrap3 BootstrapBasicForm $ fileAFormReq "Choose a PDF to parse"
 
--- commentIds :: (Text, Text, Text)
--- commentIds = ("js-commentForm", "js-createCommentTextarea", "js-commentList")
+commentIds :: (Text, Text, Text)
+commentIds = ("js-commentForm", "js-createCommentTextarea", "js-commentList")
 

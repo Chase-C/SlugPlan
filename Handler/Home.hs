@@ -150,4 +150,3 @@ pdfForm = renderBootstrap3 BootstrapBasicForm $ fileAFormReq "Choose a PDF to pa
 
 commentIds :: (Text, Text, Text)
 commentIds = ("js-commentForm", "js-createCommentTextarea", "js-commentList")
-

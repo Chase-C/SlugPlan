@@ -1,4 +1,3 @@
-
 <body .base-layout>
   <h1.jumbotron .header-lg>
     Course Planner
@@ -19,3 +18,4 @@
             <button .quarter-add-button>
           <td>
             <div .course-wrapper>
+

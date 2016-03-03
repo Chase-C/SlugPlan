@@ -42,9 +42,7 @@ getHomeR = do
     defaultLayout $ do
         let (commentFormId, commentTextareaId, commentListId) = commentIds
         aDomId <- newIdent
-        setTitle "Welcome To Yesod!"
-        [whamlet|
-            <a .btn .btn-primary href=@{AllCoursesR}>Browse courses|]
+        setTitle "SlugPlan"
         $(widgetFile "homepage")
 
 
@@ -61,7 +59,7 @@ postHomeR = do
     defaultLayout $ do
         let (commentFormId, commentTextareaId, commentListId) = commentIds
         aDomId <- newIdent
-        setTitle "Welcome To Yesod!"
+        setTitle "SlugPlan"
         $(widgetFile "homepage")
 
 postPdfR :: Handler Html
@@ -88,7 +86,7 @@ postPdfR = do
     defaultLayout $ do
         let (commentFormId, commentTextareaId, commentListId) = commentIds
         aDomId <- newIdent
-        setTitle "Welcome To Yesod!"
+        setTitle "SlugPlan"
         $(widgetFile "homepage")
 
 getAllCoursesR :: Handler Html
@@ -97,7 +95,7 @@ getAllCoursesR = do
     defaultLayout
         [whamlet|
             <h1>
-            <a .btn .btn-primary href=@{HomeR}> <- Home
+            <a .btn .btn-primary .header-md href=@{HomeR}> <- Home
             <table style="width:100%">
                 <tr>
                     <th>Subject
@@ -152,4 +150,3 @@ pdfForm = renderBootstrap3 BootstrapBasicForm $ fileAFormReq "Choose a PDF to pa
 
 commentIds :: (Text, Text, Text)
 commentIds = ("js-commentForm", "js-createCommentTextarea", "js-commentList")
-

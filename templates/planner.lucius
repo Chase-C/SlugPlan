@@ -1,3 +1,7 @@
+
+
+
+
 h1 {
     text-align: center;
     margin-bottom: 30px
@@ -11,6 +15,30 @@ ol {
 }
 footer {
     text-align: center
+}
+.base-layout{
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(@{StaticR img_redwoods_jpg});
+    background-size:100%;
+    background-attachment: fixed;
+}
+.header-lg{
+    color:white;
+    font-size:70px;
+    text-shadow: 5px 5px black;
+    background-color:rgba(0, 0, 0, 0.5);
+}
+.header-md{
+    color:white;
+    font-size:45px;
+    text-shadow: 1px 1px black;
+    background-color:rgba(0, 0, 0, 0.5);
+    margin-right:10px;
+}
+.header-sm{
+    color:white;
+    font-size:45px;
+    text-shadow: 2px 2px black;
+
 }
 .input-sm {
     margin-left: 20px

@@ -11,6 +11,9 @@ packages:
 extra-deps:
 - pdf-toolbox-document-0.0.7.0
 - parsec-3.1.9
+- HDBC-odbc-2.5.0.0
+- persistent-odbc-0.2.0.1
+- concurrent-extra-0.7.0.10
 
 # Override default flag values for local packages and extra-deps
 flags: {}

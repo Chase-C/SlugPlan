@@ -12,14 +12,15 @@ import Data.Aeson                  (Result (..), fromJSON, withObject, (.!=),
                                     (.:?))
 import Data.FileEmbed              (embedFile)
 import Data.Yaml                   (decodeEither')
-import Database.Persist.MySQL      (MySQLConf (..))
+import Database.Persist.Sqlite     (SqliteConf)
+--import Database.Persist.MySQL      (MySQLConf (..))
 import Language.Haskell.TH.Syntax  (Exp, Name, Q)
 import Network.Wai.Handler.Warp    (HostPreference)
 import Yesod.Default.Config2       (applyEnvValue, configSettingsYml)
 import Yesod.Default.Util          (WidgetFileSettings, widgetFileNoReload,
                                     widgetFileReload)
 
-import qualified Database.MySQL.Base as MySQL
+--import qualified Database.MySQL.Base as MySQL
 
 -- | Runtime settings to configure this application. These settings can be
 -- loaded from various sources: defaults, environment variables, config files,
@@ -27,7 +28,8 @@ import qualified Database.MySQL.Base as MySQL
 data AppSettings = AppSettings
     { appStaticDir              :: String
     -- ^ Directory from which to serve static files.
-    , appDatabaseConf           :: MySQLConf
+    , appDatabaseConf           :: SqliteConf
+    --, appDatabaseConf           :: MySQLConf
     -- ^ Configuration settings for accessing the database.
     , appRoot                   :: Maybe Text
     -- ^ Base for all generated URLs. If @Nothing@, determined
@@ -67,7 +69,8 @@ instance FromJSON AppSettings where
                 False
 #endif
         appStaticDir              <- o .: "static-dir"
-        fromYamlAppDatabaseConf   <- o .: "database"
+        appDatabaseConf           <- o .: "database"
+        --fromYamlAppDatabaseConf   <- o .: "database"
         appRoot                   <- o .:? "approot"
         appHost                   <- fromString <$> o .: "host"
         appPort                   <- o .: "port"
@@ -82,11 +85,11 @@ instance FromJSON AppSettings where
         appCopyright              <- o .: "copyright"
         appAnalytics              <- o .:? "analytics"
 
-        let appDatabaseConf = fromYamlAppDatabaseConf { myConnInfo = (myConnInfo fromYamlAppDatabaseConf) {
-                MySQL.connectOptions =
-                  ( MySQL.connectOptions (myConnInfo fromYamlAppDatabaseConf)) ++ [MySQL.InitCommand "SET SESSION sql_mode = 'STRICT_ALL_TABLES';\0"]
-              }
-            }
+        --let appDatabaseConf = fromYamlAppDatabaseConf { myConnInfo = (myConnInfo fromYamlAppDatabaseConf) {
+        --        MySQL.connectOptions =
+        --          ( MySQL.connectOptions (myConnInfo fromYamlAppDatabaseConf)) ++ [MySQL.InitCommand "SET SESSION sql_mode = 'STRICT_ALL_TABLES';\0"]
+        --      }
+        --    }
 
         return AppSettings {..}
 

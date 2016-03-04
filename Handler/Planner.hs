@@ -19,7 +19,7 @@ import Text.Julius (RawJS (..))
 import Data.Aeson.Types (Result (..))
 
 import Database.Persist
-import Database.Persist.MySQL
+import Database.Persist.Sql
 
 --import Data.List (intercalate)
 

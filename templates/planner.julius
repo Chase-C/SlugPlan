@@ -106,13 +106,19 @@ $(function() {
   };
 
   var selectCourse = function(event) {
+    var elem = this;
     $.ajax({
       url: '@{NewCourseR}',
       type: 'PUT',
       contentType: 'application/json',
       data: JSON.stringify(event.data.name),
       success: function (data) {
-        console.log(data);
+        var container = $(elem).parents('.course-display');
+        console.log(container);
+        console.log(elem);
+        var newNode   = $("<div></div");
+        newNode.text(data.name);
+        container.append(newNode);
       },
       error: function (data) {
         console.log(data);

@@ -36,6 +36,9 @@ putNewCourseR :: Handler Value
 putNewCourseR = do
     courseName <- (requireJsonBody :: Handler Text)
     mCourse    <- runDB $ selectFirst [CourseName ==. courseName] []
+    -- userCourses <- runDB $ selectList [UserCourseUserName ==. userName] []
+    -- [UserCourse]
+    -- courseId = map userCourseCourse userCourses
     case mCourse of
         (Just course) -> returnJson course
         _             -> notFound

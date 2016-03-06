@@ -28,6 +28,7 @@ data Subject = AcadEnglish
              | AMS
              | BiomolecularEng
              | CompMedia
+             | GameMedia
              | CompEngineering
              | CompScience
              | ElectricalEng
@@ -49,7 +50,7 @@ data Subject = AcadEnglish
              | Languages
              | AppliedLinguistics
              | Punjabi
-             | Latin
+             | Latin                -- go 48
              | LatinoStudies
              | LegalStudies
              | Linguistics
@@ -65,7 +66,7 @@ data Subject = AcadEnglish
              | PreModernLit
              | RussianLit
              | SpanishLit
-             | WorldLit
+             | WorldLit             -- go 64
              | Math
              | Merrill
              | Microbiology
@@ -81,7 +82,7 @@ data Subject = AcadEnglish
              | Psychology
              | Russian
              | ScienceCom
-             | SocialDoc
+             | SocialDoc            -- go 80
              | Sociology
              | SpanishHeritage
              | Spanish
@@ -119,6 +120,7 @@ subjectName Education            = "Education"
 subjectName AMS                  = "Applied Mathematics and Statistics"
 subjectName BiomolecularEng      = "Biomolecular Engineering"
 subjectName CompMedia            = "Computational Media"
+subjectName GameMedia            = "Games and Playable Media"
 subjectName CompEngineering      = "Computer Engineering"
 subjectName CompScience          = "Computer Science"
 subjectName ElectricalEng        = "Electrical Engineering"
@@ -182,6 +184,29 @@ subjectName UCDC                 = "UCDC"
 subjectName Writing              = "Writing Program"
 subjectName Yiddish              = "Yiddish"
 
+subjectSection :: Subject -> String
+subjectSection BioEvolutionary    = "Biology: Ecology and Evolutionary Biology"
+subjectSection GameMedia          = subjectSection CompMedia
+subjectSection Languages          = "Languages and Applied Linguistics"
+subjectSection AppliedLinguistics = subjectSection Languages
+subjectSection Punjabi            = subjectSection Languages
+subjectSection CreativeWriting    = subjectSection Literature
+subjectSection EnglishLit         = subjectSection Literature
+subjectSection FrenchLit          = subjectSection Literature
+subjectSection GermanLit          = subjectSection Literature
+subjectSection GreekLit           = subjectSection Literature
+subjectSection ItalianLit         = subjectSection Literature
+subjectSection LatinLit           = subjectSection Literature
+subjectSection ModernLitStudies   = subjectSection Literature
+subjectSection PreModernLit       = subjectSection Literature
+subjectSection RussianLit         = subjectSection Literature
+subjectSection SpanishLit         = subjectSection Literature
+subjectSection WorldLit           = subjectSection Literature
+subjectSection SpanishHeritage    = "Spanish and Spanish for Heritage Speakers"
+subjectSection Spanish            = subjectSection SpanishHeritage
+subjectSection UCDC               = "UCDC Program"
+subjectSection subject            = subjectName subject
+
 subjectPrefix :: Subject -> String
 subjectPrefix AcadEnglish          = "ACEN"
 subjectPrefix Anthropology         = "ANTH"
@@ -209,6 +234,7 @@ subjectPrefix Education            = "EDUC"
 subjectPrefix AMS                  = "AMS"
 subjectPrefix BiomolecularEng      = "BME"
 subjectPrefix CompMedia            = "CMPM"
+subjectPrefix GameMedia            = "GAME"
 subjectPrefix CompEngineering      = "CMPE"
 subjectPrefix CompScience          = "CMPS"
 subjectPrefix ElectricalEng        = "EE"
@@ -271,3 +297,9 @@ subjectPrefix TheaterArts          = "THEA"
 subjectPrefix UCDC                 = "UCDC"
 subjectPrefix Writing              = "WRIT"
 subjectPrefix Yiddish              = "YIDD"
+
+getSubjectFromString :: String -> Subject
+getSubjectFromString strn = fst $ head candidate
+    where subjects = [AcadEnglish ..]
+          subStrns = zip subjects $ map (\s -> (subjectName s, subjectPrefix s)) subjects
+          candidate = filter (\(s, (n, p)) -> (n == strn) || (p == strn)) subStrns

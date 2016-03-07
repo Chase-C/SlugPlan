@@ -65,7 +65,7 @@ courseIds = ("js-courseForm", "js-courseList")
 
 matchCourses :: MonadIO m => Text -> ReaderT SqlBackend m [Entity Course]
 matchCourses strn = rawSql sqlStrn values
-    where fields     = ["subject", "acronym", "number", "name"]
+    where fields     = ["subject", "prefix", "number", "name"]
           strns      = words strn
           numStrns   = length strns
           searchOrs  = intercalate " or " $ map (\f -> f ++ " like ?") fields

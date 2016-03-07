@@ -1,62 +1,61 @@
-h1 {
-    text-align: center;
-    margin-bottom: 30px
-}
-h2##{aDomId} {
-    color: #990
-}
-li {
-    line-height: 2em;
-    font-size: 16px
-}
-ol {
-    margin-bottom: 30px
-}
-footer {
-    text-align: center
-}
-.base-layout{
+.base-layout {
     background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods_jpg});
     background-size:100%;
     background-attachment: fixed;
 }
-.header-lg{
-    color:white;
-    font-size:70px;
-    text-shadow: 5px 5px black;
-    background-color:rgba(0, 200, 0, .30);
+
+div {
     width: 100%;
 }
-.header-md{
-    color:white;
-    font-size:45px;
-    text-shadow: 1px 1px black;
-    background-color:rgba(0, 0, 0, 0.5);
-    margin-top:25px;
-    margin-right:100px;
-    margin-left:50px;
-}
-.header-md2{
-    color:white;
-    font-size:25px;
-    text-shadow: 1px 1px black;
-    background-color:rgba(0, 0, 0, 0.5);
-    margin-top:10px;
-}
-.header-sm{
-    color:white;
-    font-size:45px;
-    text-shadow: 2px 2px black;
 
+table {
+    border-radius: 6px;
+    border: 1px solid #aaa;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.4);
 }
-.input-sm {
-    margin-left: 20px
+
+a {
+    color: white;
+}
+
+a:hover,
+a:focus {
+    color: #00aa00;
+}
+
+th {
+    text-align: center;
+    background-color: green;
+    color: white;
+    padding: 5px;
+}
+
+th, td {
+    border-bottom: 1px solid #aaa;
+}
+
+td {
+    padding: 5px;
+}
+
+tr:nth-child(odd) {
+    color: white;
+}
+
+tr:nth-child(even) {
+    color: white;
+}
+
+.cen {
+    text-align: center;
 }
 
 .btn {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
+  font-size: 14px;
   font-weight: normal;
   line-height: 1.42857143;
   text-align: center;

@@ -4,6 +4,7 @@
  <h1.jumbotron .header-lg>
   Get to Know your Majors!
  <h1 .header-sm>Visit the links below to see if your selected courses fulfill your major's required courses!<br>
+ <br>
 
  <a href=:"http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lit.html" target="_blank" .header-ty>American Literature<br>
  <a href="http://registrar.ucsc.edu/catalog/programs-courses/course-descriptions/acen.html" target="_blank" .header-ty>Academic English<br>

@@ -43,14 +43,15 @@ footer {
 
 }
 .header-sm{
-    color:black;
+    color:white;
     font-size:25px;
 	text-shadow: 1px 1px black;
 }
 
 .header-ty{
-    color:#FF000;
+    color:white;
     font-size:15px;
+    text-shadow: 1px 1px black;
 
 }
 .input-sm {

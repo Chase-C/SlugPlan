@@ -1,25 +1,33 @@
+{-# LANGUAGE RecordWildCards   #-}
+{-# LANGUAGE OverloadedStrings #-}
+
 module Scraper.UCSC where
 
-import Prelude
-import System.IO
+import Model
+import Prelude       hiding (readFile, putStrLn, putStr)
+import Data.Text.IO  (readFile, putStrLn, putStr)
 import Pdf.Toolbox.Document
 import Data.Maybe    (catMaybes)
 import Data.Char     (toUpper)
 import Data.List     (sort, group)
 import Control.Monad (void)
-import Data.Text     (unpack)
+import Data.Text     (Text, unpack, pack)
 
 import Text.Parsec         ((<|>))
 import Control.Applicative ((<*), (<$>))
 import Control.Monad       (when)
 
+import qualified Data.Text       as T
 import qualified Text.Parsec     as Parsec
 import qualified Data.Map.Strict as Map
 
 import Scraper.Subjects
 
-type SubjectMap   = Map.Map Subject [(String, String, [String])]
-type UCSCParser a = Parsec.Parsec String () a
+type SubjectMap   = Map.Map Subject [Course]
+type UCSCParser a = Parsec.Parsec Text () a
+
+data Quarter = Fall | Winter | Spring | Summer
+    deriving (Show, Eq, Ord, Enum)
 
 getSubjectMap :: FilePath -> IO SubjectMap
 getSubjectMap filename = do
@@ -29,7 +37,7 @@ getSubjectMap filename = do
         (Just cs) -> return cs
         _         -> return Map.empty
 
-getSubjectMap' :: String -> String -> Maybe SubjectMap
+getSubjectMap' :: Text -> String -> Maybe SubjectMap
 getSubjectMap' input filename =
     let classes = Parsec.parse getAllSubjectCourses filename input
     in case classes of
@@ -39,7 +47,7 @@ getSubjectMap' input filename =
 getAllSubjectCourses :: UCSCParser SubjectMap
 getAllSubjectCourses = Map.fromList <$> (Parsec.many $ Parsec.try getNextSubjectCourses)
 
-getNextSubjectCourses :: UCSCParser (Subject, [(String, String, [String])])
+getNextSubjectCourses :: UCSCParser (Subject, [Course])
 getNextSubjectCourses = (Parsec.try $ do
     subject <- subjectBegin
     courses <- Parsec.manyTill (getCourse subject) (Parsec.try subjectEnd)
@@ -120,20 +128,32 @@ uniqueSubjectParser HistoryArt = (True, Parsec.choice
     ])
 uniqueSubjectParser subject    = (False, return "")
 
-getCourse :: Subject -> UCSCParser (String, String, [String])
+getCourse :: Subject -> UCSCParser Course
 getCourse sub = do
     courseBegin
-    num     <- getCourseNum
-    name    <- getCourseName
-    prereqs <- coursePrereqs sub
+    num     <- pack <$>                    getCourseNum
+    name    <- pack <$> removeNewlines <$> getCourseName
+    qrtrs   <- pack <$> show           <$> getCourseQuarters
+    desc    <- pack <$> removeNewlines <$> getCourseDescription
+    prereqs <- pack <$> show           <$> getCoursePrereqs sub
+    gotoCourseEnd
     courseEnd
 
-    Parsec.optional $ Parsec.try $ newPage sub
-
     let (unique, parser) = uniqueSubjectParser sub
+        --preq             = map pack prereqs
+
+    Parsec.optional $ Parsec.try $ newPage sub
     when unique $ Parsec.optional $ Parsec.try parser
 
-    return (num, removeNewlines name, removeNewlines <$> prereqs)
+    return Course
+        { courseSubject = pack $ subjectName   sub
+        , coursePrefix  = pack $ subjectPrefix sub
+        , courseNumber  = num
+        , courseName    = name
+        , courseQrtrs   = qrtrs
+        , courseDesc    = desc
+        , coursePreqs   = prereqs
+        }
 
 courseBegin :: UCSCParser ()
 courseBegin = do
@@ -150,6 +170,9 @@ courseEnd = do
     Parsec.optional $ Parsec.char ',' >> courseEnd
     Parsec.spaces
 
+gotoCourseEnd :: UCSCParser String
+gotoCourseEnd = Parsec.manyTill Parsec.anyChar $ Parsec.try $ Parsec.lookAhead courseEnd
+
 newPage :: Subject -> UCSCParser ()
 newPage subject = do
     Parsec.optional $ Parsec.many Parsec.digit >> newline'
@@ -162,32 +185,56 @@ getCourseNum = do
     num <- Parsec.many1 Parsec.digit
     sub <- Parsec.many  Parsec.letter
     Parsec.char '.'
+    Parsec.spaces
     return $ num ++ sub
 
 getCourseName :: UCSCParser String
-getCourseName =
-    Parsec.many1 (Parsec.alphaNum <|> Parsec.oneOf " ,?!\"&():+-/'\n\8211") <* periodBreak
+getCourseName = Parsec.manyTill Parsec.anyChar $ Parsec.try endName
+    where endName = do
+            Parsec.char '.'
+            (Parsec.try $ do
+                Parsec.many1 Parsec.space
+                Parsec.lookAhead $ Parsec.oneOf "FSW*" >> void (Parsec.oneOf " ,\n")
+                ) <|> (spaces >> newline' >> Parsec.notFollowedBy Parsec.lower)
 
-coursePrereqs :: Subject -> UCSCParser [String]
-coursePrereqs sub = Parsec.try (getPrereqs sub)
-    <|> (Parsec.try (Parsec.lookAhead courseEnd) >> return [])
-    <|> (Parsec.anyChar >> coursePrereqs sub)
+getCourseQuarters :: UCSCParser [Quarter]
+getCourseQuarters = (Parsec.try $ do
+    val    <- Parsec.oneOf "FSW*"
+    others <- (Parsec.try $ do
+        Parsec.spaces
+        Parsec.char ','
+        Parsec.spaces
+        getCourseQuarters
+        ) <|> (spaces >> Parsec.lookAhead newline' >> return [])
 
-getPrereqs :: Subject -> UCSCParser [String]
-getPrereqs sub = do
+    return $ case val of
+        'F' -> Fall   : others
+        'S' -> Spring : others
+        'W' -> Winter : others
+        _   ->          others
+    ) <|> (Parsec.spaces >> return [])
+
+getCourseDescription :: UCSCParser String
+getCourseDescription = Parsec.manyTill Parsec.anyChar
+                                     $ Parsec.try $ Parsec.lookAhead descEnd
+    where descEnd = Parsec.try (void $ Parsec.string "Prerequisite(s): ") <|> prereqEnd
+
+getCoursePrereqs :: Subject -> UCSCParser [String]
+getCoursePrereqs sub = (Parsec.try $ do
     Parsec.string "Prerequisite(s): "
-    prereqs <- Parsec.manyTill (prereqParser sub) $ Parsec.try
-                                                  $ Parsec.lookAhead courseEnd
-    return $ prereqs
+    prereqs <- Parsec.manyTill (prereqParser sub)
+                             $ Parsec.try $ Parsec.lookAhead prereqEnd
+    return $ map removeNewlines prereqs
+    ) <|> return []
 
 prereqParser :: Subject -> UCSCParser String
 prereqParser _ =
-    Parsec.manyTill Parsec.anyChar
-        $ (Parsec.try $ Parsec.lookAhead courseEnd)
-          <|> (Parsec.try $ Parsec.oneOf ",;." >> return ())
+    Parsec.manyTill Parsec.anyChar $
+        (Parsec.try $ Parsec.lookAhead prereqEnd)
+          <|> (void $ Parsec.try $ Parsec.oneOf ",;.")
 
-periodBreak :: UCSCParser ()
-periodBreak = Parsec.char '.' >> spaces
+prereqEnd :: UCSCParser ()
+prereqEnd = Parsec.try (void $ Parsec.string "(General") <|> courseEnd
 
 data PrereqStruct = AndPrereq [PrereqStruct]
                   | OrPrereq  [PrereqStruct]
@@ -204,14 +251,14 @@ profName = do
     Parsec.many1 Parsec.space
     first  <- Parsec.upper
     second <- Parsec.lower
-    tail   <- Parsec.manyTill Parsec.lower $ Parsec.lookAhead $ Parsec.oneOf " -,\n"
+    tail   <- Parsec.manyTill Parsec.letter $ Parsec.lookAhead $ Parsec.oneOf " -,\n"
     extra  <- Parsec.option "" $ Parsec.try $ do
         Parsec.oneOf " -"
         Parsec.optional newline'
         Parsec.notFollowedBy $ Parsec.string "Revised"
         first'  <- Parsec.upper
         second' <- Parsec.lower
-        tail'   <- Parsec.manyTill Parsec.lower $ Parsec.lookAhead $ Parsec.oneOf " ,\n"
+        tail'   <- Parsec.manyTill Parsec.letter $ Parsec.lookAhead $ Parsec.oneOf " ,\n"
         return (' ':first':second':tail')
     endName
     return $ (initial : ". ") ++ (first:second:tail) ++ extra
@@ -226,39 +273,39 @@ spaces = void $ Parsec.many $ Parsec.char ' '
 removeNewlines :: String -> String
 removeNewlines = filter ((/=) '\n')
 
-parsePdf :: FilePath -> IO String
-parsePdf filename =
-    withBinaryFile filename ReadMode $ \handle -> do
-        res <- runPdfWithHandle handle knownFilters $ do
-            pdf      <- document
-            catalog  <- documentCatalog pdf
-            rootNode <- catalogPageNode catalog
-            kids     <- pageNodeKids rootNode
-            count    <- pageNodeNKids rootNode
-
-            concat <$> mapM (getPageText rootNode) [3..(count - 1)]
-            --mapM_ printKid kids
-            --page <- pageNodePageByNum rootNode 2
-            --printPage page
-        case res of
-            (Left err)   -> print err >> return ""
-            (Right strn) -> return strn
-
-printKid :: (MonadPdf m, MonadIO m) => Ref -> PdfE m ()
-printKid kid = do
-    pageNode <- loadPageNode kid
-    case pageNode of
-        (PageTreeNode node) -> do
-            kids <- pageNodeKids node
-            count <- pageNodeNKids node
-            liftIO $ print $ "Node with " ++ show count ++ " children"
-            mapM_ printKid kids
-        (PageTreeLeaf leaf) -> do
-            text <- pageExtractText leaf
-            liftIO $ print text
-
-getPageText :: (MonadPdf m, MonadIO m) => PageNode -> Int -> PdfE m String
-getPageText node n = do
-    page <- pageNodePageByNum node n
-    text <- pageExtractText page
-    return $ unpack text
+--parsePdf :: FilePath -> IO String
+--parsePdf filename =
+--    withBinaryFile filename ReadMode $ \handle -> do
+--        res <- runPdfWithHandle handle knownFilters $ do
+--            pdf      <- document
+--            catalog  <- documentCatalog pdf
+--            rootNode <- catalogPageNode catalog
+--            kids     <- pageNodeKids rootNode
+--            count    <- pageNodeNKids rootNode
+--
+--            concat <$> mapM (getPageText rootNode) [3..(count - 1)]
+--            --mapM_ printKid kids
+--            --page <- pageNodePageByNum rootNode 2
+--            --printPage page
+--        case res of
+--            (Left err)   -> print err >> return ""
+--            (Right strn) -> return strn
+--
+--printKid :: (MonadPdf m, MonadIO m) => Ref -> PdfE m ()
+--printKid kid = do
+--    pageNode <- loadPageNode kid
+--    case pageNode of
+--        (PageTreeNode node) -> do
+--            kids <- pageNodeKids node
+--            count <- pageNodeNKids node
+--            liftIO $ print $ "Node with " ++ show count ++ " children"
+--            mapM_ printKid kids
+--        (PageTreeLeaf leaf) -> do
+--            text <- pageExtractText leaf
+--            liftIO $ print text
+--
+--getPageText :: (MonadPdf m, MonadIO m) => PageNode -> Int -> PdfE m String
+--getPageText node n = do
+--    page <- pageNodePageByNum node n
+--    text <- pageExtractText page
+--    return $ unpack text

@@ -122,22 +122,9 @@ getCourseR courseId = do
             |]
 
 insertSubjectMap :: SubjectMap -> Handler [Key Course]
---insertSubjectMap :: String -> Handler (Key Course)
---insertSubjectMap subMap = runDB $ insert $ Course "Pwning" "101" "How to Pwn"
-insertSubjectMap subMap = --runDB $ concat <$> mapM (\(sub, courses) ->
-    let subCourses = M.toList subMap
-    in  runDB $ concat <$> mapM (\(sub, courses) ->
-            let subName = pack $ subjectName   sub
-                subPrex = pack $ subjectPrefix sub
-            in  mapM (\(num, name, preq) ->
-                insert $ Course subName
-                                subPrex
-                                (pack num)
-                                (pack name)
-                                (pack $ show preq)
-                ) courses
-            ) subCourses
-            --) subMap
+insertSubjectMap subMap =
+    let courses = map snd $ M.toList subMap
+    in  runDB $ concat <$> mapM (mapM insert) courses
 
 sampleForm :: Form (FileInfo, Text)
 sampleForm = renderBootstrap3 BootstrapBasicForm $ (,)

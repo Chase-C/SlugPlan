@@ -2,6 +2,8 @@
 <body .base-layout>
   <h1.jumbotron .header-lg>
     Course Planner
+  
+  <a .btn .btn-primary #tohome href=@{HomeR}>Home
 
   <.page-header>
     <h2 .header-sm>Quarter

@@ -1,0 +1,261 @@
+h1 {
+    text-align: center;
+    margin-bottom: 30px
+}
+li {
+    line-height: 2em;
+    font-size: 16px
+}
+ol {
+    margin-bottom: 30px
+}
+footer {
+    text-align: center
+}
+.base-layout{
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods_jpg});
+    background-size:100%;
+    background-attachment: fixed;
+}
+.header-lg{
+    color:white;
+    font-size:70px;
+    text-shadow: 5px 5px black;
+    background-color:rgba(0, 200, 0, .30);
+}
+.header-md{
+    color:white;
+    font-size:45px;
+    text-shadow: 1px 1px black;
+    background-color:rgba(0, 0, 0, 0.5);
+    margin-right:10px;
+}
+.header-sm{
+    color:white;
+    font-size:45px;
+    text-shadow: 2px 2px black;
+
+}
+.input-sm {
+    margin-left: 20px
+}
+
+.planner-container {
+    border: 1px solid #eee;
+    border-radius: 6px;
+}
+
+table.planner-table {
+    min-width: 100%;
+    border-radius: 6px;
+
+    tr {
+        height: 192px;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #eee;
+    }
+
+    td {
+        vertical-align: top;
+    }
+}
+
+.quarter-container {
+    border: 1px solid #eee;
+    border: collapse;
+    border-radius: 4px;
+    padding: 8px;
+
+    height: 192px;
+    width: 160px;
+}
+
+.quarter-header {
+    text-align: center;
+    background-color: #eee;
+    border-radius: 3px;
+    border-color: #ccc;
+}
+
+.course-wrapper {
+    position: absolute;
+    overflow: auto;
+    display: table;
+    width: auto;
+}
+
+.course-container {
+    top: 0px;
+    width: 320px;
+    height: 174px;
+    margin: 8px;
+
+    border: 1px solid transparent;
+    border: collapse;
+    border-radius: 4px;
+    padding: 4px;
+
+    vertical-align: top;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.course-search {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 0px 4px;
+}
+
+.search-suggestions {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+
+    font-size: 0;
+    color: #888;
+    background-color: #fff;
+}
+
+.search-sug {
+    position: relative;
+    min-width: 308px;
+    padding: 0px 4px;
+    font-size: 14px;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.course-display {
+    background-color: #eee;
+}
+
+.course-add-button {
+    margin: 4px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    border-color: #3C763D;
+
+    width: 96px;
+    height: 96px;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    background-image: url(@{StaticR img_add_png});
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 25px 25px;
+    background-color: green;
+}
+
+.course-add-button:hover,
+.course-add-button:focus{
+    background-color: #009a00;
+}
+
+.quarter-add-button {
+    margin: 4px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    border-color: #ccc;
+
+    width: 142px;
+    height: 64px;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    background-image: url(@{StaticR img_add_png});
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 25px 25px;
+    background-color: #bbb;
+}
+
+.quarter-add-button:hover {
+    background-color: #ccc;
+    border-color: #ccc;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.btn:hover,
+.btn:focus {
+  color: #333;
+  text-decoration: none;
+}
+.btn:active,
+.btn.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.btn-primary {
+  color: #fff;
+  background-color: green;
+  border-color: green;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #009a00;
+  border-color: white;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+
+#tohome {
+    position: fixed;
+    top: 0;
+    left: 0;
+}

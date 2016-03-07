@@ -13,3 +13,5 @@
 /planner/search/#Text SearchCourseR GET
 /allCourses           AllCoursesR   GET
 /course/#CourseId     CourseR       GET
+
+/progress			  ProgressR		GET

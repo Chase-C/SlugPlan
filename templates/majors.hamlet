@@ -1,0 +1,135 @@
+<body .base-layout>
+<a .btn-primary href=@{HomeR} .btn-sm>Back to Home
+<br>
+ <h1.jumbotron .header-lg>
+  Get to Know your Majors!
+ <h1 .header-sm>Visit the links below to see if your selected courses fulfill your major's required courses!<br>
+
+ <a href=:"http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lit.html" target="_blank" .header-ty>American Literature<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/course-descriptions/acen.html" target="_blank" .header-ty>Academic English<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/anth.html" target="_blank" .header-ty>Anthropology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/ams.html" target="_blank" .header-ty>Applied Mathematics and Statistics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/course-descriptions/aplx.html" target="_blank" .header-ty>Applied Linguistics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/phys.html" target="_blank" .header-ty>Applied Physics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/art.html" target="_blank" .header-ty>Art<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/astr.html" target="_blank" .header-ty>Astronomy and Astrophysics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/bioc.html" target="_blank" .header-ty>Biochemisty and Molecular Biology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/beng.html" target="_blank" .header-ty>Bioengineering<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/bme.html" target="_blank" .header-ty>Bioinformatics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/bme.html" target="_blank" .header-ty>Biomolecular Engineering and Bioinformatics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/biolBS.html" target="_blank" .header-ty>Biological Sciences<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/biolBS.html" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Biology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/eeb.html" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Bioeducation<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/eeb.html#ecology" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Ecology and Evolution<br>
+ <a href="http://registrar.ucsc.edu/catalog/fields/fields-of-study.html#eebgrad" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Ecology and Evolutionary Biology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/mcdb.html#health" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Human Biology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/eeb.html#ocean" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Marine Biology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/mcdb.html" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Molecular, Cell, and Developmental Biology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/mcdb.html#neuroscience" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Neuroscience<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/eeb.html#plant" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Plant Sciences<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/chem.html" target="_blank" .header-ty>Chemistry<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/chem.html#biochemistry" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Biochemistry<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/chem.html#environmental" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Environmental Chemistry<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/chin.html" target="_blank" .header-ty>Chinese Language<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/clas.html" target="_blank" .header-ty>Classical Studies<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cogs.html" target="_blank" .header-ty>Cognitive Science<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cmmu.html" target="_blank" .header-ty>Community Studies<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cmpe.html" target="_blank" .header-ty>Computer Engineering<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cmpe.html#computersystems" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Computer Systems<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cmpe.html#digital" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Digital Hardware<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cmpe.html#networks" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Networks<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cmpe.html#robotics" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Robotics and Control<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cmpe.html#systems" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Systems Programming<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cmps.html" target="_blank" .header-ty>Computer Science<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cmps.html#game" target="_blank" .header-ty>Computer Science: Game Design<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cres.html" target="_blank" .header-ty>Critical Race and Ethnic Studies<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/danm.html" target="_blank" .header-ty>Digital Arts and New Media<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/eart.html" target="_blank" .header-ty>Earth Sciences<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/eart.html#geology" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Environmental Geology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/eart.html#ocean" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Ocean Sciences<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/eart.html#planetary" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Planetary Sciences<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/eart.html#science" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Science Education<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/east.html" target="_blank" .header-ty>East Asian Studies<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/eeb.html#ecology" target="_blank" .header-ty>Ecology and Evolution<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/eeb.html#eebgrad" target="_blank" .header-ty>Ecology and Evolutionary Biology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/econ.html" target="_blank" .header-ty>Economics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/econ.html#applied" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Applied Economics and Finance<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/econ.html#bmecon" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Business Management Economics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/econ.html#global_economics" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Global Economics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/educ.html" target="_blank" .header-ty>Education<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/ee.html" target="_blank" .header-ty>Electrical Engineering<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/envs.html" target="_blank" .header-ty>Environmental Studies<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/fmst.html" target="_blank" .header-ty>Feminist Studies<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/film.html" target="_blank" .header-ty>Film and Digital Media<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/fren.html" target="_blank" .header-ty>French Language<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cmps.html#game" target="_blank" .header-ty>Games and Playable Media<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/germ.html" target="_blank" .header-ty>German Language<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/gmst.html" target="_blank" .header-ty>German Studies<br>
+ <a href="http://sociology.ucsc.edu/undergraduate/majors-minors/index.html" target="_blank" .header-ty>Global Information and Social Enterprise Studies<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/hebr.html" target="_blank" .header-ty>Hebrew Language<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/his.html" target="_blank" .header-ty>History<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/havc.html" target="_blank" .header-ty>History of Art and Visual Culture<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/havc.html#religion" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Religion and Visual Culture<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/hisc.html" target="_blank" .header-ty>History of Consciousness<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/mcdb.html#health" target="_blank" .header-ty>Human biology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/ital.html" target="_blank" .header-ty>Italian language <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/itst.html" target="_blank" .header-ty>Italian studies <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/japn.html" target="_blank" .header-ty>Japanese language <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/jwst.html" target="_blank" .header-ty>Jewish studies <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/laal.html" target="_blank" .header-ty>Languages <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lnst.html" target="_blank" .header-ty>Language studies <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lals.html" target="_blank" .header-ty>Latin American and latino studies <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lgst.html" target="_blank" .header-ty>Legal studies <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/ling.html" target="_blank" .header-ty>Linguistics <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lit.html" target="_blank" .header-ty>Literature <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lit.html#writing" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Creative writing <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lit.html#national-literatures" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;English language literatures <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lit.html#national-literatures" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;French literature <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lit.html#national-literatures" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;German literature <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lit.html#national-literatures" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Greek and Latin Literatures <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lit.html#national-literatures" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Italian literature <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lit.html#modern" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Modern literary studies <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lit.html#preearly" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Pre and Early Modern Studies <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lit.html#national-literatures" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Spanish/Latin and American/Latino Literatures<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/lit.html#worldlit" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;World literature and cultural studies <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/eeb.html#ocean" target="_blank" .header-ty>Marine biology <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/math.html" target="_blank" .header-ty>Mathematics <br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/math.html#computational" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Computational Mathematics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/math.html#education" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Mathematics Education<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/math.html#pure" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Pure Mathematics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/metx.html" target="_blank" .header-ty>Microbiology and Environmental Toxicology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/mcdb.html" target="_blank" .header-ty>Molecular, cell and developmental biology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/musc.html" target="_blank" .header-ty>Music<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/musc.html#electronic" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Electronic Music<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/musc.html#jazz" target="_blank" .header-ty>&nbsp;&nbsp;&nbsp;Jazz<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cmpe.html#network" target="_blank" .header-ty>Network and Digital Technology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/mcdb.html#neuroscience" target="_blank" .header-ty>Neuroscience<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/ocea.html" target="_blank" .header-ty>Ocean Sciences<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/phil.html" target="_blank" .header-ty>Philosophy<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/phys.html" target="_blank" .header-ty>Physics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/phys.html#astrophysics" target="_blank" .header-ty>Physics(Astrophysics)<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/phye.html" target="_blank" .header-ty>Physics Education<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/eeb.html#plant" target="_blank" .header-ty>Plant Sciences<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/poli.html" target="_blank" .header-ty>Politics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/port.html" target="_blank" .header-ty>Portuguese Language<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/psyc.html" target="_blank" .header-ty>Psychology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/reli.html" target="_blank" .header-ty>Religious Studies<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/cmpe.html" target="_blank" .header-ty>Robotics Engineering<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/russ.html" target="_blank" .header-ty>Russian Language<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/scic.html" target="_blank" .header-ty>Science Communication: Science Writing<br>
+ <a href="http://registrar.ucsc.edu/catalog/fields/fields-of-study.html#" target="_blank" .header-ty>Science Computing and Applied Mathematics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/socd.html" target="_blank" .header-ty>Social Documentation<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/socy.html" target="_blank" .header-ty>Sociology<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/spst.html" target="_blank" .header-ty>Spanish for Heritage Speakers<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/sphs.html" target="_blank" .header-ty>Spanish Language<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/spst.html" target="_blank" .header-ty>Spanish Studies<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/ams.html#statistics" target="_blank" .header-ty>Statistics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/ams.html#stochastic" target="_blank" .header-ty>Statistics and Applied Mathematics<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/sust.html" target="_blank" .header-ty>Sustainability Studies<br>	
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/tim.html" target="_blank" .header-ty>Technology and Information Management<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/thea.html" target="_blank" .header-ty>Theater Arts<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/havc.html#visual" target="_blank" .header-ty>Visual Studies<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/writ.html" target="_blank" .header-ty>Writing<br>
+ <a href="http://registrar.ucsc.edu/catalog/programs-courses/program-statements/yidd.html" target="_blank" .header-ty>Yiddish Language<br>
+ <br>	
+ <br>

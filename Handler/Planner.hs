@@ -32,6 +32,10 @@ getPlannerR = do
         setTitle "Course Planner"
         $(widgetFile "planner")
 
+deleteNewCourseR :: Handler Value
+deleteNewCourseR =
+    returnJson ("ok" :: Text)
+
 putNewCourseR :: Handler Value
 putNewCourseR = do
     courseName <- (requireJsonBody :: Handler Text)

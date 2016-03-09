@@ -8,7 +8,7 @@
 /pdf                  PdfR              POST
 /comments             CommentR          POST
 /planner              PlannerR      GET
-/planner/course       NewCourseR    GET POST PUT
+/planner/course       NewCourseR    GET POST PUT DELETE
 /planner/quarter      NewQuarterR       POST
 /planner/search/#Text SearchCourseR GET
 /allCourses           AllCoursesR   GET

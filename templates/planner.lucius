@@ -41,69 +41,80 @@ footer {
 }
 
 .planner-container {
-    border: 1px solid #eee;
-    border-radius: 6px;
+    /*border: 1px solid #eee;
+    border-radius: 6px;*/
 }
 
-table.planner-table {
-    min-width: 100%;
-    border-radius: 6px;
+.quarter-wrapper {
+    align-items: stretch;
+    vertical-align: top;
+    font-size: 0;
+    display: block;
+}
 
-    tr {
-        height: 192px;
-    }
-
-    tr:nth-child(odd) {
-        background-color: #fff;
-    }
-
-    tr:nth-child(even) {
-        background-color: #eee;
-    }
-
-    td {
-        vertical-align: top;
-    }
+.fst-quarter {
+    border: 0px solid transparent;
+    border-radius: 8px 0px 0px 0px;
 }
 
 .quarter-container {
-    border: 1px solid #eee;
-    border: collapse;
-    border-radius: 4px;
-    padding: 8px;
-
+    background-color: #eee;
     height: 192px;
     width: 160px;
+
+    display: inline-block;
 }
 
 .quarter-header {
     text-align: center;
     background-color: #eee;
     border-radius: 3px;
-    border-color: #ccc;
+}
+
+.quarter-seperator {
+    height: 2px;
+    width: 160px;
+    background-color: #888;
+    border-style: solid;
+    border-color: #eee;
+    border-width: 1px 20px 0px 20px;
 }
 
 .course-wrapper {
-    position: absolute;
-    overflow: auto;
-    display: table;
+    height: 192px;
+    border: 0px solid transparent;
     width: auto;
+    vertical-align: top;
+    display: inline-block;
 }
 
 .course-container {
-    top: 0px;
+    height: 192px;
     width: 320px;
-    height: 174px;
-    margin: 8px;
-
-    border: 1px solid transparent;
-    border: collapse;
-    border-radius: 4px;
-    padding: 4px;
-
-    vertical-align: top;
+    /*padding: 6px 4px 4px 4px;*/
+    padding: 8px;
     white-space: nowrap;
+    vertical-align: top;
     display: inline-block;
+}
+
+.course-display {
+    border-color: #777;
+}
+
+.course-seperator {
+    height: 192px;
+    width: 1px;
+    background-color: #aaa;
+    border-style: solid;
+    border-color: #eee;
+    border-width: 8px 0px 8px 0px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.course-search-form {
+    font-size: 14px;
 }
 
 .course-search {
@@ -125,7 +136,7 @@ table.planner-table {
 
 .search-sug {
     position: relative;
-    min-width: 308px;
+    min-width: 310px;
     padding: 0px 4px;
     font-size: 14px;
 
@@ -140,17 +151,41 @@ table.planner-table {
 }
 
 .course-display {
+    position: relative;
     background-color: #eee;
 }
 
-.course-add-button {
-    margin: 4px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    border-color: #3C763D;
+.course-header {
+    font-size: 14px;
+    text-align: center;
+    display: block;
+}
 
-    width: 96px;
-    height: 96px;
+.course-description {
+    margin-top: 8px;
+    height: 120px;
+    width: 100%;
+    font-size: 12px;
+    text-align: left;
+    white-space: normal;
+}
+
+.course-break {
+    height: 1px;
+    width: 85%;
+    margin: 4px auto 4px auto;
+    background-color: #aaa;
+}
+
+.course-button {
+    position: absolute;
+    top: 8px;
+
+    border: 0px solid transparent;
+    border-radius: 4px;
+
+    width: 24px;
+    height: 24px;
 
     cursor: pointer;
     -webkit-user-select: none;
@@ -158,11 +193,49 @@ table.planner-table {
         -ms-user-select: none;
             user-select: none;
 
-    background-image: url(@{StaticR img_add_png});
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #eee;
+}
+
+.course-button:hover {
+    background-color: #ddd;
+}
+
+.edit-button {
+    right: 8px;
+    background-image: url(@{StaticR img_edit_s_png});
+    background-size: 14px 14px;
+}
+
+.remove-button {
+    left: 8px;
+    background-image: url(@{StaticR img_close_s_png});
+    background-size: 12px 12px;
+}
+
+.course-add-button {
+    border: 0px solid transparent;
+    border-radius: 0px 8px 8px 0px;
+    border-color: #3C763D;
+
+    width: 64px;
+    height: 192px;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    background-image: url(@{StaticR img_add_s_png});
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 25px 25px;
     background-color: green;
+
+    vertical-align: top;
+    display: inline-block;
 }
 
 .course-add-button:hover,
@@ -171,12 +244,11 @@ table.planner-table {
 }
 
 .quarter-add-button {
-    margin: 4px;
-    border: 1px solid transparent;
-    border-radius: 4px;
+    border: 0px solid transparent;
+    border-radius: 0px 0px 8px 8px;
     border-color: #ccc;
 
-    width: 142px;
+    width: 160px;
     height: 64px;
 
     cursor: pointer;
@@ -185,16 +257,16 @@ table.planner-table {
         -ms-user-select: none;
             user-select: none;
 
-    background-image: url(@{StaticR img_add_png});
+    background-image: url(@{StaticR img_add_s_png});
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 25px 25px;
-    background-color: #bbb;
+    background-color: #aaa;
 }
 
 .quarter-add-button:hover {
-    background-color: #ccc;
-    border-color: #ccc;
+    background-color: #bbb;
+    border-color: #bbb;
 }
 
 .btn {

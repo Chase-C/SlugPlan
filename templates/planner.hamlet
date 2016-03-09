@@ -2,22 +2,14 @@
 <body .base-layout>
   <h1.jumbotron .header-lg>
     Course Planner
-  
+
   <a .btn .btn-primary #tohome href=@{HomeR}>Home
 
   <.page-header>
-    <h2 .header-sm>Quarter
     <div .planner-container>
-      <table .planner-table>
-        <tr>
-          <td .quarter-container>
-            <h4.quarter-header #quarter-#{courseListId}1>Spring 2016
-          <td>
-            <div .course-wrapper>
-              <div .course-container #container-#{courseListId}1>
-                <button .course-add-button ##{courseListId}1>
-        <tr #add-quarter>
-          <td .quarter-container>
-            <button .quarter-add-button>
-          <td>
-            <div .course-wrapper>
+      <div .quarter-wrapper>
+        <div .fst-quarter .quarter-container>
+          <h4.quarter-header #quarter-#{courseListId}1>Spring 2016
+        <div .course-wrapper>
+          <button .course-add-button ##{courseListId}1>
+      <button #add-quarter .quarter-add-button>

@@ -1,0 +1,7 @@
+<body .base-layout>
+    <a .btn .btn-primary href=@{AllCoursesR}> <- Back to Browse
+    <div>
+        <h1>#{courseName course} (#{courseSubject course} #{courseNumber course})
+        <ul>Pre-requisites:
+            <!-- $forall something something for when the prereqs are in list form -->
+            <li>#{coursePreqs course}

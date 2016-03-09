@@ -1,0 +1,59 @@
+a:hover{
+    color:red;
+    text-decoration:none;
+}
+
+h1 {
+    text-align: center;
+	margin-top: 30px
+    margin-bottom: 30px
+}
+}
+ol {
+    margin-bottom: 30px
+}
+footer {
+    text-align: center
+}
+
+.base-layout{
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),url(@{StaticR img_redwoods3_jpg});
+    background-size:100%;
+    background-attachment: fixed;
+}
+.header-lg{
+    color:white;
+    font-size:70px;
+	background-color:rgba(0, 0, 0, 0.5);
+    text-shadow: 5px 5px black;
+}
+
+.header-md{
+    color:white;
+    font-size:45px;
+    text-shadow: 1px 1px black;
+    background-color:rgba(0, 0, 0, 0.5);
+    margin-right:10px;
+}
+.btn-sm{
+    color:white;
+    font-size:20px;
+	text-shadow: 1px 1px black;
+	#background-color:rgba(0, 0, 0, 0.5);
+
+}
+.header-sm{
+    color:white;
+    font-size:25px;
+	text-shadow: 1px 1px black;
+}
+
+.header-ty{
+    color:white;
+    font-size:15px;
+    text-shadow: 1px 1px black;
+
+}
+.input-sm {
+    margin-left: 20px
+}

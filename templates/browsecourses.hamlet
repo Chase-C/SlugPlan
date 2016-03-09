@@ -1,0 +1,12 @@
+<body .base-layout>
+    <a .btn .btn-primary href=@{HomeR}> <- Home
+    <div>    
+        <table>
+            <th>Subject
+            <th>Course Number
+            <th>Course Name
+            $forall Entity courseid course <- courses
+                <tr>
+                    <td .cen>#{coursePrefix course}
+                    <td .cen>#{courseNumber course}
+                    <td><a href=@{CourseR courseid}>#{courseName course}

@@ -23,9 +23,10 @@ library
                      Handler.Common
                      Handler.Home
                      Handler.Comment
+                     Handler.Planner
                      Scraper.UCSC
                      Scraper.Subjects
-
+                     Handler.Majors
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
         ghc-options:   -Wall -fwarn-tabs -O0
@@ -62,6 +63,8 @@ library
                  , text                          >= 0.11       && < 2.0
                  , persistent                    >= 2.0        && < 2.3
                  , persistent-sqlite             >= 2.1.1      && < 2.3
+                 --, persistent-mysql              >= 2.1.2      && < 2.4
+                 --, mysql
                  , persistent-template           >= 2.0        && < 2.3
                  , template-haskell
                  , shakespeare                   >= 2.0        && < 2.1
@@ -86,6 +89,7 @@ library
                  , time
                  , case-insensitive
                  , wai
+                 , blaze-markup
                  , pdf-toolbox-document          >= 0.0.7.0
                  , parsec                        >= 3.1.0
 
@@ -129,6 +133,7 @@ test-suite test
                  , yesod
                  , persistent
                  , persistent-sqlite
+                 --, persistent-mysql
                  , resourcet
                  , monad-logger
                  , shakespeare

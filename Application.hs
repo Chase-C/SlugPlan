@@ -16,6 +16,8 @@ module Application
 import Control.Monad.Logger                 (liftLoc, runLoggingT)
 import Database.Persist.Sqlite              (createSqlitePool, runSqlPool,
                                              sqlDatabase, sqlPoolSize)
+--import Database.Persist.MySQL               (createMySQLPool, myConnInfo,
+--                                             myPoolSize, runSqlPool)
 import Import
 import Language.Haskell.TH.Syntax           (qLocation)
 import Network.Wai (Middleware)
@@ -35,6 +37,8 @@ import System.Log.FastLogger                (defaultBufSize, newStdoutLoggerSet,
 import Handler.Common
 import Handler.Home
 import Handler.Comment
+import Handler.Planner
+import Handler.Majors
 
 -- This line actually creates our YesodDispatch instance. It is the second half
 -- of the call to mkYesodData which occurs in Foundation.hs. Please see the
@@ -71,6 +75,9 @@ makeFoundation appSettings = do
     pool <- flip runLoggingT logFunc $ createSqlitePool
         (sqlDatabase $ appDatabaseConf appSettings)
         (sqlPoolSize $ appDatabaseConf appSettings)
+    --pool <- flip runLoggingT logFunc $ createMySQLPool
+    --    (myConnInfo $ appDatabaseConf appSettings)
+    --    (myPoolSize $ appDatabaseConf appSettings)
 
     -- Perform database migration using our application's logging settings.
     runLoggingT (runSqlPool (runMigration migrateAll) pool) logFunc
@@ -151,8 +158,6 @@ appMain = do
 
     -- Run the application with Warp
     runSettings (warpSettings foundation) app
-
-
 --------------------------------------------------------------
 -- Functions for DevelMain.hs (a way to run the app from GHCi)
 --------------------------------------------------------------

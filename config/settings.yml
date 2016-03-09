@@ -24,8 +24,12 @@ ip-from-header: "_env:IP_FROM_HEADER:false"
 # See https://github.com/yesodweb/yesod/wiki/Configuration#parsing-numeric-values-as-strings
 
 database:
-  database: "_env:SQLITE_DATABASE:SlugPlan.sqlite3"
-  poolsize: "_env:SQLITE_POOLSIZE:10"
+#  user:     "_env:MYSQL_USER:slugplan"
+#  password: "_env:MYSQL_PASSWORD:slugplan"
+#  host:     "_env:MYSQL_HOST:localhost"
+#  port:     "_env:MYSQL_PORT:5432"
+  database: "_env:MYSQL_DATABASE:SlugPlan.sqlite3"
+  poolsize: "_env:MYSQL_POOLSIZE:10"
 
-copyright: Insert copyright statement here
+copyright: Copyright 2015-16 © UCSC Team "SlugPlan"
 #analytics: UA-YOURCODE

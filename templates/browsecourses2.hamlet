@@ -1,0 +1,178 @@
+<body .base-layout>
+    <br>
+    <a .btn .btn-primary href=@{HomeR}> Back to Home
+    <br>
+    <br>
+    <table>
+        <th>Browse by Department/Subject
+            <tr>
+                <td><a href=@{AllCoursesR}> Show All Courses
+            <tr>
+                <td><a  href=@{AcenR}>Academic English
+            <tr>
+                <td><a  href=@{AnthR}>Anthropology
+            <tr>
+                <td><a  href=@{AplxR}>Applied Linguistics
+            <tr>
+                <td><a  href=@{AmsR}>Applied Mathematics and Statistics
+            <tr>
+                <td><a  href=@{ArtR}>Art
+            <tr>
+                <td><a  href=@{ArtgR}>Art and Design: Gamse and Playable Media
+            <tr>
+                <td><a  href=@{AstrR}>Astronomy and Astrophysics
+            <tr>
+                <td><a  href=@{BiocR}>Biochemistry and Molecular Biology
+            <tr>
+                <td><a  href=@{BiolR}>Biological Sciences
+            <tr>
+                <td><a  href=@{BmeR}>Biomolecular Engineering and Bioinformatics
+            <tr>
+                <td><a  href=@{ChemR}>Chemistry
+            <tr>
+                <td><a  href=@{ChinR}>Chinese Language
+            <tr>
+                <td><a  href=@{CleiR}>College Eight
+            <tr>
+                <td><a  href=@{ClniR}>College Nine
+            <tr>
+                <td><a  href=@{ClteR}>College Ten
+            <tr>
+                <td><a  href=@{CmmuR}>Community Studies
+            <tr>
+                <td><a  href=@{CmpmR}>Computational Media
+            <tr>
+                <td><a  href=@{CmpeR}>Computer Engineering
+            <tr>
+                <td><a  href=@{CmpsR}>Computer Science
+            <tr>
+                <td><a  href=@{CowlR}>Cowell
+            <tr>
+                <td><a  href=@{LtcrR}>Creative Writing
+            <tr>
+                <td><a  href=@{CresR}>Critical Race and Ethnic Studies
+            <tr>
+                <td><a  href=@{CrwnR}>Crown
+            <tr>
+                <td><a  href=@{DanmR}>Digital Arts and New Media
+            <tr>
+                <td><a  href=@{EartR}>Earth Sciences
+            <tr>
+                <td><a  href=@{BioeR}>Bioengineering
+            <tr>
+                <td><a  href=@{EconR}>Economics
+            <tr>
+                <td><a  href=@{EducR}>Education
+            <tr>
+                <td><a  href=@{EtR}>Electrical Engineering
+            <tr>
+                <td><a  href=@{LtelR}>English-Language Literatures
+            <tr>
+                <td><a  href=@{EnvsR}>Environmental Studies
+            <tr>
+                <td><a  href=@{FmstR}>Feminist Studies
+            <tr>
+                <td><a  href=@{FilmR}>Film and Digital Media
+            <tr>
+                <td><a  href=@{FrenR}>French
+            <tr>
+                <td><a  href=@{LtfrR}>French Literature
+            <tr>
+                <td><a  href=@{GameR}>Games and Playable Media
+            <tr>
+                <td><a  href=@{GermR}>German
+            <tr>
+                <td><a  href=@{LtgeR}>German Literature
+            <tr>
+                <td><a  href=@{GreeR}>Greek
+            <tr>
+                <td><a  href=@{LtgrR}>Greek Literature
+            <tr>
+                <td><a  href=@{HebrR}>Hebrew
+            <tr>
+                <td><a  href=@{HistR}>History
+            <tr>
+                <td><a  href=@{HavcR}>History of Art and Visual Culture
+            <tr>
+                <td><a  href=@{HiscR}>History of Consciousness
+            <tr>
+                <td><a  href=@{ItalR}>Italian
+            <tr>
+                <td><a  href=@{LtitR}>Italian Literature
+            <tr>
+                <td><a  href=@{JapnR}>Japanese
+            <tr>
+                <td><a  href=@{KrsgR}>Kresge
+            <tr>
+                <td><a  href=@{LaadR}>Languages
+            <tr>
+                <td><a  href=@{LatnR}>Latin
+            <tr>
+                <td><a  href=@{LalsR}>Latin American and Latino Studies
+            <tr>
+                <td><a  href=@{LtinR}>Latin Literature
+            <tr>
+                <td><a  href=@{LgstR}>Legal Studies
+            <tr>
+                <td><a  href=@{LlingR}>Linguistics
+            <tr>
+                <td><a  href=@{LitR}>Literature
+            <tr>
+                <td><a  href=@{MathR}>Mathematics
+            <tr>
+                <td><a  href=@{MerrR}>Merrill
+            <tr>
+                <td><a  href=@{MetxR}>Microbiol and Environmental Toxicology
+            <tr>
+                <td><a  href=@{LtmoR}>Modern Literary Studies
+            <tr>
+                <td><a  href=@{MuscR}>Music
+            <tr>
+                <td><a  href=@{OaksR}>Oakes
+            <tr>
+                <td><a  href=@{OceaR}>Ocean Sciences
+            <tr>
+                <td><a  href=@{PhilR}>Philosophy
+            <tr>
+                <td><a  href=@{PhyeR}>Physical Education
+            <tr>
+                <td><a  href=@{PhysR}>Physics
+            <tr>
+                <td><a  href=@{PoliR}>Politics
+            <tr>
+                <td><a  href=@{PrtrR}>Portuguese
+            <tr>
+                <td><a  href=@{PortR}>Porter
+            <tr>
+                <td><a  href=@{LtprR}>Pre and Early Modern Literature
+            <tr>
+                <td><a  href=@{PsycR}>Psychology
+            <tr>
+                <td><a  href=@{RussR}>Russian
+            <tr>
+                <td><a  href=@{ScicR}>Science Communication
+            <tr>
+                <td><a  href=@{SocdR}>Social Documentation
+            <tr>
+                <td><a  href=@{SocyR}>Sociology
+            <tr>
+                <td><a  href=@{SpanR}>Spanish
+            <tr>
+                <td><a  href=@{SphsR}>Spanish for Heritage Speakers
+            <tr>
+                <td><a  href=@{LtspR}>Spanish/Latin Amer/Latino Literature
+            <tr>
+                <td><a  href=@{StevR}>Stevenson
+            <tr>
+                <td><a  href=@{TimR}>Technology and Information Management
+            <tr>
+                <td><a  href=@{TheaR}>Theater Arts
+            <tr>
+                <td><a  href=@{UcdcR}>UCDC
+            <tr>
+                <td><a  href=@{LtwlR}>World Lit and Cultural Studies
+            <tr>
+                <td><a  href=@{WritR}>Writing
+            <tr>
+                <td><a  href=@{YiddR}>Yiddish
+    <br>

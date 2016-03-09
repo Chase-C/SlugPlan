@@ -39,6 +39,12 @@ import Handler.Home
 import Handler.Comment
 import Handler.Planner
 import Handler.Majors
+import Handler.Department
+import Handler.Department2
+import Handler.Department3
+import Handler.Department4
+import Handler.Department5
+import Handler.Department6
 
 -- This line actually creates our YesodDispatch instance. It is the second half
 -- of the call to mkYesodData which occurs in Foundation.hs. Please see the

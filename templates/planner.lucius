@@ -43,6 +43,7 @@ footer {
 .planner-container {
     /*border: 1px solid #eee;
     border-radius: 6px;*/
+    background-color:rgba(0, 0, 0, 0.4);
 }
 
 .quarter-wrapper {
@@ -81,7 +82,7 @@ footer {
 }
 
 .course-wrapper {
-    height: 192px;
+    height: 85px;
     border: 0px solid transparent;
     width: auto;
     vertical-align: top;
@@ -96,10 +97,12 @@ footer {
     white-space: nowrap;
     vertical-align: top;
     display: inline-block;
+    background-color:rgba(0, 0, 0, 0.4);
 }
 
 .course-display {
     border-color: #777;
+    background-color:rgba(0, 0, 0, 0.4);
 }
 
 .course-seperator {

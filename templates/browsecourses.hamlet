@@ -1,6 +1,12 @@
 <body .base-layout>
-    <a .btn .btn-primary href=@{HomeR}> <- Home
-    <div>    
+    <br>
+    <a .btn .btn-primary href=@{HomeR}> Back to Home
+    <br>
+    <br>
+    <a .btn .btn-primary href=@{AllCourses2R}> Back to Browsing Courses
+    <br>
+    <br>
+
         <table>
             <th>Subject
             <th>Course Number

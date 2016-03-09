@@ -40,8 +40,8 @@ $(function() {
 
     addSearchMouseEvents(advSearch);
     advSearch.on('click', function() {
-        console.log('going to: ' + '@{AllCoursesR}');
-        window.location.assign('@{AllCoursesR}');
+        console.log('going to: ' + '@{AllCourses2R}');
+        window.location.assign('@{AllCourses2R}');
     });
 
     return form;

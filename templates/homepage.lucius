@@ -29,12 +29,12 @@ footer {
 }
 .header-md{
     color:white;
-    font-size:45px;
+    font-size:40px;
     text-shadow: 1px 1px black;
     background-color:rgba(0, 0, 0, 0.5);
     margin-top:25px;
-    margin-right:100px;
-    margin-left:50px;
+    margin-right:25px;
+    margin-left:25px;
 }
 .header-md2{
     color:white;

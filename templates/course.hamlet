@@ -1,5 +1,7 @@
 <body .base-layout>
-    <a .btn .btn-primary href=@{AllCoursesR}> <- Back to Browse
+    <br>
+    <a .btn .btn-primary href=@{AllCourses2R}> Back to Browsing Courses
+    <br>
     <div>
         <h1>#{courseName course} (#{courseSubject course} #{courseNumber course})
         <ul>Pre-requisites:

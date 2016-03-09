@@ -23,6 +23,8 @@ import qualified Data.Map as M
 import Scraper.UCSC
 import Scraper.Subjects
 
+-------------------------------------------------------------------------------------------
+
 -- This is a handler function for the GET request method on the HomeR
 -- resource pattern. All of your resource patterns are defined in
 -- config/routes
@@ -72,13 +74,40 @@ postPdfR = do
         aDomId <- newIdent
         setTitle "SlugPlan"
         $(widgetFile "homepage")
-
 getAllCoursesR :: Handler Html
 getAllCoursesR = do
-    courses <- runDB $ selectList [] [Asc CourseSubject, Asc CourseNumber]
+    courses <- runDB $ selectList [] [Asc CourseSubject, Asc CourseNumber]--[CoursePrefix ==. "ANTH"]
     defaultLayout $ do
         setTitle "SlugPlan: Browse Courses"
         $(widgetFile "browsecourses")
+getAllCourses2R :: Handler Html
+getAllCourses2R = do
+    defaultLayout $ do
+        setTitle "SlugPlan: Browse Courses"
+        $(widgetFile "browsecourses2")
+
+getAcenR :: Handler Html
+getAcenR = do
+    courses <- runDB $ selectList [CoursePrefix ==. "ACEN"] []
+    defaultLayout $ do
+        setTitle "SlugPlan: Browse Courses"
+        $(widgetFile "browsecourses")
+getAnthR :: Handler Html
+getAnthR = do
+    courses <- runDB $ selectList [CoursePrefix ==. "ANTH"] []
+    defaultLayout $ do
+        setTitle "SlugPlan: Browse Courses"
+        $(widgetFile "browsecourses")
+getAplxR :: Handler Html
+getAplxR = do
+    courses <- runDB $ selectList [CoursePrefix ==. "APLX"] []
+    defaultLayout $ do
+        setTitle "SlugPlan: Browse Courses"
+        $(widgetFile "browsecourses")
+
+
+
+
 
 getCourseR :: CourseId -> Handler Html
 getCourseR courseId = do

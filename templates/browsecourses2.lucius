@@ -1,5 +1,5 @@
 .base-layout {
-    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods3_jpg});
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods_jpg});
     background-size:100%;
     background-attachment: fixed;
 }
@@ -108,3 +108,40 @@ tr:nth-child(even) {
 .open > .dropdown-toggle.btn-primary {
   background-image: none;
 }
+
+/* **************************************************************************************************************************************
+ * Code here implements the aesthetics of the drop down menu and button
+ * **************************************************************************************************************************************
+ * /
+ 
+/* These deal with the aesthetics of the drop down menu button */
+.departmentButton {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    padding: 14px;
+    font-size: 14px;
+    border: 1px solid transparent;
+}
+.departmentButton:hover{
+    background-color: green;
+}
+
+/* Container to position the drop down menu & its items
+.containerListings {
+    position: relative;
+}
+
+/* Modify the appearance of the options in the drop down menu */
+.departmentOptions {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+    min-width: 40px;
+}
+.departmentOptions a {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);	
+    display: block;
+}
+
+/* calling function in javascript to show the hidden drop down menu */
+.list {display:block;}

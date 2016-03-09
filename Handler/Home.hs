@@ -16,6 +16,8 @@ import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3,
 import Text.Julius (RawJS (..))
 
 import Database.Persist
+import Database.Persist.Sql
+
 
 import Data.Text (unpack)
 import qualified Data.Map as M
@@ -76,10 +78,15 @@ postPdfR = do
         $(widgetFile "homepage")
 getAllCoursesR :: Handler Html
 getAllCoursesR = do
-    courses <- runDB $ selectList [] [Asc CourseSubject, Asc CourseNumber]--[CoursePrefix ==. "ANTH"]
+    (widget, enctype) <- generateFormPost searchForm
+    courses           <- runDB $ selectList [] [Asc CourseSubject, Asc CourseNumber]
     defaultLayout $ do
+        [whamlet|
+            <form method=post action=@{AllCoursesR} enctype=#{enctype}>
+                ^{widget}|]
         setTitle "SlugPlan: Browse Courses"
         $(widgetFile "browsecourses")
+
 getAllCourses2R :: Handler Html
 getAllCourses2R = do
     defaultLayout $ do
@@ -92,15 +99,28 @@ getAcenR = do
     defaultLayout $ do
         setTitle "SlugPlan: Browse Courses"
         $(widgetFile "browsecourses")
+
 getAnthR :: Handler Html
 getAnthR = do
     courses <- runDB $ selectList [CoursePrefix ==. "ANTH"] []
     defaultLayout $ do
         setTitle "SlugPlan: Browse Courses"
         $(widgetFile "browsecourses")
+
 getAplxR :: Handler Html
 getAplxR = do
     courses <- runDB $ selectList [CoursePrefix ==. "APLX"] []
+    defaultLayout $ do
+        setTitle "SlugPlan: Browse Courses"
+        $(widgetFile "browsecourses")
+
+
+postAllCoursesR :: Handler Html
+postAllCoursesR = do
+    ((result, _), _)        <- runFormPost searchForm
+    courses <- case result of
+        FormSuccess numString -> runDB $ matchCourses numString
+        _                        -> runDB $ selectList [] [Asc CourseSubject, Asc CourseNumber]
     defaultLayout $ do
         setTitle "SlugPlan: Browse Courses"
         $(widgetFile "browsecourses")
@@ -125,3 +145,17 @@ insertSubjectMap subMap =
 
 pdfForm :: Form FileInfo
 pdfForm = renderBootstrap3 BootstrapBasicForm $ fileAFormReq "Choose a PDF to parse"
+
+searchForm :: Form Text
+searchForm = renderBootstrap3 BootstrapBasicForm $ areq textField "Search a class?" Nothing
+
+matchCourses :: MonadIO m => Text -> ReaderT SqlBackend m [Entity Course]
+matchCourses strn = rawSql sqlStrn values
+    where fields     = ["subject", "prefix", "number", "name"]
+          strns      = words strn
+          numStrns   = length strns
+          searchOrs  = intercalate " or " $ map (\f -> f ++ " like ?") fields
+          searchAnds = intercalate " and " $ replicate numStrns ("(" ++ searchOrs ++ ")")
+          sqlStrn    = "select ?? from course where " ++ searchAnds
+          values     = concat $ map (\s -> map PersistText $ replicate 4 $ surr s) strns
+          surr s     = "%" ++ s ++ "%"

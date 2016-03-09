@@ -11,7 +11,7 @@
 /planner/course       NewCourseR    GET POST PUT DELETE
 /planner/quarter      NewQuarterR       POST
 /planner/search/#Text SearchCourseR GET
-/allCourses           AllCoursesR   GET
+/allCourses           AllCoursesR   GET POST
 /course/#CourseId     CourseR       GET
 
 /progress			  ProgressR		GET

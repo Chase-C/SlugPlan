@@ -1,4 +1,4 @@
-s<body .base-layout>
+<body .base-layout>
   <h1.jumbotron .header-lg>
     Welcome to SlugPlan!
 

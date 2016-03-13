@@ -1,4 +1,4 @@
-s<body .base-layout>
+<body .base-layout>
   <br>
   <a .btn .btn-primary href=@{HomeR}>Back to Home
   <br>

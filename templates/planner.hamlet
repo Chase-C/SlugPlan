@@ -3,7 +3,9 @@
   <a .btn .btn-primary href=@{HomeR}>Back to Home
   <br>
   <br>
-
+  <h1.jumbotron .header-lg>
+    Course Planner
+  <br>
   <div .planner-container>
     <div .planner-background>
     <div .planner-header>

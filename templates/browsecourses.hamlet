@@ -6,6 +6,7 @@
     <a .btn .btn-primary href=@{AllCourses2R}> Back to Browsing Courses
     <br>
     <br>
+    <br>
 
         <table>
             <th>Subject

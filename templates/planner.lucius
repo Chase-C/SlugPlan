@@ -40,22 +40,45 @@ footer {
     margin-left: 20px
 }
 
+.container {
+    margin: auto;
+    padding: 0px;
+    border: 0px;
+    width: 1123px;
+    height: auto;
+}
+
 .planner-container {
-    /*border: 1px solid #eee;
-    border-radius: 6px;*/
-    background-color:rgba(0, 0, 0, 0.4);
+    position: relative;
+    height: auto;
+    width: auto;
+}
+
+.planner-header {
+    width: 1123px;
+    height: 96px;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: #bbb;
+    border-radius: 8px 8px 0px 0px;
+    background-color: #eee;
+}
+
+.planner-background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: -2;
 }
 
 .quarter-wrapper {
-    align-items: stretch;
+    position: relative;
+    min-height: 192px;
     vertical-align: top;
     font-size: 0;
-    display: block;
-}
-
-.fst-quarter {
-    border: 0px solid transparent;
-    border-radius: 8px 0px 0px 0px;
+    overflow: visible;
+    white-space: nowrap;
 }
 
 .quarter-container {
@@ -63,6 +86,7 @@ footer {
     height: 192px;
     width: 160px;
 
+    white-space: nowrap;
     display: inline-block;
 }
 
@@ -70,39 +94,48 @@ footer {
     text-align: center;
     background-color: #eee;
     border-radius: 3px;
+    padding: 4px;
+    overflow: hidden;
 }
 
 .quarter-seperator {
-    height: 2px;
+    height: 1px;
     width: 160px;
-    background-color: #888;
+    background-color: #bbb;
     border-style: solid;
     border-color: #eee;
-    border-width: 1px 20px 0px 20px;
+    border-width: 0px 20px 0px 20px;
+}
+
+.course-rows {
+    vertical-align: top;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 .course-wrapper {
-    height: 85px;
+    position: relative;
+    height: 192px;
     border: 0px solid transparent;
     width: auto;
-    vertical-align: top;
-    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
 }
 
 .course-container {
     height: 192px;
     width: 320px;
-    /*padding: 6px 4px 4px 4px;*/
     padding: 8px;
-    white-space: nowrap;
     vertical-align: top;
+    white-space: nowrap;
     display: inline-block;
-    background-color:rgba(0, 0, 0, 0.4);
 }
 
 .course-display {
-    border-color: #777;
-    background-color:rgba(0, 0, 0, 0.4);
+    position: relative;
+    background-color: #eee;
 }
 
 .course-seperator {
@@ -113,6 +146,7 @@ footer {
     border-color: #eee;
     border-width: 8px 0px 8px 0px;
     vertical-align: middle;
+    white-space: nowrap;
     display: inline-block;
 }
 
@@ -139,23 +173,20 @@ footer {
 
 .search-sug {
     position: relative;
-    min-width: 310px;
+    min-width: 302px;
     padding: 0px 4px;
     font-size: 14px;
-
+    line-height: 19px;
     cursor: pointer;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
 
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.course-display {
-    position: relative;
+.search-sug:hover {
     background-color: #eee;
+    display: inline-block;
+    z-index: 1;
 }
 
 .course-header {
@@ -191,10 +222,6 @@ footer {
     height: 24px;
 
     cursor: pointer;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
 
     background-repeat: no-repeat;
     background-position: center center;
@@ -218,35 +245,36 @@ footer {
 }
 
 .course-add-button {
+    position: relative;
+    top: 16px;
+    left: 0px;
+
     border: 0px solid transparent;
     border-radius: 0px 8px 8px 0px;
     border-color: #3C763D;
 
-    width: 64px;
-    height: 192px;
+    width: 48px;
+    height: 96px;
 
     cursor: pointer;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
 
     background-image: url(@{StaticR img_add_s_png});
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: 50% 50%;
     background-size: 25px 25px;
     background-color: green;
 
     vertical-align: top;
+    white-space: nowrap;
     display: inline-block;
 }
 
-.course-add-button:hover,
-.course-add-button:focus{
+.course-add-button:hover {
     background-color: #009a00;
 }
 
 .quarter-add-button {
+    position: relative;
     border: 0px solid transparent;
     border-radius: 0px 0px 8px 8px;
     border-color: #ccc;
@@ -255,10 +283,6 @@ footer {
     height: 64px;
 
     cursor: pointer;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
 
     background-image: url(@{StaticR img_add_s_png});
     background-repeat: no-repeat;
@@ -270,6 +294,101 @@ footer {
 .quarter-add-button:hover {
     background-color: #bbb;
     border-color: #bbb;
+}
+
+.delay-anim {
+    animation-delay: 0.4s;
+}
+
+.slide-in-right-long {
+    left: -320px;
+    z-index: -1;
+    animation-name: slide-right-long;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+}
+
+.slide-in-right {
+    left: -48px;
+    z-index: -1;
+    animation-name: slide-right;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+}
+
+.slide-out-left {
+    left: -48px;
+    z-index: -1;
+    animation-name: slide-right;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in;
+    animation-direction: reverse;
+}
+
+@keyframes slide-right-long {
+    from { left: -320px; }
+    to   { left: 0px; }
+}
+
+@keyframes slide-right {
+    from { left: -48px; }
+    to   { left: 0px; }
+}
+
+.slide-in-down {
+    z-index: -1;
+    animation-name: slide-down;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+}
+
+.slide-out-up {
+    z-index: -1;
+    animation-name: slide-up;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes slide-down {
+    from { top: -192px; }
+    to   { top: 0px;    }
+}
+
+@keyframes slide-up {
+    from { top: 0px;    }
+    to   { top: -192px; }
+}
+
+.grow-width {
+    animation-name: grow-width;
+    animation-duration: 0.4s;
+}
+
+.shrink-width {
+    animation-name: shrink-width;
+    animation-duration: 0.4s;
+}
+
+@keyframes grow-width {
+    from { width: 0px;
+           padding: 8px 0px;   }
+    to   { width: 320px; }
+}
+
+@keyframes shrink-width {
+    from { width: 320px; }
+    to   { width: 0px;
+           padding: 8px 0px; }
+}
+
+.grow-height {
+    animation-name: grow-height;
+    animation-duration: 0.4s;
+}
+
+@keyframes grow-height {
+    from { height: 0px; }
+    to   { height: 192px; }
 }
 
 .btn {

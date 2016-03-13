@@ -3,14 +3,14 @@
   <a .btn .btn-primary href=@{HomeR}>Back to Home
   <br>
   <br>
-  <h1.jumbotron .header-lg>
-    Course Planner
 
-  <.page-header>
-    <div .planner-container>
-      <div .quarter-wrapper>
-        <div .fst-quarter .quarter-container>
-          <h4.quarter-header #quarter-#{courseListId}1>Spring 2016
+  <div .planner-container>
+    <div .planner-background>
+    <div .planner-header>
+    <div .quarter-wrapper>
+      <div .quarter-container .fst-quarter>
+        <h4.quarter-header>Spring 2016
+      <div .course-rows>
         <div .course-wrapper>
-          <button .course-add-button ##{courseListId}1>
-      <button #add-quarter .quarter-add-button>
+          <button .course-add-button>
+    <button #add-quarter .quarter-add-button>

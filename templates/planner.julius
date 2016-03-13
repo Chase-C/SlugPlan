@@ -5,6 +5,21 @@ $(function() {
     }
   });
 
+  jQuery.data(document.body, 'classSearch', null);
+  $('.quarter-wrapper').data('quarterId',  0);
+  $('.quarter-wrapper').data('courseNum',  0);
+  $('.quarter-wrapper').data('numCourses', 0);
+  $('.course-wrapper').data( 'numCourses', 0);
+
+  var addAnimation = function(node, anim, remove) {
+    node.addClass(anim);
+    if (remove) {
+        node.on('animationend', function() { node.remove(); });
+    } else {
+        node.on('animationend', function() { node.removeClass(anim); });
+    }
+  };
+
   var getSearchForm = function(formId, barId) {
     var form = $("<form class='course-search-form'>           \
                     <input type='text'                        \
@@ -51,37 +66,56 @@ $(function() {
     var courseSep  = $("<div class='course-seperator'></div>");
     var courseNode = $("<div class='course-container course-display'></div>");
 
-    var butNode  = $(this);
-    var prevNode = butNode.prev('.course-container').last();
-    var baseId   = butNode.prop('id');
-    var newId    = baseId + '-course-' + 1;
-    var formId   = baseId + '-form-'   + 1;
-    var barId    = baseId + '-bar-'    + 1;
-    var prevId   = prevNode.prop('id');
-    if (prevId) {
-      var extId = Number(prevId.replace( /\D+\d+\D+/g, '')) + 1;
-      newId     = baseId + '-course-' + extId;
-      formId    = baseId + '-form-'   + extId;
-      barId     = baseId + '-bar-'    + extId;
-    }
+    var quarter     = $(this).parents('.quarter-wrapper');
+    var courseWrap  = $(this).parents('.course-wrapper');
+    var courseRows  = $(this).parents('.course-rows');
+    var quarterId   = quarter.data(   'quarterId');
+    var courseNum   = quarter.data(   'courseNum');
+    var wrapperSize = courseWrap.data('numCourses');
 
-    if (butNode.parents().hasClass('tail-quarter')) {
-      courseNode.addClass('tail-quarter');
-    }
+    quarter.data('courseNum',  courseNum                  + 1);
+    quarter.data('numCourses', quarter.data('numCourses') + 1);
+
+    var courseId = quarterId + '-course-' + courseNum;
+    var formId   = quarterId + '-form-'   + courseNum;
+    var barId    = quarterId + '-bar-'    + courseNum;
 
     var searchForm = new getSearchForm(formId, barId);
 
-    courseNode.prop('id', newId);
+    courseNode.prop('id', courseId);
     courseNode.append(searchForm);
 
-    butNode.before(courseSep);
-    butNode.before(courseNode);
+    if (wrapperSize >= 3) {
+        var newWrapper = $("<div class='course-wrapper'></div>");
+        newWrapper.data('numCourses', 1);
+        newWrapper.append(courseSep);
+        newWrapper.append(courseNode);
+        courseRows.append(newWrapper);
+        addAnimation(newWrapper, 'slide-in-down');
+        applyAnimBelow(courseWrap, 'slide-in-down');
+
+        resizeContainer(quarter, true);
+    } else {
+        courseWrap.data('numCourses', wrapperSize + 1);
+        addAnimation(courseNode, 'grow-width');
+        $(this).before(courseSep);
+        $(this).before(courseNode);
+    }
+
+    addAnimation($(this), 'slide-out-left', true);
+
+    var oldSearch = jQuery.data(document.body, 'classSearch');
+    if (oldSearch) {
+        collapseCourse(oldSearch, true);
+    }
+
+    jQuery.data(document.body, 'classSearch', courseNode);
 
     $.ajax({
       url: '@{NewCourseR}',
       type: 'POST',
       contentType: "application/json",
-      data: "",
+      data: courseId,
       success: function (data) {
       },
       error: function (data) {
@@ -89,6 +123,70 @@ $(function() {
       },
     });
   };
+
+  var collapseCourse = function(course, addButton = false, addPrev = false) {
+    var wrapper     = course.parents('.course-wrapper');
+    var prevWrapper = wrapper.prev('.course-wrapper');
+    var nextWrapper = wrapper.next('.course-wrapper');
+    var butWrapper  = wrapper;
+    var courses     = wrapper.data('numCourses');
+    var remove      = true;
+    var anim        = 'shrink-width';
+
+    if (nextWrapper.length > 0) {
+        courses += 1;
+        collapseCourse(nextWrapper.children('.course-container').first(), false, true);
+    }
+
+    if (addPrev) {
+        remove = false;
+        setTimeout( function() {
+            course.removeClass('shrink-width');
+
+            var container = prevWrapper.children('.course-container').last();
+            container.after(course);
+            container.after($("<div class='course-seperator'></div>"));
+            addAnimation(course, 'grow-width');
+        }, 400);
+    }
+
+    if (courses <= 1 && prevWrapper.length > 0) {
+        addButton  = addButton
+                  || wrapper.children('.course-add-button').length > 0;
+        butWrapper = prevWrapper;
+        resizeContainer(wrapper.parents('.quarter-wrapper'), false);
+        addAnimation(wrapper, 'slide-out-up', true);
+        applyAnimBelow(wrapper, 'slide-out-up');
+    } else {
+        course.prev('.course-seperator').remove();
+        addAnimation(course, 'shrink-width', remove);
+        wrapper.data('numCourses', courses - 1);
+    }
+
+    if (addButton) {
+        var newButton = new getCourseAddButton();
+        butWrapper.append(newButton);
+        addAnimation(newButton, 'slide-in-right delay-anim');
+    }
+  };
+
+  var applyAnimBelow = function(node, anim) {
+    var quarter = node.parents('.quarter-wrapper');
+    var others  = quarter.nextAll('.quarter-wrapper, .quarter-add-button');
+    addAnimation(others, anim);
+  }
+
+  var resizeContainer = function(wrapper, grow) {
+    var container = wrapper.children('.quarter-container');
+    console.log(wrapper);
+    console.log(container);
+
+    if (grow) {
+        container.animate({ height: '+=192' });
+    } else {
+        container.animate({ height: '-=192' });
+    }
+  }
 
   var searchCourse = function(event) {
     $.ajax({
@@ -103,14 +201,11 @@ $(function() {
 
           return sug;
         });
-        if (divs.length === 0) {
-          event.data.html("<div class='search-sug'> ...</div>");
-        } else {
-          event.data.html(divs);
-        }
+        event.data.children().not('.adv-search').remove();
+        event.data.prepend(divs);
       },
       error: function (data) {
-        event.data.html("<div class='search-sug'>...</div>");
+        event.data.children().not('.adv-search').remove();
         console.log("Error getting course: " + data);
       }
     });
@@ -118,15 +213,9 @@ $(function() {
 
   var addSearchMouseEvents = function(sug) {
     sug.on('mouseover', function(event) {
-      sug.css('background-color', '#eee');
-      sug.css('display', 'inline-block');
-      sug.css('z-index', '1');
       sug.parent().parent().addClass('js-focus');
     });
     sug.on('mouseout', function(event) {
-      sug.css('background-color', '#fff');
-      sug.css('display', 'block');
-      sug.css('z-index', 'initial');
       sug.parent().parent().removeClass('js-focus');
     });
   };
@@ -163,9 +252,24 @@ $(function() {
         container.append(editButton);
         container.append(removeButton);
 
+        container.on('mouseover', function(event) {
+            editButton.css(  'display', 'block');
+            removeButton.css('display', 'block');
+        });
+        container.on('mouseout', function(event) {
+            editButton.css(  'display', 'none');
+            removeButton.css('display', 'none');
+        });
+
         courseDesc.dotdotdot({});
         courseDesc.trigger('update');
-        console.log(courseDesc.triggerHandler('isTruncated'));
+
+        var wrapper = container.parent('.course-wrapper');
+        var cButton = new getCourseAddButton();
+        addAnimation(cButton, 'slide-in-right');
+        wrapper.append(cButton);
+
+        jQuery.data(document.body, 'classSearch', null);
       },
       error: function (data) {
         console.log(data);
@@ -179,12 +283,18 @@ $(function() {
 
     var searchForm = new getSearchForm(formId, barId);
     event.data.html(searchForm);
+
+    var button = event.data.next('.course-add-button');
+    addAnimation(button, 'slide-out-left', true);
+
     removeCourse();
   }
 
   var removeCourseB = function(event) {
-    event.data.prev('.course-seperator').remove();
-    event.data.remove();
+    var quarter = event.data.parents('.quarter-wrapper');
+    quarter.data('numCourses', quarter.data('numCourses') - 1);
+
+    collapseCourse(event.data);
     removeCourse();
   }
 
@@ -217,29 +327,39 @@ $(function() {
   };
 
   $(".course-add-button").click(addCourse);
+
+  var getCourseAddButton = function() {
+    var button = $("<button class='course-add-button' />");
+    button.click(addCourse);
+    return button;
+  }
+
   $(".quarter-add-button").click(function() {
-    var prevId     = $('.course-add-button').last().prop('id');
-    var prevQtr    = $('#quarter-' + prevId).text();
-    var idNum      = Number(prevId.replace( /^\D+/g, '')) + 1;
-    var newId      = '#{rawJS courseListId}' + idNum;
-    var newQtr     = nextQuarter(prevQtr);
+    var lastQtr    = $('.quarter-wrapper').last();
+    var newId      = lastQtr.data('quarterId') + 1;
+    var newQtr     = nextQuarter(lastQtr.find('.quarter-header').text());
+    var cButton    = new getCourseAddButton();
     var qtrSep     = $("<div class='quarter-seperator'></div>");
-    var qtrWrapper = $("<div class='quarter-wrapper'>               \
-                          <div class='quarter-container'>           \
-                            <h4 class='quarter-header'></h4>        \
-                          </div>                                    \
-                          <div class='course-wrapper tail-quarter'> \
-                            <button class='course-add-button' />    \
-                          </div>                                    \
+    var qtrWrapper = $("<div class='quarter-wrapper'>                 \
+                          <div class='quarter-container'>             \
+                            <h4 class='quarter-header'></h4>          \
+                          </div>                                      \
+                          <div class='course-rows'>                   \
+                            <div class='course-wrapper tail-quarter'> \
+                            </div>                                    \
+                          </div>                                      \
                         </div>");
 
+    addAnimation(cButton, 'slide-in-right delay-anim');
+
+    qtrWrapper.data('quarterId', newId);
+    qtrWrapper.data('courseNum', 0);
     qtrWrapper.find('.quarter-header').text(newQtr);
-    qtrWrapper.find('.quarter-header').prop('id', 'quarter-' + newId);
-    qtrWrapper.find('.course-container').prop('id', 'container-' + newId);
-    qtrWrapper.find('.course-add-button').prop('id', newId);
-    qtrWrapper.find('.course-add-button').click(addCourse);
-    $("#add-quarter").before(qtrSep);
-    $("#add-quarter").before(qtrWrapper);
+    qtrWrapper.find('.course-wrapper').html(cButton);
+    addAnimation(qtrWrapper, 'slide-in-down');
+    $(this).before(qtrSep);
+    $(this).before(qtrWrapper);
+    addAnimation($(this), 'slide-in-down');
 
     $.ajax({
       url: '@{NewCourseR}',

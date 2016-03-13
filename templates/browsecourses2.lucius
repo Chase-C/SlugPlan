@@ -16,7 +16,7 @@ table {
 }
 
 a {
-    color: white;
+    color: white;s
 }
 
 a:hover,

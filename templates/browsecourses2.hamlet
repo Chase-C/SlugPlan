@@ -5,10 +5,8 @@
     <br>
     <h1.jumbotron .header-lg>
         Course Catalog
-<h1 .header-lg2> Welcome the Course Catalog! The courses offered are categorized respectively by which department/subject they belong to.
 
 <body .base-layout>
-    <br>
     <br>
     <table>
         <th>Browse by Department/Subject

@@ -2,8 +2,10 @@
   <h1.jumbotron .header-lg>
     Welcome to SlugPlan!
 
-  <a .btn .btn-primary href=@{PlannerR} .header-md>Plan Your Courses
-  <a .btn .btn-primary href=@{AllCourses2R} .header-md>Browse Courses
-  <a .btn .btn-primary href=@{ProgressR} .header-md><span>View Majors
+  <br>
+
+  <a .btn .btn-primary href=@{PlannerR} .header-lg2>Plan Your Courses
+  <a .btn .btn-primary href=@{AllCourses2R} .header-lg2>Browse Courses
+  <a .btn .btn-primary href=@{ProgressR} .header-lg2>View Majors
   <br>
   <br>

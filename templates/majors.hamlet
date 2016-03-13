@@ -6,10 +6,8 @@
     <br>
     <h1.jumbotron .header-lg>
         Majors Catalog
-<h1 .header-lg2> Welcome the Majors catalog! Listed below are the Majors offered. Visit a Major link below to learn important information about your major.
+
 <body .base-layout>
-    <br>
-    <br>
     <table>
         <th>Learn about a Major
             <tr>

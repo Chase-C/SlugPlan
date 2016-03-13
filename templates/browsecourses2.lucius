@@ -1,5 +1,5 @@
 .base-layout {
-    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods_jpg});
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods2_jpg});
     background-size:100%;
     background-attachment: fixed;
 }
@@ -22,6 +22,12 @@ a {
 a:hover,
 a:focus {
     color: #00aa00;
+}
+
+.header-lg2{
+    color:white;
+    font-size:20px;
+    background-color:rgba(0, 0, 0, .4);
 }
 
 th {
@@ -55,7 +61,7 @@ tr:nth-child(even) {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: normal;
   line-height: 1.42857143;
   text-align: center;
@@ -108,40 +114,45 @@ tr:nth-child(even) {
 .open > .dropdown-toggle.btn-primary {
   background-image: none;
 }
-
-/* **************************************************************************************************************************************
- * Code here implements the aesthetics of the drop down menu and button
- * **************************************************************************************************************************************
- * /
- 
-/* These deal with the aesthetics of the drop down menu button */
-.departmentButton {
-    background-color: rgba(0, 0, 0, 0.4);
-    color: white;
-    padding: 14px;
-    font-size: 14px;
-    border: 1px solid transparent;
+.header-lg{
+    color:white;
+    font-size:70px;
+	text-align:center;
+    text-shadow: 5px 5px black;
+    background-color:rgba(0, 200, 0, .30);
 }
-.departmentButton:hover{
-    background-color: green;
-}
+/* ************************************************************
+ * Primary button class that deals with how our buttons look
+ * ************************************************************/
 
-/* Container to position the drop down menu & its items
-.containerListings {
-    position: relative;
+.btn-primary {
+  display: inline-block;
+  color: #fff;
+  background-color:rgba(0, 200, 0, .30);
+  /*background-color: green;*/
+  border-color: green;
 }
 
-/* Modify the appearance of the options in the drop down menu */
-.departmentOptions {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.4);
-    min-width: 40px;
-}
-.departmentOptions a {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.4);	
-    display: block;
+.btn-primary:hover,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #009a00;
+  border-color: green;
+  box-shadow: 0px 0px 100px white;
 }
 
-/* calling function in javascript to show the hidden drop down menu */
-.list {display:block;}
+.btn-primary:active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #009a00;
+  border-color: none;
+  box-shadow: 0px 0px 100px black;
+}
+
+.btn-primary:focus {
+  color: #fff;
+  background-color: #009a00;
+  border-color: none;
+  box-shadow: 0px 0px 100px black;
+}
+/* ****************** End btn-primary class ***********************/

@@ -49,7 +49,7 @@ getHistR = do
         $(widgetFile "browsecourses")
 getHavcR :: Handler Html
 getHavcR = do
-    courses <- runDB $ selectList [CoursePrefix ==. "Havc"] []
+    courses <- runDB $ selectList [CoursePrefix ==. "HAVC"] []
     defaultLayout $ do
         setTitle "SlugPlan: Browse Courses"
         $(widgetFile "browsecourses")

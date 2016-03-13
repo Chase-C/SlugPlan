@@ -23,7 +23,11 @@ a:hover,
 a:focus {
     color: #00aa00;
 }
-
+.header-lg2{
+    color:white;
+    font-size:20px;
+    background-color:rgba(0, 0, 0, .4);
+}
 th {
     text-align: center;
     background-color: green;
@@ -55,7 +59,7 @@ tr:nth-child(even) {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: normal;
   line-height: 1.42857143;
   text-align: center;
@@ -89,22 +93,46 @@ tr:nth-child(even) {
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
           box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
+.header-lg{
+    color:white;
+    font-size:70px;
+	text-align:center;
+    text-shadow: 5px 5px black;
+    background-color:rgba(0, 200, 0, .30);
+}
+/* ************************************************************
+ * Primary button class that deals with how our buttons look
+ * ************************************************************/
+
 .btn-primary {
+  text-shadow: 1px 1px black;
+  display: inline-block;
   color: #fff;
-  background-color: green;
+  background-color:rgba(0, 200, 0, .30);
+  /*background-color: green;*/
   border-color: green;
 }
+
 .btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
   color: #fff;
   background-color: #009a00;
-  border-color: white;
+  border-color: green;
+  box-shadow: 0px 0px 100px white;
 }
+
 .btn-primary:active,
-.btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-  background-image: none;
+  color: #fff;
+  background-color: #009a00;
+  border-color: none;
+  box-shadow: 0px 0px 100px black;
 }
+
+.btn-primary:focus {
+  color: #fff;
+  background-color: #009a00;
+  border-color: none;
+  box-shadow: 0px 0px 100px black;
+}
+/* ****************** End btn-primary class ***********************/

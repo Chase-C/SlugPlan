@@ -6,6 +6,10 @@
   <h1.jumbotron .header-lg>
     Course Planner
 
+  <h1 .header-lg2>
+    Welcome to the Course Planner page! Here you may manage your courses and quarters. You may add as many classes and as many quarters as you wish. You may want to first browse the course catalog and
+    learn about the courses required for your major.
+
   <.page-header>
     <div .planner-container>
       <div .quarter-wrapper>

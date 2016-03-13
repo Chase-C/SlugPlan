@@ -3,6 +3,13 @@
     <a .btn .btn-primary href=@{HomeR}> Back to Home
     <br>
     <br>
+    <h1.jumbotron .header-lg>
+        Course Catalog
+<h1 .header-lg2> Welcome the Course Catalog! The courses offered are categorized respectively by which department/subject they belong to.
+
+<body .base-layout>
+    <br>
+    <br>
     <table>
         <th>Browse by Department/Subject
             <tr>
@@ -140,9 +147,9 @@
             <tr>
                 <td><a  href=@{PoliR}>Politics
             <tr>
-                <td><a  href=@{PrtrR}>Portuguese
+                <td><a  href=@{PrtrR}>Porter
             <tr>
-                <td><a  href=@{PortR}>Porter
+                <td><a  href=@{PortR}>Portuguese
             <tr>
                 <td><a  href=@{LtprR}>Pre and Early Modern Literature
             <tr>

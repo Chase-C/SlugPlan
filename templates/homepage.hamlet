@@ -4,4 +4,6 @@
 
   <a .btn .btn-primary href=@{PlannerR} .header-md>Plan Your Courses
   <a .btn .btn-primary href=@{AllCourses2R} .header-md>Browse Courses
-  <a .btn .btn-primary href=@{ProgressR} .header-md>View Majors
+  <a .btn .btn-primary href=@{ProgressR} .header-md><span>View Majors
+  <br>
+  <br>

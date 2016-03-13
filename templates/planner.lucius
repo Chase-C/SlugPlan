@@ -23,6 +23,12 @@ footer {
     text-shadow: 5px 5px black;
     background-color:rgba(0, 200, 0, .30);
 }
+
+.header-lg2{
+    color:white;
+    font-size:20px;
+    background-color:rgba(0, 0, 0, .4);
+}
 .header-md{
     color:white;
     font-size:45px;
@@ -393,6 +399,7 @@ footer {
 
 .btn {
   display: inline-block;
+  font-size: 20px;
   padding: 6px 12px;
   margin-bottom: 0;
   font-weight: normal;
@@ -428,25 +435,41 @@ footer {
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
           box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
+/* ************************************************************
+ * Primary button class that deals with how our buttons look
+ * ************************************************************/
+
 .btn-primary {
+  display: inline-block;
   color: #fff;
-  background-color: green;
+  background-color:rgba(0, 200, 0, .30);
+  /*background-color: green;*/
   border-color: green;
 }
+
 .btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
   color: #fff;
   background-color: #009a00;
-  border-color: white;
+  border-color: green;
+  box-shadow: 0px 0px 100px white;
 }
+
 .btn-primary:active,
-.btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-  background-image: none;
+  color: #fff;
+  background-color: #009a00;
+  border-color: none;
+  box-shadow: 0px 0px 100px black;
 }
+
+.btn-primary:focus {
+  color: #fff;
+  background-color: #009a00;
+  border-color: none;
+  box-shadow: 0px 0px 100px black;
+}
+/* ****************** End btn-primary class ***********************/
 
 #tohome {
     position: fixed;

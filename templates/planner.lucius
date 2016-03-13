@@ -1,16 +1,16 @@
 h1 {
     text-align: center;
-    margin-bottom: 30px
+    margin-bottom: 30px;
 }
 li {
     line-height: 2em;
-    font-size: 16px
+    font-size: 16px;
 }
 ol {
-    margin-bottom: 30px
+    margin-bottom: 30px;
 }
 footer {
-    text-align: center
+    text-align: center;
 }
 .base-layout{
     background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods_jpg});
@@ -408,10 +408,6 @@ footer {
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;

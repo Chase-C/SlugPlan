@@ -96,8 +96,7 @@ tr:nth-child(even) {
 .btn-primary {
   display: inline-block;
   color: #fff;
-  background-color:rgba(0, 200, 0, .30);
-  /*background-color: green;*/
+  background-color: green;
   border-color: green;
 }
 
@@ -105,22 +104,19 @@ tr:nth-child(even) {
 .open > .dropdown-toggle.btn-primary {
   color: #fff;
   background-color: #009a00;
-  border-color: green;
-  box-shadow: 0px 0px 100px white;
+  border-color: white;
 }
 
 .btn-primary:active,
 .open > .dropdown-toggle.btn-primary {
   color: #fff;
   background-color: #009a00;
-  border-color: none;
-  box-shadow: 0px 0px 100px black;
+  border-color: white;
 }
 
 .btn-primary:focus {
   color: #fff;
   background-color: #009a00;
-  border-color: none;
-  box-shadow: 0px 0px 100px black;
+  border-color: white;
 }
 /* ****************** End btn-primary class ***********************/

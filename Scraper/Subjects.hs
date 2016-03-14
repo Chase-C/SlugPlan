@@ -302,4 +302,4 @@ getSubjectFromString :: String -> Subject
 getSubjectFromString strn = fst $ head candidate
     where subjects = [AcadEnglish ..]
           subStrns = zip subjects $ map (\s -> (subjectName s, subjectPrefix s)) subjects
-          candidate = filter (\(s, (n, p)) -> (n == strn) || (p == strn)) subStrns
+          candidate = filter (\(_, (n, p)) -> (n == strn) || (p == strn)) subStrns

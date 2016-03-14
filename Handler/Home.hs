@@ -174,13 +174,6 @@ pdfForm = renderBootstrap3 BootstrapBasicForm $ fileAFormReq "Choose a PDF to pa
 subjectForm :: Form Text
 subjectForm = renderBootstrap3 BootstrapBasicForm $ areq textField "Subject:" Nothing 
 
-
-numberForm :: Form Text
-numberForm = renderBootstrap3 BootstrapBasicForm $ areq textField "Number:" Nothing
-
-nameForm :: Form Text
-nameForm = renderBootstrap3 BootstrapBasicForm $ areq textField "Class Name:" Nothing
-
 subjectCourses :: MonadIO m => Text -> ReaderT SqlBackend m [Entity Course]
 subjectCourses strn = rawSql sqlStrn values
     where fields     = ["subject", "prefix", "subject", "prefix"]
@@ -192,6 +185,9 @@ subjectCourses strn = rawSql sqlStrn values
           values     = concat $ map (\s -> map PersistText $ replicate 4 $ surr s) strns
           surr s     = "%" ++ s ++ "%"
 
+numberForm :: Form Text
+numberForm = renderBootstrap3 BootstrapBasicForm $ areq textField "Number:" Nothing
+
 numberCourses :: MonadIO m => Text -> ReaderT SqlBackend m [Entity Course]
 numberCourses strn = rawSql sqlStrn values
     where fields     = ["number", "number", "number", "number"]
@@ -202,6 +198,9 @@ numberCourses strn = rawSql sqlStrn values
           sqlStrn    = "select ?? from course where " ++ searchAnds
           values     = concat $ map (\s -> map PersistText $ replicate 4 $ surr s) strns
           surr s     = "%" ++ s ++ "%"
+
+nameForm :: Form Text
+nameForm = renderBootstrap3 BootstrapBasicForm $ areq textField "Name:" Nothing
 
 nameCourses :: MonadIO m => Text -> ReaderT SqlBackend m [Entity Course]
 nameCourses strn = rawSql sqlStrn values

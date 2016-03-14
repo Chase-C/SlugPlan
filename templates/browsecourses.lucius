@@ -10,7 +10,7 @@ div {
 
 input {
     color: white;
-    background: green;
+    background: rgba(0,0,0,0.5);
     margin-top: 5px;
     margin-bottom: 5px;
     display:inline-block; 

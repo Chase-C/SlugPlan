@@ -23,6 +23,21 @@ import qualified Data.Map as M
 import Scraper.UCSC
 import Scraper.Subjects
 
+import           Yesod
+import           Yesod.Auth
+import           Yesod.Auth.BrowserId
+import           Yesod.Auth.GoogleEmail2
+
+
+
+-- Google client ID.
+clientId :: Text
+clientId = "488381746948-hqnuulhpu1kotloi562d9pf7stkpk18h.apps.googleusercontent.com"
+
+-- Google secret ID.
+clientSecret :: Text
+clientSecret = "eiOFqIa6Y4epKymLX8AccRFl"
+
 -- This is a handler function for the GET request method on the HomeR
 -- resource pattern. All of your resource patterns are defined in
 -- config/routes

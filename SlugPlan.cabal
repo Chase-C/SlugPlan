@@ -27,7 +27,13 @@ library
                      Handler.SignUp
                      Scraper.UCSC
                      Scraper.Subjects
-
+                     Handler.Majors
+                     Handler.Department
+                     Handler.Department2
+                     Handler.Department3
+                     Handler.Department4
+                     Handler.Department5
+                     Handler.Department6
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
         ghc-options:   -Wall -fwarn-tabs -O0
@@ -91,6 +97,7 @@ library
                  , time
                  , case-insensitive
                  , wai
+                 , blaze-markup
                  , pdf-toolbox-document          >= 0.0.7.0
                  , parsec                        >= 3.1.0
 

@@ -17,9 +17,11 @@ Comment json
 
 Course json
     subject Text
-    acronym Text
+    prefix  Text
     number  Text
     name    Text
+    qrtrs   Text
+    desc    Text
     preqs   Text
     --UniqueCourse acronym number
     deriving Show
@@ -31,6 +33,4 @@ Major json
 MajorReq json
     major  MajorId
     course CourseId
-
-
  -- By default this file is used in Model.hs (which is imported by Foundation.hs)

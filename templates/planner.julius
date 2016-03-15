@@ -5,41 +5,41 @@ $(function() {
     }
   });
 
-  var addCourse = function() {
-    var newNode = $("<div class='course-container course-display'> \
-                       <form class='course-search-form'>           \
-                         <input type='text'                        \
-                                class='course-search'              \
-                                placeholder='Search Class...'      \
-                                autocomplete='off'                 \
-                                autocapitalize='off'               \
-                                autocorrect='off'>                 \
-                         <div class='search-suggestions'           \
-                              style='display: none;'>              \
-                           <div class='search-sug'>...</div>       \
-                         </div>                                    \
-                       </form>                                     \
-                     </div>");
+  jQuery.data(document.body, 'classSearch', null);
+  $('.quarter-wrapper').data('quarterId',  0);
+  $('.quarter-wrapper').data('courseNum',  0);
+  $('.quarter-wrapper').data('numCourses', 0);
+  $('.course-wrapper').data( 'numCourses', 0);
 
-    var butNode  = $('#container-' + this.id);
-    var prevNode = butNode.prev('.course-container').last();
-    var baseId   = butNode.prop('id');
-    var newId    = baseId + '-course-' + 1;
-    var formId   = baseId + '-form-'   + 1;
-    var barId    = baseId + '-bar-'    + 1;
-    var prevId   = prevNode.prop('id');
-    if (prevId) {
-      var extId = Number(prevId.replace( /\D+\d+\D+/g, '')) + 1;
-      newId     = baseId + '-course-' + extId;
-      formId    = baseId + '-form-'   + extId;
-      barId     = baseId + '-bar-'    + extId;
+  var addAnimation = function(node, anim, remove) {
+    node.addClass(anim);
+    if (remove) {
+        node.on('animationend', function() { node.remove(); });
+    } else {
+        node.on('animationend', function() { node.removeClass(anim); });
     }
+  };
 
-    var courseSearch = newNode.find('.course-search');
-    var searchForm   = newNode.find('.course-search-form');
+  var getSearchForm = function(formId, barId) {
+    var form = $("<form class='course-search-form'>           \
+                    <input type='text'                        \
+                           class='course-search'              \
+                           placeholder='Add Class...'         \
+                           autocomplete='off'                 \
+                           autocapitalize='off'               \
+                           autocorrect='off'>                 \
+                    <div class='search-suggestions'           \
+                         style='display: none;'>              \
+                      <div class='search-sug adv-search'>     \
+                        Advanced Search...                    \
+                      </div>                                  \
+                    </div>                                    \
+                  </form>");
 
-    newNode.prop('id', newId);
-    searchForm.prop('id', formId);
+    var courseSearch = form.find('.course-search');
+    var advSearch    = form.find('.adv-search');
+
+    form.prop('id', formId);
     courseSearch.prop('id', barId);
     courseSearch.on('focus', function(event) {
       $(this).next('.search-suggestions').css('display', 'block');
@@ -50,16 +50,72 @@ $(function() {
       }
     });
     courseSearch.on('keyup'
-      , newNode.find('.search-suggestions')
+      , form.find('.search-suggestions')
       , searchCourse);
 
-    butNode.before(newNode);
+    addSearchMouseEvents(advSearch);
+    advSearch.on('click', function() {
+        console.log('going to: ' + '@{AllCourses2R}');
+        window.location.assign('@{AllCourses2R}');
+    });
+
+    return form;
+  };
+
+  var addCourse = function() {
+    var courseSep  = $("<div class='course-seperator'></div>");
+    var courseNode = $("<div class='course-container course-display'></div>");
+
+    var quarter     = $(this).parents('.quarter-wrapper');
+    var courseWrap  = $(this).parents('.course-wrapper');
+    var courseRows  = $(this).parents('.course-rows');
+    var quarterId   = quarter.data(   'quarterId');
+    var courseNum   = quarter.data(   'courseNum');
+    var wrapperSize = courseWrap.data('numCourses');
+
+    quarter.data('courseNum',  courseNum                  + 1);
+    quarter.data('numCourses', quarter.data('numCourses') + 1);
+
+    var courseId = quarterId + '-course-' + courseNum;
+    var formId   = quarterId + '-form-'   + courseNum;
+    var barId    = quarterId + '-bar-'    + courseNum;
+
+    var searchForm = new getSearchForm(formId, barId);
+
+    courseNode.prop('id', courseId);
+    courseNode.append(searchForm);
+
+    if (wrapperSize >= 3) {
+        var newWrapper = $("<div class='course-wrapper'></div>");
+        newWrapper.data('numCourses', 1);
+        newWrapper.append(courseSep);
+        newWrapper.append(courseNode);
+        courseRows.append(newWrapper);
+        addAnimation(newWrapper, 'slide-in-down');
+        applyAnimBelow(courseWrap, 'slide-in-down');
+
+        resizeContainer(quarter, true);
+    } else {
+        courseWrap.data('numCourses', wrapperSize + 1);
+        addAnimation(courseNode, 'grow-width');
+        $(this).before(courseSep);
+        $(this).before(courseNode);
+    }
+
+    addAnimation($(this), 'slide-out-left', true);
+
+    var oldSearch = jQuery.data(document.body, 'classSearch');
+    if (oldSearch) {
+        collapseCourse(oldSearch, true);
+    }
+
+    jQuery.data(document.body, 'classSearch', courseNode);
 
     $.ajax({
       url: '@{NewCourseR}',
       type: 'POST',
       contentType: "application/json",
-      data: "",
+      data: courseId,
       success: function (data) {
       },
       error: function (data) {
@@ -67,6 +123,70 @@ $(function() {
       },
     });
   };
+
+  var collapseCourse = function(course, addButton = false, addPrev = false) {
+    var wrapper     = course.parents('.course-wrapper');
+    var prevWrapper = wrapper.prev('.course-wrapper');
+    var nextWrapper = wrapper.next('.course-wrapper');
+    var butWrapper  = wrapper;
+    var courses     = wrapper.data('numCourses');
+    var remove      = true;
+    var anim        = 'shrink-width';
+
+    if (nextWrapper.length > 0) {
+        courses += 1;
+        collapseCourse(nextWrapper.children('.course-container').first(), false, true);
+    }
+
+    if (addPrev) {
+        remove = false;
+        setTimeout( function() {
+            course.removeClass('shrink-width');
+
+            var container = prevWrapper.children('.course-container').last();
+            container.after(course);
+            container.after($("<div class='course-seperator'></div>"));
+            addAnimation(course, 'grow-width');
+        }, 400);
+    }
+
+    if (courses <= 1 && prevWrapper.length > 0) {
+        addButton  = addButton
+                  || wrapper.children('.course-add-button').length > 0;
+        butWrapper = prevWrapper;
+        resizeContainer(wrapper.parents('.quarter-wrapper'), false);
+        addAnimation(wrapper, 'slide-out-up', true);
+        applyAnimBelow(wrapper, 'slide-out-up');
+    } else {
+        course.prev('.course-seperator').remove();
+        addAnimation(course, 'shrink-width', remove);
+        wrapper.data('numCourses', courses - 1);
+    }
+
+    if (addButton) {
+        var newButton = new getCourseAddButton();
+        butWrapper.append(newButton);
+        addAnimation(newButton, 'slide-in-right delay-anim');
+    }
+  };
+
+  var applyAnimBelow = function(node, anim) {
+    var quarter = node.parents('.quarter-wrapper');
+    var others  = quarter.nextAll('.quarter-wrapper, .quarter-add-button');
+    addAnimation(others, anim);
+  }
+
+  var resizeContainer = function(wrapper, grow) {
+    var container = wrapper.children('.quarter-container');
+    console.log(wrapper);
+    console.log(container);
+
+    if (grow) {
+        container.animate({ height: '+=192' });
+    } else {
+        container.animate({ height: '-=192' });
+    }
+  }
 
   var searchCourse = function(event) {
     $.ajax({
@@ -76,32 +196,27 @@ $(function() {
         var divs = data.map(function(course) {
           var sug = $("<div class='search-sug'></div>");
           sug.text(course.subject + " " + course.number + ": " + course.name);
-          sug.on('mouseover', function(event) {
-            sug.css('background-color', '#eee');
-            sug.css('display', 'inline-block');
-            sug.css('z-index', '1');
-            sug.parent().parent().addClass('js-focus');
-          });
-          sug.on('mouseout', function(event) {
-            sug.css('background-color', '#fff');
-            sug.css('display', 'block');
-            sug.css('z-index', 'initial');
-            sug.parent().parent().removeClass('js-focus');
-          });
+          addSearchMouseEvents(sug);
           sug.on('click', course, selectCourse);
 
           return sug;
         });
-        if (divs.length === 0) {
-          event.data.html("<div class='search-sug'> ...</div>");
-        } else {
-          event.data.html(divs);
-        }
+        event.data.children().not('.adv-search').remove();
+        event.data.prepend(divs);
       },
       error: function (data) {
-        event.data.html("<div class='search-sug'>...</div>");
+        event.data.children().not('.adv-search').remove();
         console.log("Error getting course: " + data);
       }
+    });
+  };
+
+  var addSearchMouseEvents = function(sug) {
+    sug.on('mouseover', function(event) {
+      sug.parent().parent().addClass('js-focus');
+    });
+    sug.on('mouseout', function(event) {
+      sug.parent().parent().removeClass('js-focus');
     });
   };
 
@@ -113,18 +228,90 @@ $(function() {
       contentType: 'application/json',
       data: JSON.stringify(event.data.name),
       success: function (data) {
-        var container = $(elem).parents('.course-display');
-        console.log(container);
-        console.log(elem);
-        var newNode   = $("<div></div");
-        newNode.text(data.name);
-        container.append(newNode);
+        var container    = $(elem).parents('.course-display');
+        var header       = $("<div class='course-header'></div>");
+        var courseNum    = $("<div></div>");
+        var courseName   = $("<div></div>");
+        var courseDesc   = $("<div class='course-description'></div>");
+        var editButton   = $("<div class='course-button edit-button'></div>");
+        var removeButton = $("<div class='course-button remove-button'></div>");
+
+        courseNum.text(data.prefix + " " + data.number);
+        courseName.text(data.name);
+        courseDesc.text(data.desc);
+
+        editButton.on(  'click', container, editCourseB);
+        removeButton.on('click', container, removeCourseB);
+
+        header.append(courseNum);
+        header.append(courseName);
+        header.append($("<div class='course-break'></div>"));
+
+        container.html(header);
+        container.append(courseDesc);
+        container.append(editButton);
+        container.append(removeButton);
+
+        container.on('mouseover', function(event) {
+            editButton.css(  'display', 'block');
+            removeButton.css('display', 'block');
+        });
+        container.on('mouseout', function(event) {
+            editButton.css(  'display', 'none');
+            removeButton.css('display', 'none');
+        });
+
+        courseDesc.dotdotdot({});
+        courseDesc.trigger('update');
+
+        var wrapper = container.parent('.course-wrapper');
+        var cButton = new getCourseAddButton();
+        addAnimation(cButton, 'slide-in-right');
+        wrapper.append(cButton);
+
+        jQuery.data(document.body, 'classSearch', null);
       },
       error: function (data) {
         console.log(data);
       },
     });
   };
+
+  var editCourseB = function(event) {
+    var formId = event.data.children('.course-search-form');
+    var barId  = event.data.children('.course-search');
+
+    var searchForm = new getSearchForm(formId, barId);
+    event.data.html(searchForm);
+
+    var button = event.data.next('.course-add-button');
+    addAnimation(button, 'slide-out-left', true);
+
+    removeCourse();
+  }
+
+  var removeCourseB = function(event) {
+    var quarter = event.data.parents('.quarter-wrapper');
+    quarter.data('numCourses', quarter.data('numCourses') - 1);
+
+    collapseCourse(event.data);
+    removeCourse();
+  }
+
+  var removeCourse = function() {
+    $.ajax({
+      url: '@{NewCourseR}',
+      type: 'DELETE',
+      contentType: 'application/json',
+      data: JSON.stringify(event.data),
+      success: function (data) {
+        console.log(data);
+      },
+      error: function (data) {
+        console.log(data);
+      },
+    });
+  }
 
   var nextQuarter = function(strn) {
     var splt    = strn.split(' ');
@@ -140,31 +327,39 @@ $(function() {
   };
 
   $(".course-add-button").click(addCourse);
-  $(".quarter-add-button").click(function() {
-    var prevId  = $('.course-add-button').last().prop('id');
-    var prevQtr = $('#quarter-' + prevId).text();
-    var idNum   = Number(prevId.replace( /^\D+/g, '')) + 1;
-    var newId   = '#{rawJS courseListId}' + idNum;
-    var newQtr  = nextQuarter(prevQtr);
-    var newNode = $("<tr>                                         \
-                       <td class='quarter-container'>             \
-                         <h4 class='quarter-header'></h4>         \
-                       </td>                                      \
-                       <td>                                       \
-                         <div class='course-wrapper'>             \
-                           <div class='course-container'>         \
-                             <button class='course-add-button' /> \
-                           </div>                                 \
-                         </div>                                   \
-                       </td>                                      \
-                     </tr>");
 
-    newNode.find('.quarter-header').text(newQtr);
-    newNode.find('.quarter-header').prop('id', 'quarter-' + newId);
-    newNode.find('.course-container').prop('id', 'container-' + newId);
-    newNode.find('.course-add-button').prop('id', newId);
-    newNode.find('.course-add-button').click(addCourse);
-    $("#add-quarter").before(newNode);
+  var getCourseAddButton = function() {
+    var button = $("<button class='course-add-button' />");
+    button.click(addCourse);
+    return button;
+  }
+
+  $(".quarter-add-button").click(function() {
+    var lastQtr    = $('.quarter-wrapper').last();
+    var newId      = lastQtr.data('quarterId') + 1;
+    var newQtr     = nextQuarter(lastQtr.find('.quarter-header').text());
+    var cButton    = new getCourseAddButton();
+    var qtrSep     = $("<div class='quarter-seperator'></div>");
+    var qtrWrapper = $("<div class='quarter-wrapper'>                 \
+                          <div class='quarter-container'>             \
+                            <h4 class='quarter-header'></h4>          \
+                          </div>                                      \
+                          <div class='course-rows'>                   \
+                            <div class='course-wrapper tail-quarter'> \
+                            </div>                                    \
+                          </div>                                      \
+                        </div>");
+
+    addAnimation(cButton, 'slide-in-right delay-anim');
+
+    qtrWrapper.data('quarterId', newId);
+    qtrWrapper.data('courseNum', 0);
+    qtrWrapper.find('.quarter-header').text(newQtr);
+    qtrWrapper.find('.course-wrapper').html(cButton);
+    addAnimation(qtrWrapper, 'slide-in-down');
+    $(this).before(qtrSep);
+    $(this).before(qtrWrapper);
+    addAnimation($(this), 'slide-in-down');
 
     $.ajax({
       url: '@{NewCourseR}',

@@ -1,23 +1,18 @@
-
 <body .base-layout>
+  <br>
+  <a .btn .btn-primary href=@{HomeR}>Back to Home
+  <br>
+  <br>
   <h1.jumbotron .header-lg>
     Course Planner
-  
-  <a .btn .btn-primary #tohome href=@{HomeR}>Home
-
-  <.page-header>
-    <h2 .header-sm>Quarter
-    <div .planner-container>
-      <table .planner-table>
-        <tr>
-          <td .quarter-container>
-            <h4.quarter-header #quarter-#{courseListId}1>Spring 2016
-          <td>
-            <div .course-wrapper>
-              <div .course-container #container-#{courseListId}1>
-                <button .course-add-button ##{courseListId}1>
-        <tr #add-quarter>
-          <td .quarter-container>
-            <button .quarter-add-button>
-          <td>
-            <div .course-wrapper>
+  <br>
+  <div .planner-container>
+    <div .planner-background>
+    <div .planner-header>
+    <div .quarter-wrapper>
+      <div .quarter-container .fst-quarter>
+        <h4.quarter-header>Spring 2016
+      <div .course-rows>
+        <div .course-wrapper>
+          <button .course-add-button>
+    <button #add-quarter .quarter-add-button>

@@ -1,12 +1,19 @@
 <body .base-layout>
-    <a .btn .btn-primary href=@{HomeR}> <- Home
-    <div>    
+    <br>
+    <a .btn .btn-primary href=@{HomeR}> Back to Home
+    <br>
+    <br>
+    <a .btn .btn-primary href=@{AllCourses2R}> Back to Browsing Courses
+    <br>
+    <br>
+    <br>
+
         <table>
             <th>Subject
             <th>Course Number
             <th>Course Name
             $forall Entity courseid course <- courses
                 <tr>
-                    <td .cen>#{courseAcronym course}
+                    <td .cen>#{coursePrefix course}
                     <td .cen>#{courseNumber course}
                     <td><a href=@{CourseR courseid}>#{courseName course}

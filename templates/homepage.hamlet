@@ -1,18 +1,11 @@
 <body .base-layout>
   <h1.jumbotron .header-lg>
     Welcome to SlugPlan!
-  <a .btn .btn-primary href=@{PlannerR} .header-md>Plan Your Courses
-  <a .btn .btn-primary href=@{AllCoursesR} .header-md>Browse Courses
-  <a .btn .btn-primary href=@{RootR} .header-md>Login   <!--'PlannerR' should be replaced with 'myform' referencing the myform defined in Foundation.hs OR reference Home.hs handler login -->
-<!--
-  <section.page-header>
-    <h2 .header-sm>Parse PDF
 
-    <div>
-      $maybe info <- pdfSub
-          File type is: <em>#{info}</em>.
-      <form method=post action=@{PdfR}#form enctype=#{pdfEnctype}>
-        ^{pdfWidget}
-        <button .btn .header-md2 type="submit">
-           Send it! <span class="glyphicon glyphicon-upload"></span>
--->
+  <br>
+  <a .btn .btn-primary href=@{RootR} .header-md>Login   <!--'PlannerR' should be replaced with 'myform' referencing the myform defined in Foundation.hs OR reference Home.hs handler login -->
+  <a .btn .btn-primary href=@{PlannerR} .header-lg2>Plan Your Courses
+  <a .btn .btn-primary href=@{AllCourses2R} .header-lg2>Browse Courses
+  <a .btn .btn-primary href=@{ProgressR} .header-lg2>View Majors
+  <br>
+  <br>

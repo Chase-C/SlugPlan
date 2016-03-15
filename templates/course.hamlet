@@ -1,7 +1,10 @@
 <body .base-layout>
-    <a .btn .btn-primary href=@{AllCoursesR}> <- Back to Browse
+    <br>
+    <a .btn .btn-primary href=@{AllCourses2R}> Back to Browsing Courses
+    <br>
     <div>
         <h1>#{courseName course} (#{courseSubject course} #{courseNumber course})
+        <p>#{courseDesc course}
         <ul>Pre-requisites:
-            <!-- $forall something something for when the prereqs are in list form -->
-            <li>#{coursePreqs course}
+            <!--$forall pre <- coursePreqs course-->
+                <li>#{coursePreqs course}

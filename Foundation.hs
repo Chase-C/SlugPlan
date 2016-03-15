@@ -4,9 +4,10 @@ import Import.NoFoundation
 import Database.Persist.Sql (ConnectionPool, runSqlPool)
 import Text.Hamlet          (hamletFile)
 import Text.Jasmine         (minifym)
-import Yesod.Auth.HashDB (authHashDB, getAuthIdHashDB)
+import Yesod.Auth.HashDB (authHashDB, getAuthIdHashDB, authHashDBWithForm)
 import Yesod.Auth.BrowserId (authBrowserId)
 import Yesod.Auth.Message   (AuthMessage (InvalidLogin))
+import Yesod.Form
 import Yesod.Default.Util   (addStaticContentExternal)
 import Yesod.Core.Types     (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
@@ -147,13 +148,22 @@ instance YesodAuth App where
 
 
     getAuthId creds = getAuthIdHashDB AuthR (Just . UniqueUser) creds
-    authPlugins _ = [authHashDB (Just . UniqueUser)]
+    authPlugins _ = [authHashDBWithForm myform (Just . UniqueUser)]
+
+
     -- Where to send a user after successful login
     loginDest _ = HomeR
     -- Where to send a user after logout
     logoutDest _ = HomeR
     -- Override the above two destinations when a Referer: header is present
     redirectToReferer _ = True
+    authHttpManager = getHttpManager
+
+myform :: Route App -> Widget
+myform action = $(whamletFile "templates/loginform.hamlet")
+
+
+
 {-
     authenticate creds = runDB $ do
         x <- getBy $ UniqueUser $ credsIdent creds
@@ -167,7 +177,7 @@ instance YesodAuth App where
     -- You can add other plugins like BrowserID, email or OAuth here
    -- authPlugins _ = [authBrowserId def]
 
-    authHttpManager = getHttpManager
+
 
 instance YesodAuthPersist App
 

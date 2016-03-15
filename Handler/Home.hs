@@ -65,6 +65,8 @@ postHomeR = do
         setTitle "SlugPlan"
         $(widgetFile "homepage")
 
+
+
 postPdfR :: Handler Html
 postPdfR = do
     ((result, pdfWidget), pdfEnctype) <- runFormPost pdfForm

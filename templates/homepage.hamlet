@@ -3,7 +3,7 @@
     Welcome to SlugPlan!
   <a .btn .btn-primary href=@{PlannerR} .header-md>Plan Your Courses
   <a .btn .btn-primary href=@{AllCoursesR} .header-md>Browse Courses
-  <a .btn .btn-primary href=@{PlannerR} .header-md>Login   <!--'PlannerR' should be replaced with 'myform' referencing the myform defined in Foundation.hs OR reference Home.hs handler login -->
+  <a .btn .btn-primary href=@{RootR} .header-md>Login   <!--'PlannerR' should be replaced with 'myform' referencing the myform defined in Foundation.hs OR reference Home.hs handler login -->
 <!--
   <section.page-header>
     <h2 .header-sm>Parse PDF

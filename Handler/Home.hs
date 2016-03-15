@@ -27,12 +27,12 @@ import           Yesod
 import           Yesod.Auth
 import           Yesod.Auth.BrowserId
 import           Yesod.Auth.GoogleEmail2
-import           Yesod.Auth.HashDB (authHashDB, getAuthIdHashDB, authHashDBWithForm)
+--import           Yesod.Auth.HashDB (authHashDB, getAuthIdHashDB, authHashDBWithForm)
 
 
 
 
--- Google client ID.
+-- Google client ID. 
 clientId :: Text
 clientId = "488381746948-hqnuulhpu1kotloi562d9pf7stkpk18h.apps.googleusercontent.com"
 
@@ -93,13 +93,7 @@ postPdfR = do
         setTitle "SlugPlan"
         $(widgetFile "homepage")
 
-{-}
-getLoginR :: Handler Html
-getLoginR = do
-    defaultLayout $ do
-        setTitle ("Login")
-        $(widgetFile "loginform")
--}
+
 getAllCoursesR :: Handler Html
 getAllCoursesR = do
     courses <- runDB $ selectList [] [Asc CourseSubject, Asc CourseNumber]

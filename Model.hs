@@ -4,7 +4,6 @@ module Model where
 
 import ClassyPrelude.Yesod
 import Database.Persist.Quasi
-import Yesod.Auth.HashDB (HashDBUser(..))
 
 
 -- You can define all of your database entities in the entities file.
@@ -15,6 +14,3 @@ share [mkPersist sqlSettings, mkMigrate "migrateAll"]
     $(persistFileWith lowerCaseSettings "config/models")
 
 
-instance HashDBUser User where
-	userPasswordHash = Just . userPassword
-	setPasswordHash h p = p { userPassword = h }

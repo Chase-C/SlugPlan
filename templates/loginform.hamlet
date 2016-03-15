@@ -1,4 +1,8 @@
-<form method="post" action="@{action}">
-     <input name="username">
-     <input type="password" name="password">
-     <input type="submit" value="Login">
+<form>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Name">
+  <div class="form-group">
+    <label for="surname">Surname
+    <input type="text" class="form-control" id="surname" placeholder="Surname">
+  <button type="submit" class="btn btn-default">Submit

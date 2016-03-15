@@ -160,6 +160,7 @@ instance YesodAuth App where
     authHttpManager = getHttpManager
 
 myform :: Route App -> Widget
+--myform :: Yesod app =>  HandlerSite( WidgetT app IO ())
 myform action = $(whamletFile "templates/loginform.hamlet")
 
 

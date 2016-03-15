@@ -27,6 +27,8 @@ import           Yesod
 import           Yesod.Auth
 import           Yesod.Auth.BrowserId
 import           Yesod.Auth.GoogleEmail2
+import           Yesod.Auth.HashDB (authHashDB, getAuthIdHashDB, authHashDBWithForm)
+
 
 
 
@@ -91,6 +93,13 @@ postPdfR = do
         setTitle "SlugPlan"
         $(widgetFile "homepage")
 
+{-}
+getLoginR :: Handler Html
+getLoginR = do
+    defaultLayout $ do
+        setTitle ("Login")
+        $(widgetFile "loginform")
+-}
 getAllCoursesR :: Handler Html
 getAllCoursesR = do
     courses <- runDB $ selectList [] [Asc CourseSubject, Asc CourseNumber]
@@ -127,3 +136,4 @@ insertSubjectMap subMap = --runDB $ concat <$> mapM (\(sub, courses) ->
 
 pdfForm :: Form FileInfo
 pdfForm = renderBootstrap3 BootstrapBasicForm $ fileAFormReq "Choose a PDF to parse"
+

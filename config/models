@@ -1,18 +1,19 @@
-User
-    ident      Text
-    password   Text Maybe
-    UniqueUser ident
+Person
+    name       Text
+    password   Text 
+    UniqueUser name
     deriving Typeable
+    deriving Show
 
-UserCourse json
-    user    Int
+PersonCourse json
+    person  PersonId
     course  CourseId
     quarter Int
     deriving Show
 
 Comment json
-    message Text
-    userId  UserId Maybe
+    message  Text
+    personId PersonId Maybe
     deriving Eq
     deriving Show
 
@@ -24,7 +25,7 @@ Course json
     qrtrs   Text
     desc    Text
     preqs   Text
-    --pCmplt  Bool
+    pCmplt  Bool
     --UniqueCourse acronym number
     deriving Show
 

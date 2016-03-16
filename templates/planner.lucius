@@ -462,6 +462,16 @@ footer {
     to   { height: 192px; }
 }
 
+.flash-red {
+    animation-name: flash-red;
+    animation-duration: 0.4s;
+}
+
+@keyframes flash-red {
+    from { background-color: red;  }
+    to   { background-color: #eee; }
+}
+
 .btn {
   display: inline-block;
   font-size: 20px;

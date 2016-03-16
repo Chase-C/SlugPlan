@@ -25,6 +25,12 @@ anySubjectName = Parsec.try $ createMultiParser
                             $ map subjectName [AcadEnglish ..]
                             ++ map snd subjectStrings
 
+completeFlatten :: PrereqTree -> [(Text, Text)]
+completeFlatten (AndPrereq xs) = concatMap completeFlatten xs
+completeFlatten (OrPrereq  xs) = concatMap completeFlatten xs
+completeFlatten (Prereq s n)   = [(pack $ subjectName s, pack n)]
+completeFlatten _              = []
+
 parsePrereqs :: Subject -> Text -> Either Parsec.ParseError PrereqTree
 parsePrereqs sub input = Parsec.parse (prereqParser sub) "" input
 

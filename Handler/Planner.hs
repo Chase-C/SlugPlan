@@ -21,6 +21,10 @@ import Data.Aeson.Types (Result (..))
 import Database.Persist
 import Database.Persist.Sql
 
+import Scraper.PrereqParser
+import Scraper.Subjects
+import Scraper.ParserTypes
+
 import Control.Applicative ((<$>))
 import Data.Bits           ((.&.))
 import Data.List           ((!!), head, last)
@@ -39,11 +43,11 @@ getPlannerR = do
 getQtrCourses :: Handler [(Int, Text, (Course, CourseId))]
 getQtrCourses =
     runDB $ do
-        cs <- selectList [UserCourseUser ==. 1] [Asc UserCourseQuarter]
+        cs <- selectList [PersonCoursePerson ==. (toSqlKey 1)] [Asc PersonCourseQuarter]
         catMaybes <$>
           mapM (\usrCourse ->
-                   let id  = userCourseCourse  $ entityVal usrCourse
-                       qtr = userCourseQuarter $ entityVal usrCourse
+                   let id  = personCourseCourse  $ entityVal usrCourse
+                       qtr = personCourseQuarter $ entityVal usrCourse
                    in  do
                        course <- get id
                        case course of
@@ -72,7 +76,7 @@ getQuarter n =
 deleteNewCourseR :: Handler Value
 deleteNewCourseR = do
     courseId <- (requireJsonBody :: Handler CourseId)
-    runDB $ deleteWhere [UserCourseCourse ==. courseId]
+    runDB $ deleteWhere [PersonCourseCourse ==. courseId]
     returnJson ("ok" :: Text)
 
 putNewCourseR :: Handler Value
@@ -81,15 +85,33 @@ putNewCourseR =
 
 postNewCourseR :: Handler Value
 postNewCourseR = do
-    userCourse <- (requireJsonBody :: Handler UserCourse)
-    mCourse    <- runDB $ do
-        c <- get $ userCourseCourse userCourse
-        insert $ UserCourse 1 (userCourseCourse  userCourse)
-                              (userCourseQuarter userCourse)
+    personCourse <- (requireJsonBody :: Handler PersonCourse)
+    mCourse      <- runDB $ do
+        c <- get $ personCourseCourse personCourse
+        insert $ PersonCourse (toSqlKey 1)
+                              (personCourseCourse  personCourse)
+                              (personCourseQuarter personCourse)
         return c
     case mCourse of
         (Just course) -> returnJson course
         _             -> notFound
+    -- qtrCourses <- getQtrCourses
+    -- case mCourse of
+    --     (Just course) ->
+    --         let courses   = map (\(_, _, (c, _)) -> c) qtrCourses
+    --             subject   = fromMaybe CompScience $
+    --                 getSubjectFromStringExt $ unpack $ courseSubject course
+    --             prereqs   = either (const $ NoPrereq "") (id)
+    --                                (parsePrereqs subject $ coursePreqs course)
+    --             ps        = completeFlatten prereqs
+    --             leftovers = filter (not . inCourses courses) ps
+    --             fulfilled = null leftovers
+    --         in  returnJson $ course-- { coursePCmplt = fulfilled }
+    --     _             -> notFound
+
+inCourses :: [Course] -> (Text, Text) -> Bool
+inCourses courses (sub, num) =
+    any (\c -> (courseSubject c == sub) && (courseNumber c == num)) courses
 
 getNewCourseR :: Handler Value
 getNewCourseR =

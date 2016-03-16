@@ -11,6 +11,8 @@ $(function() {
   $('.quarter-wrapper').data('numCourses', 0);
   $('.course-wrapper').data( 'numCourses', 0);
 
+  console.log($('.quarter-wrapper').data('quarterId'));
+
   var addAnimation = function(node, anim, remove) {
     node.addClass(anim);
     if (remove) {
@@ -188,7 +190,7 @@ $(function() {
           sug.text(course.subject + " " + course.number + ": " + course.name);
           addSearchMouseEvents(sug);
           sug.on( 'click'
-                , { user: 1, course: course.id, quarter: qtrId }, selectCourse);
+                , { id: 0, person: 1, course: course.id, quarter: qtrId }, selectCourse);
 
           return sug;
         });
@@ -252,6 +254,10 @@ $(function() {
             editButton.css(  'display', 'none');
             removeButton.css('display', 'none');
         });
+
+        if (!data.pCmplt) {
+            addAnimation(container, 'flash-red');
+        }
 
         courseDesc.dotdotdot({});
         courseDesc.trigger('update');
@@ -356,7 +362,7 @@ $(function() {
     addAnimation($(this), 'slide-in-down');
 
     $.ajax({
-      url: '@{NewCourseR}',
+      url: '@{NewQuarterR}',
       type: 'POST',
       contentType: "application/json",
       data: "",
@@ -417,10 +423,12 @@ $(function() {
     $(this).data('numCourses', courses);
 
     var idNode = $(this).find('.hidden-id');
-    if (idNode) {
+    if (idNode.length > 0) {
         $(this).data('quarterId', parseInt(idNode.text()));
         console.log(idNode.text());
         idNode.remove();
+    } else {
+        $(this).data('quarterId', 0);
     }
   });
 });

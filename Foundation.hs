@@ -11,6 +11,7 @@ import Yesod.Core.Types     (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
 import qualified Data.CaseInsensitive as CI
 import qualified Data.Text.Encoding as TE
+import Data.Text (Text)
 
 -- | The foundation datatype for your application. This can be a good place to
 -- keep settings and values requiring initialization before your application
@@ -140,7 +141,7 @@ instance YesodPersistRunner App where
     getDBRunner = defaultGetDBRunner appConnPool
 
 instance YesodAuth App where
-    type AuthId App = UserId
+    type AuthId App = PersonId
 
     -- Where to send a user after successful login
     loginDest _ = HomeR
@@ -153,9 +154,9 @@ instance YesodAuth App where
         x <- getBy $ UniqueUser $ credsIdent creds
         case x of
             Just (Entity uid _) -> return $ Authenticated uid
-            Nothing -> Authenticated <$> insert User
-                { userIdent = credsIdent creds
-                , userPassword = Nothing
+            Nothing -> Authenticated <$> insert Person
+                { personName = credsIdent creds
+                , personPassword = ""
                 }
 
     -- You can add other plugins like BrowserID, email or OAuth here

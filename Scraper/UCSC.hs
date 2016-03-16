@@ -134,6 +134,7 @@ getCourse sub = do
         , courseQrtrs   = pack $ show qrtrs
         , courseDesc    = desc
         , coursePreqs   = prereqs
+        , coursePCmplt  = True
         }
 
 courseBegin :: UCSCParser ()

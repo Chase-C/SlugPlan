@@ -36,8 +36,8 @@ mkYesod "Input" [parseRoutes|
 instance RenderMessage Input FormMessage where
     renderMessage _ _ = defaultFormMessage
 
-data Person = Person { personName :: Text, personPassword :: Text }
-    deriving Show
+--data Person = Person { personName :: Text, personPassword :: Text }
+  --  deriving Show
 
 getRootR :: Handler Html
 getRootR = do 
@@ -45,9 +45,10 @@ getRootR = do
         setTitle "Sign Up"
         $(widgetFile "signup")
 
-getInputR :: Handler Html
-getInputR = do
-    person <- runInputGet $ Person
+postInputR :: Handler (Key Person)
+postInputR = do
+    person <- runInputGet $Person
                 <$> ireq textField "name"
                 <*> ireq textField "password"
-    defaultLayout [whamlet|<p>#{show person}|]
+    runDB $ insert person
+   -- defaultLayout [whamlet|<p>#{show person}|]

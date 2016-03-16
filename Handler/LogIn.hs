@@ -36,8 +36,8 @@ mkYesod "Input" [parseRoutes|
 instance RenderMessage Input FormMessage where
     renderMessage _ _ = defaultFormMessage
 
-data Person = Person { personName :: Text, personPassword :: Text }
-    deriving Show
+--data Person = Person { personName :: Text, personPassword :: Text }
+  --  deriving Show
 
 getLogInR :: Handler Html
 getLogInR = do 

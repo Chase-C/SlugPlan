@@ -1,17 +1,18 @@
-User
-    ident      Text
-    password   Text Maybe
-    UniqueUser ident
+Person
+    name       Text
+    password   Text 
+    UniqueUser name
     deriving Typeable
+    deriving Show
 
-UserCourse
-    user   UserId
+PersonCourse
+    person   PersonId
     course CourseId
     deriving Show
 
 Comment json
     message Text
-    userId  UserId Maybe
+    personId  PersonId Maybe
     deriving Eq
     deriving Show
 

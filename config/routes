@@ -7,8 +7,8 @@
 /                     HomeR         GET POST
 /pdf                  PdfR              POST
 /comments             CommentR          POST
-/signUp               RootR         GET
-/input                InputR        GET 
+/signUp               RootR         GET 
+/input                InputR            POST
 /logIn                LogInR        GET
 /showlogIn            LogInputR     GET
 /planner              PlannerR      GET

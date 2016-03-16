@@ -45,10 +45,10 @@ getRootR = do
         setTitle "Sign Up"
         $(widgetFile "signup")
 
-postInputR :: Handler (Key Person)
+postInputR :: Handler Html
 postInputR = do
     person <- runInputGet $Person
                 <$> ireq textField "name"
                 <*> ireq textField "password"
     runDB $ insert person
-   -- defaultLayout [whamlet|<p>#{show person}|]
+    defaultLayout [whamlet|<p>#{show person}|]

@@ -12,6 +12,8 @@
 /planner/search/#Text SearchCourseR GET
 /allCourses           AllCoursesR   GET POST
 /allCourses2          AllCourses2R  GET
+/allCourses3          AllCourses3R  POST
+/allCourses4          AllCourses4R  POST
 /course/#CourseId     CourseR       GET
 /upload               UploadR       GET POST
 

@@ -38,6 +38,7 @@ import Handler.Common
 import Handler.Home
 import Handler.Comment
 import Handler.SignUp
+import Handler.LogIn
 import Handler.Planner
 import Handler.Majors
 import Handler.Department

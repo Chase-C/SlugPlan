@@ -69,6 +69,7 @@ footer {
     background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods_jpg});
     background-size:100%;
     background-attachment: fixed;
+    margin-top:200px;
 }
 .header-lg{
     color:white;
@@ -492,7 +493,15 @@ footer {
 
 .btn2 {
 display:inline-block;
-font-size:70px}
+font-size:70px
+}
+
+.signup-input{
+  color: #fff;
+  border-color: green;
+  font-size:30px;
+}
+
 /* ************************************************************
  * Primary button class that deals with how our buttons look
  * ************************************************************/
@@ -502,6 +511,10 @@ font-size:70px}
   color: #fff;
   background-color: green;
   border-color: green;
+  font-size:40px;
+  margin-top:25px;
+  margin-left:350px;
+
 }
 
 .btn-primary:hover,

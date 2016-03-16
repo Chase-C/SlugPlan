@@ -1,0 +1,8 @@
+<body .base-layout>
+<form action=@{InputR}>
+    <p .signup-input>
+        Username: 
+        <input type=text name=name>
+        Password: 
+        <input type=text name=password>
+        <input .btn .btn-primary type=submit value="Sign Up">

@@ -1,4 +1,4 @@
-module Handler.SignUp where
+module Handler.LogIn where
 
 
 {-# LANGUAGE OverloadedStrings     #-}
@@ -39,15 +39,18 @@ instance RenderMessage Input FormMessage where
 data Person = Person { personName :: Text, personPassword :: Int }
     deriving Show
 
-getRootR :: Handler Html
-getRootR = do 
+getLogInR :: Handler Html
+getLogInR = do 
     defaultLayout $ do
-        setTitle "Sign Up"
-        $(widgetFile "signup")
+        setTitle "Log In"
+        $(widgetFile "login")
 
-getInputR :: Handler Html
-getInputR = do
+getLogInputR :: Handler Html
+getLogInputR = do
     person <- runInputGet $ Person
                 <$> ireq textField "name"
                 <*> ireq intField "password"
     defaultLayout [whamlet|<p>#{show person}|]
+
+
+

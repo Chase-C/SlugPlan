@@ -2,11 +2,9 @@
   <h1.jumbotron .header-lg>
     Welcome to SlugPlan!
 
-  <br>
-  <a .btn .btn-primary href=@{RootR} .header-lg2>Sign Up
-  <a .btn .btn-primary href=@{RootR} .header-lg2>Login
+  <a .btn .btn-primary .btn-primary-sm href=@{RootR} .header-lg2>Sign Up
+  <a .btn .btn-primary .btn-primary-sm href=@{LogInR} .header-lg2>Login
 
-  <br>
   <br>
 
   <a .btn .btn-primary href=@{PlannerR} .header-lg2>Plan Your Courses

@@ -501,6 +501,9 @@ font-size:70px
   border-color: green;
   font-size:30px;
 }
+.field-input{
+  color: black;
+}
 
 /* ************************************************************
  * Primary button class that deals with how our buttons look

@@ -36,7 +36,7 @@ mkYesod "Input" [parseRoutes|
 instance RenderMessage Input FormMessage where
     renderMessage _ _ = defaultFormMessage
 
-data Person = Person { personName :: Text, personPassword :: Int }
+data Person = Person { personName :: Text, personPassword :: Text }
     deriving Show
 
 getLogInR :: Handler Html
@@ -49,7 +49,7 @@ getLogInputR :: Handler Html
 getLogInputR = do
     person <- runInputGet $ Person
                 <$> ireq textField "name"
-                <*> ireq intField "password"
+                <*> ireq textField "password"
     defaultLayout [whamlet|<p>#{show person}|]
 
 

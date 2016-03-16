@@ -2,7 +2,7 @@
 <form action=@{LogInputR}>
     <p .signup-input>
         Username: 
-        <input type=text name=name>
+        <input .field-input type=text name=name>
         Password: 
-        <input type=text name=password>
+        <input .field-input type=text name=password>
         <input .btn .btn-primary type=submit value="Log In">

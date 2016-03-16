@@ -4,9 +4,6 @@ hr {
     margin-left: 80px;
     margin-right: 80px;
 }
-div {
-    width: 100%;
-}
 
 table {
     border-radius: 6px;

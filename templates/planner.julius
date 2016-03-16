@@ -431,4 +431,6 @@ $(function() {
         $(this).data('quarterId', 0);
     }
   });
+
+  $('.quarter-seperator').last().remove();
 });

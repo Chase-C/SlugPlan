@@ -20,7 +20,7 @@ $(function() {
     }
   };
 
-  var getSearchForm = function(formId, barId) {
+  var getSearchForm = function(formId, barId, qtrId) {
     var form = $("<form class='course-search-form'>           \
                     <input type='text'                        \
                            class='course-search'              \
@@ -50,7 +50,7 @@ $(function() {
       }
     });
     courseSearch.on('keyup'
-      , form.find('.search-suggestions')
+      , { sug: form.find('.search-suggestions'), qtrId: qtrId }
       , searchCourse);
 
     addSearchMouseEvents(advSearch);
@@ -80,7 +80,7 @@ $(function() {
     var formId   = quarterId + '-form-'   + courseNum;
     var barId    = quarterId + '-bar-'    + courseNum;
 
-    var searchForm = new getSearchForm(formId, barId);
+    var searchForm = new getSearchForm(formId, barId, quarterId);
 
     courseNode.prop('id', courseId);
     courseNode.append(searchForm);
@@ -110,18 +110,6 @@ $(function() {
     }
 
     jQuery.data(document.body, 'classSearch', courseNode);
-
-    $.ajax({
-      url: '@{NewCourseR}',
-      type: 'POST',
-      contentType: "application/json",
-      data: courseId,
-      success: function (data) {
-      },
-      error: function (data) {
-        alert("Error creating course: " + data);
-      },
-    });
   };
 
   var collapseCourse = function(course, addButton = false, addPrev = false) {
@@ -189,6 +177,8 @@ $(function() {
   }
 
   var searchCourse = function(event) {
+    var qtrId     = event.data.qtrId;
+    var searchSug = event.data.sug;
     $.ajax({
       url: '/planner/search/' + $(this).val(),
       type: 'GET',
@@ -197,12 +187,13 @@ $(function() {
           var sug = $("<div class='search-sug'></div>");
           sug.text(course.subject + " " + course.number + ": " + course.name);
           addSearchMouseEvents(sug);
-          sug.on('click', course, selectCourse);
+          sug.on( 'click'
+                , { user: 1, course: course.id, quarter: qtrId }, selectCourse);
 
           return sug;
         });
-        event.data.children().not('.adv-search').remove();
-        event.data.prepend(divs);
+        searchSug.children().not('.adv-search').remove();
+        searchSug.prepend(divs);
       },
       error: function (data) {
         event.data.children().not('.adv-search').remove();
@@ -224,9 +215,9 @@ $(function() {
     var elem = this;
     $.ajax({
       url: '@{NewCourseR}',
-      type: 'PUT',
+      type: 'POST',
       contentType: 'application/json',
-      data: JSON.stringify(event.data.name),
+      data: JSON.stringify(event.data),
       success: function (data) {
         var container    = $(elem).parents('.course-display');
         var header       = $("<div class='course-header'></div>");
@@ -251,6 +242,7 @@ $(function() {
         container.append(courseDesc);
         container.append(editButton);
         container.append(removeButton);
+        container.data('courseId', data.id);
 
         container.on('mouseover', function(event) {
             editButton.css(  'display', 'block');
@@ -287,7 +279,7 @@ $(function() {
     var button = event.data.next('.course-add-button');
     addAnimation(button, 'slide-out-left', true);
 
-    removeCourse();
+    removeCourse(event);
   }
 
   var removeCourseB = function(event) {
@@ -295,22 +287,24 @@ $(function() {
     quarter.data('numCourses', quarter.data('numCourses') - 1);
 
     collapseCourse(event.data);
-    removeCourse();
+    removeCourse(event);
   }
 
-  var removeCourse = function() {
-    $.ajax({
-      url: '@{NewCourseR}',
-      type: 'DELETE',
-      contentType: 'application/json',
-      data: JSON.stringify(event.data),
-      success: function (data) {
-        console.log(data);
-      },
-      error: function (data) {
-        console.log(data);
-      },
-    });
+  var removeCourse = function(event) {
+    if (event.data.data('courseId')) {
+      $.ajax({
+        url: '@{NewCourseR}',
+        type: 'DELETE',
+        contentType: 'application/json',
+        data: JSON.stringify(event.data.data('courseId')),
+        success: function (data) {
+          console.log(data);
+        },
+        error: function (data) {
+          console.log(data);
+        },
+      });
+    }
   }
 
   var nextQuarter = function(strn) {
@@ -372,5 +366,61 @@ $(function() {
         alert("Error creating quarter: " + data);
       }
     });
+  });
+
+  $('.quarter-wrapper').each(function() {
+    var courses = 0;
+
+    var wrappers = $(this).find('.course-wrapper')
+    var numWraps = wrappers.length;
+
+    wrappers.each(function(j) {
+      var num = $(this).find('.course-container').length;
+      $(this).data('numCourses', num);
+
+      var containers = $(this).find('.course-container');
+      containers.each(function() {
+        var editButton   = $(this).find('.edit-button');
+        var removeButton = $(this).find('.remove-button');
+        editButton.on(  'click', $(this), editCourseB);
+        removeButton.on('click', $(this), removeCourseB);
+
+        var idNode = $(this).find('.hidden-id');
+        if (idNode) {
+          $(this).data('courseId', parseInt(idNode.text()));
+          idNode.remove();
+        }
+
+        $(this).on('mouseover', function(event) {
+                editButton.css(  'display', 'block');
+                removeButton.css('display', 'block');
+                });
+        $(this).on('mouseout', function(event) {
+                editButton.css(  'display', 'none');
+                removeButton.css('display', 'none');
+                });
+
+        $(this).find('.course-description').dotdotdot({});
+        $(this).find('.course-description').trigger('update');
+      });
+
+      courses += num;
+    });
+
+    var cButton = new getCourseAddButton();
+    addAnimation(cButton, 'slide-in-right');
+    wrappers.last().append(cButton);
+
+    $(this).find('.quarter-container').css('height', (numWraps * 192) + 'px');
+
+    $(this).data('courseNum',  courses);
+    $(this).data('numCourses', courses);
+
+    var idNode = $(this).find('.hidden-id');
+    if (idNode) {
+        $(this).data('quarterId', parseInt(idNode.text()));
+        console.log(idNode.text());
+        idNode.remove();
+    }
   });
 });

@@ -4,9 +4,10 @@ User
     UniqueUser ident
     deriving Typeable
 
-UserCourse
-    user   UserId
-    course CourseId
+UserCourse json
+    user    Int
+    course  CourseId
+    quarter Int
     deriving Show
 
 Comment json
@@ -23,6 +24,7 @@ Course json
     qrtrs   Text
     desc    Text
     preqs   Text
+    --pCmplt  Bool
     --UniqueCourse acronym number
     deriving Show
 

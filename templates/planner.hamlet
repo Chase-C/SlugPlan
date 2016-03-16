@@ -5,17 +5,41 @@
         <br>
         <h1.jumbotron .header-lg>
             Course Planner
-        
+
         <hr>
         <br>
 
   <div .planner-container>
     <div .planner-background>
     <div .planner-header>
-    <div .quarter-wrapper>
-      <div .quarter-container .fst-quarter>
-        <h4.quarter-header>Spring 2016
-      <div .course-rows>
-        <div .course-wrapper>
-          <button .course-add-button>
+    $if null qtrCourses
+      <div .quarter-wrapper>
+        <div .quarter-container>
+          <h4 .quarter-header>Spring 2016
+        <div .course-rows>
+          <div .course-wrapper>
+      <div .quarter-seperator>
+    $else
+      $forall (num, quarter, courseses) <- qtrCourses
+        <div .quarter-wrapper>
+          <div .quarter-container>
+            <h4 .quarter-header>#{quarter}
+          <div .course-rows>
+            $forall courses <- courseses
+              <div .course-wrapper>
+                $forall (course, id) <- courses
+                  <div .course-seperator>
+                  <div .course-container .course-display>
+                    <div .course-header>
+                      <div>#{coursePrefix course} #{courseNumber course}
+                      <div>#{courseName course}
+                      <div .course-break>
+                    <div .course-description>#{courseDesc course}
+                    <div .course-button .edit-button>
+                    <div .course-button .remove-button>
+                    <div .hidden-id>#{fromSqlKey id}
+          <div .hidden-id>#{num}
+        <div .quarter-seperator>
+
     <button #add-quarter .quarter-add-button>
+

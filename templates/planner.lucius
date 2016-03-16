@@ -280,6 +280,10 @@ footer {
     background-color: #aaa;
 }
 
+.hidden-id {
+    display: none;
+}
+
 .course-button {
     position: absolute;
     top: 8px;
@@ -295,6 +299,7 @@ footer {
     background-repeat: no-repeat;
     background-position: center center;
     background-color: #eee;
+    display: none;
 }
 
 .course-button:hover {

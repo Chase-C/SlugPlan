@@ -24,6 +24,7 @@ import qualified Data.Map as M
 
 import Scraper.UCSC
 import Scraper.Subjects
+import Scraper.ParserTypes
 
 -------------------------------------------------------------------------------------------
 
@@ -36,8 +37,6 @@ import Scraper.Subjects
 -- inclined, or create a single monolithic file.
 getHomeR :: Handler Html
 getHomeR = do
-    (pdfWidget,  pdfEnctype)  <- generateFormPost pdfForm
-    let pdfSub     = Nothing :: Maybe String
     defaultLayout $ do
         aDomId <- newIdent
         setTitle "SlugPlan"
@@ -46,36 +45,11 @@ getHomeR = do
 
 postHomeR :: Handler Html
 postHomeR = do
-    (pdfWidget,  pdfEnctype)            <- generateFormPost pdfForm
-    let pdfSub      = Nothing :: Maybe String
     defaultLayout $ do
         aDomId <- newIdent
         setTitle "SlugPlan"
         $(widgetFile "homepage")
 
-postPdfR :: Handler Html
-postPdfR = do
-    ((result, pdfWidget), pdfEnctype) <- runFormPost pdfForm
-    let handlerName = "postPdfR" :: Text
-    pdfSub <- case result of
-        FormSuccess res -> do
-            --text <- liftIO $ parsePdf $ Data.Text.unpack $ fileName res
-            --let subMap = getSubjectMap' text $ Data.Text.unpack $ fileName res
-            subMap <- liftIO $ getSubjectMap $ Data.Text.unpack $ fileName res
-            keys <- insertSubjectMap subMap
-            return $ Just $ (show $ subMap) ++ " : " ++ (show $ take 4 keys)
-            --case subMap of
-            --    (Just m) -> do
-            --        keys <- insertSubjectMap m
-            --        return $ Just $ (show $ m) ++ " : " ++ (show $ take 4 keys)
-            --        --return $ Just $ show keys
-            --    _        -> return Nothing
-        _                -> return Nothing
-
-    defaultLayout $ do
-        aDomId <- newIdent
-        setTitle "SlugPlan"
-        $(widgetFile "homepage")
 getAllCoursesR :: Handler Html
 getAllCoursesR = do
     (widget, enctype) <- generateFormPost searchForm
@@ -93,26 +67,26 @@ getAllCourses2R = do
         setTitle "SlugPlan: Browse Courses"
         $(widgetFile "browsecourses2")
 
-getAcenR :: Handler Html
-getAcenR = do
-    courses <- runDB $ selectList [CoursePrefix ==. "ACEN"] []
-    defaultLayout $ do
-        setTitle "SlugPlan: Browse Courses"
-        $(widgetFile "browsecourses")
+-- getAcenR :: Handler Html
+-- getAcenR = do
+--     courses <- runDB $ selectList [CoursePrefix ==. "ACEN"] []
+--     defaultLayout $ do
+--         setTitle "SlugPlan: Browse Courses"
+--         $(widgetFile "browsecourses")
 
-getAnthR :: Handler Html
-getAnthR = do
-    courses <- runDB $ selectList [CoursePrefix ==. "ANTH"] []
-    defaultLayout $ do
-        setTitle "SlugPlan: Browse Courses"
-        $(widgetFile "browsecourses")
+-- getAnthR :: Handler Html
+-- getAnthR = do
+--     courses <- runDB $ selectList [CoursePrefix ==. "ANTH"] []
+--     defaultLayout $ do
+--         setTitle "SlugPlan: Browse Courses"
+--         $(widgetFile "browsecourses")
 
-getAplxR :: Handler Html
-getAplxR = do
-    courses <- runDB $ selectList [CoursePrefix ==. "APLX"] []
-    defaultLayout $ do
-        setTitle "SlugPlan: Browse Courses"
-        $(widgetFile "browsecourses")
+-- getAplxR :: Handler Html
+-- getAplxR = do
+--     courses <- runDB $ selectList [CoursePrefix ==. "APLX"] []
+--     defaultLayout $ do
+--         setTitle "SlugPlan: Browse Courses"
+--         $(widgetFile "browsecourses")
 
 
 postAllCoursesR :: Handler Html
@@ -120,7 +94,7 @@ postAllCoursesR = do
     ((result, _), _)        <- runFormPost searchForm
     courses <- case result of
         FormSuccess numString -> runDB $ matchCourses numString
-        _                        -> runDB $ selectList [] [Asc CourseSubject, Asc CourseNumber]
+        _                     -> runDB $ selectList [] [Asc CourseSubject, Asc CourseNumber]
     defaultLayout $ do
         setTitle "SlugPlan: Browse Courses"
         $(widgetFile "browsecourses")
@@ -137,14 +111,6 @@ getCourseR courseId = do
         coursenum  <- return $ courseNumber course
         setTitle ("SlugPlan: " ++ (toHtml coursesub) ++ " " ++ (toHtml coursenum))
         $(widgetFile "course")
-
-insertSubjectMap :: SubjectMap -> Handler [Key Course]
-insertSubjectMap subMap =
-    let courses = map snd $ M.toList subMap
-    in  runDB $ concat <$> mapM (mapM insert) courses
-
-pdfForm :: Form FileInfo
-pdfForm = renderBootstrap3 BootstrapBasicForm $ fileAFormReq "Choose a PDF to parse"
 
 searchForm :: Form Text
 searchForm = renderBootstrap3 BootstrapBasicForm $ areq textField "Search a class?" Nothing

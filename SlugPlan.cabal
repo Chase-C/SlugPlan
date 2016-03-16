@@ -26,15 +26,18 @@ library
                      Handler.Planner
                      Handler.SignUp
                      Handler.LogIn
+                     Handler.Upload
                      Scraper.UCSC
                      Scraper.Subjects
+                     Scraper.ParserTypes
+                     Scraper.PrereqParser
                      Handler.Majors
                      Handler.Department
-                     Handler.Department2
-                     Handler.Department3
-                     Handler.Department4
-                     Handler.Department5
-                     Handler.Department6
+                     --Handler.Department2
+                     --Handler.Department3
+                     --Handler.Department4
+                     --Handler.Department5
+                     --Handler.Department6
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
         ghc-options:   -Wall -fwarn-tabs -O0

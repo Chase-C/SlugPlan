@@ -1,6 +1,7 @@
 module Scraper.Subjects where
 
 import Prelude
+import Data.Maybe (listToMaybe)
 
 data Subject = AcadEnglish
              | Anthropology
@@ -298,8 +299,8 @@ subjectPrefix UCDC                 = "UCDC"
 subjectPrefix Writing              = "WRIT"
 subjectPrefix Yiddish              = "YIDD"
 
-getSubjectFromString :: String -> Subject
-getSubjectFromString strn = fst $ head candidate
-    where subjects = [AcadEnglish ..]
-          subStrns = zip subjects $ map (\s -> (subjectName s, subjectPrefix s)) subjects
+getSubjectFromString :: String -> Maybe Subject
+getSubjectFromString strn = fst <$> listToMaybe candidate
+    where subjects  = [AcadEnglish ..]
+          subStrns  = zip subjects $ map (\s -> (subjectName s, subjectPrefix s)) subjects
           candidate = filter (\(s, (n, p)) -> (n == strn) || (p == strn)) subStrns

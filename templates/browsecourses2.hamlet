@@ -13,171 +13,171 @@
             <tr>
                 <td><a href=@{AllCoursesR}> Show All Courses
             <tr>
-                <td><a  href=@{AcenR}>Academic English
+                <td><a href=@{DepartmentR "Acen"}>Academic English
             <tr>
-                <td><a  href=@{AnthR}>Anthropology
+                <td><a href=@{DepartmentR "ANTH"}>Anthropology
             <tr>
-                <td><a  href=@{AplxR}>Applied Linguistics
+                <td><a href=@{DepartmentR "APLX"}>Applied Linguistics
             <tr>
-                <td><a  href=@{AmsR}>Applied Mathematics and Statistics
+                <td><a href=@{DepartmentR "Ams"}>Applied Mathematics and Statistics
             <tr>
-                <td><a  href=@{ArtR}>Art
+                <td><a href=@{DepartmentR "Art"}>Art
             <tr>
-                <td><a  href=@{ArtgR}>Art and Design: Gamse and Playable Media
+                <td><a href=@{DepartmentR "Artg"}>Art and Design: Gamse and Playable Media
             <tr>
-                <td><a  href=@{AstrR}>Astronomy and Astrophysics
+                <td><a href=@{DepartmentR "Astr"}>Astronomy and Astrophysics
             <tr>
-                <td><a  href=@{BiocR}>Biochemistry and Molecular Biology
+                <td><a href=@{DepartmentR "Bioc"}>Biochemistry and Molecular Biology
             <tr>
-                <td><a  href=@{BiolR}>Biological Sciences
+                <td><a href=@{DepartmentR "Biol"}>Biological Sciences
             <tr>
-                <td><a  href=@{BmeR}>Biomolecular Engineering and Bioinformatics
+                <td><a href=@{DepartmentR "Bme"}>Biomolecular Engineering and Bioinformatics
             <tr>
-                <td><a  href=@{ChemR}>Chemistry
+                <td><a href=@{DepartmentR "Chem"}>Chemistry
             <tr>
-                <td><a  href=@{ChinR}>Chinese Language
+                <td><a href=@{DepartmentR "Chin"}>Chinese Language
             <tr>
-                <td><a  href=@{CleiR}>College Eight
+                <td><a href=@{DepartmentR "Clei"}>College Eight
             <tr>
-                <td><a  href=@{ClniR}>College Nine
+                <td><a href=@{DepartmentR "Clni"}>College Nine
             <tr>
-                <td><a  href=@{ClteR}>College Ten
+                <td><a href=@{DepartmentR "Clte"}>College Ten
             <tr>
-                <td><a  href=@{CmmuR}>Community Studies
+                <td><a href=@{DepartmentR "Cmmu"}>Community Studies
             <tr>
-                <td><a  href=@{CmpmR}>Computational Media
+                <td><a href=@{DepartmentR "Cmpm"}>Computational Media
             <tr>
-                <td><a  href=@{CmpeR}>Computer Engineering
+                <td><a href=@{DepartmentR "Cmpe"}>Computer Engineering
             <tr>
-                <td><a  href=@{CmpsR}>Computer Science
+                <td><a href=@{DepartmentR "Cmps"}>Computer Science
             <tr>
-                <td><a  href=@{CowlR}>Cowell
+                <td><a href=@{DepartmentR "Cowl"}>Cowell
             <tr>
-                <td><a  href=@{LtcrR}>Creative Writing
+                <td><a href=@{DepartmentR "Ltcr"}>Creative Writing
             <tr>
-                <td><a  href=@{CresR}>Critical Race and Ethnic Studies
+                <td><a href=@{DepartmentR "Cres"}>Critical Race and Ethnic Studies
             <tr>
-                <td><a  href=@{CrwnR}>Crown
+                <td><a href=@{DepartmentR "Crwn"}>Crown
             <tr>
-                <td><a  href=@{DanmR}>Digital Arts and New Media
+                <td><a href=@{DepartmentR "Danm"}>Digital Arts and New Media
             <tr>
-                <td><a  href=@{EartR}>Earth Sciences
+                <td><a href=@{DepartmentR "Eart"}>Earth Sciences
             <tr>
-                <td><a  href=@{BioeR}>Bioengineering
+                <td><a href=@{DepartmentR "Bioe"}>Bioengineering
             <tr>
-                <td><a  href=@{EconR}>Economics
+                <td><a href=@{DepartmentR "Econ"}>Economics
             <tr>
-                <td><a  href=@{EducR}>Education
+                <td><a href=@{DepartmentR "Educ"}>Education
             <tr>
-                <td><a  href=@{EtR}>Electrical Engineering
+                <td><a href=@{DepartmentR "Et"}>Electrical Engineering
             <tr>
-                <td><a  href=@{LtelR}>English-Language Literatures
+                <td><a href=@{DepartmentR "Ltel"}>English-Language Literatures
             <tr>
-                <td><a  href=@{EnvsR}>Environmental Studies
+                <td><a href=@{DepartmentR "Envs"}>Environmental Studies
             <tr>
-                <td><a  href=@{FmstR}>Feminist Studies
+                <td><a href=@{DepartmentR "Fmst"}>Feminist Studies
             <tr>
-                <td><a  href=@{FilmR}>Film and Digital Media
+                <td><a href=@{DepartmentR "Film"}>Film and Digital Media
             <tr>
-                <td><a  href=@{FrenR}>French
+                <td><a href=@{DepartmentR "Fren"}>French
             <tr>
-                <td><a  href=@{LtfrR}>French Literature
+                <td><a href=@{DepartmentR "Ltfr"}>French Literature
             <tr>
-                <td><a  href=@{GameR}>Games and Playable Media
+                <td><a href=@{DepartmentR "Game"}>Games and Playable Media
             <tr>
-                <td><a  href=@{GermR}>German
+                <td><a href=@{DepartmentR "Germ"}>German
             <tr>
-                <td><a  href=@{LtgeR}>German Literature
+                <td><a href=@{DepartmentR "Ltge"}>German Literature
             <tr>
-                <td><a  href=@{GreeR}>Greek
+                <td><a href=@{DepartmentR "Gree"}>Greek
             <tr>
-                <td><a  href=@{LtgrR}>Greek Literature
+                <td><a href=@{DepartmentR "Ltgr"}>Greek Literature
             <tr>
-                <td><a  href=@{HebrR}>Hebrew
+                <td><a href=@{DepartmentR "Hebr"}>Hebrew
             <tr>
-                <td><a  href=@{HistR}>History
+                <td><a href=@{DepartmentR "Hist"}>History
             <tr>
-                <td><a  href=@{HavcR}>History of Art and Visual Culture
+                <td><a href=@{DepartmentR "Havc"}>History of Art and Visual Culture
             <tr>
-                <td><a  href=@{HiscR}>History of Consciousness
+                <td><a href=@{DepartmentR "Hisc"}>History of Consciousness
             <tr>
-                <td><a  href=@{ItalR}>Italian
+                <td><a href=@{DepartmentR "Ital"}>Italian
             <tr>
-                <td><a  href=@{LtitR}>Italian Literature
+                <td><a href=@{DepartmentR "Ltit"}>Italian Literature
             <tr>
-                <td><a  href=@{JapnR}>Japanese
+                <td><a href=@{DepartmentR "Japn"}>Japanese
             <tr>
-                <td><a  href=@{KrsgR}>Kresge
+                <td><a href=@{DepartmentR "Krsg"}>Kresge
             <tr>
-                <td><a  href=@{LaadR}>Languages
+                <td><a href=@{DepartmentR "Laad"}>Languages
             <tr>
-                <td><a  href=@{LatnR}>Latin
+                <td><a href=@{DepartmentR "Latn"}>Latin
             <tr>
-                <td><a  href=@{LalsR}>Latin American and Latino Studies
+                <td><a href=@{DepartmentR "Lals"}>Latin American and Latino Studies
             <tr>
-                <td><a  href=@{LtinR}>Latin Literature
+                <td><a href=@{DepartmentR "Ltin"}>Latin Literature
             <tr>
-                <td><a  href=@{LgstR}>Legal Studies
+                <td><a href=@{DepartmentR "Lgst"}>Legal Studies
             <tr>
-                <td><a  href=@{LlingR}>Linguistics
+                <td><a href=@{DepartmentR "Lling"}>Linguistics
             <tr>
-                <td><a  href=@{LitR}>Literature
+                <td><a href=@{DepartmentR "Lit"}>Literature
             <tr>
-                <td><a  href=@{MathR}>Mathematics
+                <td><a href=@{DepartmentR "Math"}>Mathematics
             <tr>
-                <td><a  href=@{MerrR}>Merrill
+                <td><a href=@{DepartmentR "Merr"}>Merrill
             <tr>
-                <td><a  href=@{MetxR}>Microbiol and Environmental Toxicology
+                <td><a href=@{DepartmentR "Metx"}>Microbiol and Environmental Toxicology
             <tr>
-                <td><a  href=@{LtmoR}>Modern Literary Studies
+                <td><a href=@{DepartmentR "Ltmo"}>Modern Literary Studies
             <tr>
-                <td><a  href=@{MuscR}>Music
+                <td><a href=@{DepartmentR "Musc"}>Music
             <tr>
-                <td><a  href=@{OaksR}>Oakes
+                <td><a href=@{DepartmentR "Oaks"}>Oakes
             <tr>
-                <td><a  href=@{OceaR}>Ocean Sciences
+                <td><a href=@{DepartmentR "Ocea"}>Ocean Sciences
             <tr>
-                <td><a  href=@{PhilR}>Philosophy
+                <td><a href=@{DepartmentR "Phil"}>Philosophy
             <tr>
-                <td><a  href=@{PhyeR}>Physical Education
+                <td><a href=@{DepartmentR "Phye"}>Physical Education
             <tr>
-                <td><a  href=@{PhysR}>Physics
+                <td><a href=@{DepartmentR "Phys"}>Physics
             <tr>
-                <td><a  href=@{PoliR}>Politics
+                <td><a href=@{DepartmentR "Poli"}>Politics
             <tr>
-                <td><a  href=@{PrtrR}>Porter
+                <td><a href=@{DepartmentR "Prtr"}>Porter
             <tr>
-                <td><a  href=@{PortR}>Portuguese
+                <td><a href=@{DepartmentR "Port"}>Portuguese
             <tr>
-                <td><a  href=@{LtprR}>Pre and Early Modern Literature
+                <td><a href=@{DepartmentR "Ltpr"}>Pre and Early Modern Literature
             <tr>
-                <td><a  href=@{PsycR}>Psychology
+                <td><a href=@{DepartmentR "Psyc"}>Psychology
             <tr>
-                <td><a  href=@{RussR}>Russian
+                <td><a href=@{DepartmentR "Russ"}>Russian
             <tr>
-                <td><a  href=@{ScicR}>Science Communication
+                <td><a href=@{DepartmentR "Scic"}>Science Communication
             <tr>
-                <td><a  href=@{SocdR}>Social Documentation
+                <td><a href=@{DepartmentR "Socd"}>Social Documentation
             <tr>
-                <td><a  href=@{SocyR}>Sociology
+                <td><a href=@{DepartmentR "Socy"}>Sociology
             <tr>
-                <td><a  href=@{SpanR}>Spanish
+                <td><a href=@{DepartmentR "Span"}>Spanish
             <tr>
-                <td><a  href=@{SphsR}>Spanish for Heritage Speakers
+                <td><a href=@{DepartmentR "Sphs"}>Spanish for Heritage Speakers
             <tr>
-                <td><a  href=@{LtspR}>Spanish/Latin Amer/Latino Literature
+                <td><a href=@{DepartmentR "Ltsp"}>Spanish/Latin Amer/Latino Literature
             <tr>
-                <td><a  href=@{StevR}>Stevenson
+                <td><a href=@{DepartmentR "Stev"}>Stevenson
             <tr>
-                <td><a  href=@{TimR}>Technology and Information Management
+                <td><a href=@{DepartmentR "Tim"}>Technology and Information Management
             <tr>
-                <td><a  href=@{TheaR}>Theater Arts
+                <td><a href=@{DepartmentR "Thea"}>Theater Arts
             <tr>
-                <td><a  href=@{UcdcR}>UCDC
+                <td><a href=@{DepartmentR "Ucdc"}>UCDC
             <tr>
-                <td><a  href=@{LtwlR}>World Lit and Cultural Studies
+                <td><a href=@{DepartmentR "Ltwl"}>World Lit and Cultural Studies
             <tr>
-                <td><a  href=@{WritR}>Writing
+                <td><a href=@{DepartmentR "Writ"}>Writing
             <tr>
-                <td><a  href=@{YiddR}>Yiddish
+                <td><a href=@{DepartmentR "Yidd"}>Yiddish
     <br>

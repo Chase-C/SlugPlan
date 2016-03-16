@@ -1,10 +1,13 @@
 <body .base-layout>
-    <br>
-    <a .btn .btn-primary href=@{AllCourses2R}> Back to Browsing Courses
-    <br>
-    <div>
-        <h1>#{courseName course} (#{courseSubject course} #{courseNumber course})
-        <p>#{courseDesc course}
-        <ul>Pre-requisites:
+    <div .base-layout2>
+        <br>
+        <a .btn .btn-primary href=@{AllCourses2R} .header-lg2> Back to Browsing by Department/Subject
+        <br>
+        <br>
+        <a .btn .btn-primary href="javascript:history.back()" .header-lg2> Back to Browsing Courses
+        <br>
+        <h1 .jumbotron .header-md>#{courseName course} (#{courseSubject course} #{courseNumber course})
+        <p .header-ty>#{courseDesc course}
+        <ul .header-ty>Pre-requisites:
             <!--$forall pre <- coursePreqs course-->
                 <li>#{coursePreqs course}

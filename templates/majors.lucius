@@ -1,3 +1,9 @@
+hr {
+    margin-top:10px;
+    margin-bottom: 40px;
+    margin-left: 80px;
+    margin-right: 80px;
+}
 div {
     width: 100%;
 }
@@ -70,17 +76,21 @@ footer {
     background-size:100%;
     background-attachment: fixed;
 }
+.base-layout2{
+    background-color: rgba(0,0,0,0.4);
+}
 .header-lg{
     color:white;
     font-size:70px;
     text-shadow: 5px 5px black;
-    background-color:rgba(0, 200, 0, .30);
+    background-color: rgba(0,0,0,0.0);
 }
 
 .header-lg2{
     color:white;
-    font-size:20px;
-    background-color:rgba(0, 0, 0, .4);
+    font-size:70px;
+    text-shadow: 1px 1px black;
+    background-color:rgba(0, 200, 0, .30);
 }
 .header-md{
     color:white;
@@ -453,8 +463,8 @@ footer {
 .btn {
   display: inline-block;
   font-size: 20px;
-  padding: 6px 12px;
-  margin-bottom: 0;
+  padding: 6px 24px;
+  margin: 0px 0px 0px 0px;
   font-weight: normal;
   line-height: 1.42857143;
   text-align: center;
@@ -499,7 +509,7 @@ font-size:70px}
 .btn-primary {
   display: inline-block;
   color: #fff;
-  background-color: green;
+  background-color: #white;
   border-color: green;
 }
 
@@ -513,13 +523,13 @@ font-size:70px}
 .btn-primary:active,
 .open > .dropdown-toggle.btn-primary {
   color: #fff;
-  background-color: #009a00;
+  background-color: grey;
   border-color: white;
 }
 
 .btn-primary:focus {
   color: #fff;
-  background-color: #009a00;
+  background-color: grey;
   border-color: white;
 }
 /* ****************** End btn-primary class ***********************/

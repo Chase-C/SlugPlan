@@ -1,11 +1,47 @@
 <body .base-layout>
-  <h1.jumbotron .header-lg>
-    Welcome to SlugPlan!
+    <div .base-layout2>
+        <h1.jumbotron .header-lg>
+            Welcome to SlugPlan!
+        
+        <hr>
 
-  <br>
+        <br>
 
-  <a .btn .btn-primary href=@{PlannerR} .header-lg2>Plan Your Courses
-  <a .btn .btn-primary href=@{AllCourses2R} .header-lg2>Browse Courses
-  <a .btn .btn-primary href=@{ProgressR} .header-lg2>View Majors
-  <br>
-  <br>
+        <a .btn .btn-primary href=@{PlannerR} .header-lg2>Plan Your Courses
+        <a .btn .btn-primary href=@{AllCourses2R} .header-lg2>Browse Courses
+        <a .btn .btn-primary href=@{ProgressR} .header-lg2>View Majors
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>

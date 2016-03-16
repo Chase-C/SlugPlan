@@ -1,33 +1,96 @@
-h1 {
-    text-align: center;
-    margin-bottom: 30px;
+hr {
+    margin-top:10px;
+    margin-bottom: 40px;
+    margin-left: 80px;
+    margin-right: 80px;
 }
-li {
-    line-height: 2em;
-    font-size: 16px;
+div {
+    width: 100%;
 }
-ol {
-    margin-bottom: 30px;
+
+table {
+    border-radius: 6px;
+    border: 1px solid #aaa;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.4);
 }
-footer {
-    text-align: center;
+
+a {
+    color: white;
 }
-.base-layout{
-    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods_jpg});
-    background-size:100%;
-    background-attachment: fixed;
-}
-.header-lg{
-    color:white;
-    font-size:70px;
-    text-shadow: 5px 5px black;
-    background-color:rgba(0, 200, 0, .30);
+
+a:hover,
+a:focus {
+    color: #00aa00;
 }
 
 .header-lg2{
     color:white;
     font-size:20px;
     background-color:rgba(0, 0, 0, .4);
+}
+
+th {
+    text-align: center;
+    background-color: green;
+    color: white;
+    padding: 5px;
+}
+
+th, td {
+    border-bottom: 1px solid #aaa;
+}
+
+td {
+    padding: 5px;
+}
+
+tr:nth-child(odd) {
+    color: white;
+}
+
+tr:nth-child(even) {
+    color: white;
+}
+
+.cen {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px
+}
+li {
+    line-height: 2em;
+    font-size: 16px
+}
+ol {
+    margin-bottom: 30px
+}
+footer {
+    text-align: center
+}
+.base-layout{
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods_jpg});
+    background-size:100%;
+    background-attachment: fixed;
+}
+.base-layout2{
+    background-color: rgba(0,0,0,0.4);
+}
+.header-lg{
+    color:white;
+    font-size:70px;
+    text-shadow: 5px 5px black;
+    background-color: rgba(0,0,0,0.0);
+}
+
+.header-lg2{
+    color:white;
+    font-size:70px;
+    text-shadow: 1px 1px black;
+    background-color:rgba(0, 200, 0, .30);
 }
 .header-md{
     color:white;
@@ -400,14 +463,18 @@ footer {
 .btn {
   display: inline-block;
   font-size: 20px;
-  padding: 6px 12px;
-  margin-bottom: 0;
+  padding: 6px 24px;
+  margin: 0px 0px 0px 0px;
   font-weight: normal;
   line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -431,6 +498,10 @@ footer {
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
           box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
+
+.btn2 {
+display:inline-block;
+font-size:70px}
 /* ************************************************************
  * Primary button class that deals with how our buttons look
  * ************************************************************/
@@ -438,7 +509,7 @@ footer {
 .btn-primary {
   display: inline-block;
   color: #fff;
-  background-color: green;
+  background-color: #white;
   border-color: green;
 }
 
@@ -452,13 +523,13 @@ footer {
 .btn-primary:active,
 .open > .dropdown-toggle.btn-primary {
   color: #fff;
-  background-color: #009a00;
+  background-color: grey;
   border-color: white;
 }
 
 .btn-primary:focus {
   color: #fff;
-  background-color: #009a00;
+  background-color: grey;
   border-color: white;
 }
 /* ****************** End btn-primary class ***********************/

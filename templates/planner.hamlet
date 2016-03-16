@@ -1,11 +1,14 @@
 <body .base-layout>
-  <br>
-  <a .btn .btn-primary href=@{HomeR}>Back to Home
-  <br>
-  <br>
-  <h1.jumbotron .header-lg>
-    Course Planner
-  <br>
+    <div .base-layout2>
+        <a .btn .btn-primary href=@{HomeR} .header-lg2>Back to Home
+        <br>
+        <br>
+        <h1.jumbotron .header-lg>
+            Course Planner
+        
+        <hr>
+        <br>
+
   <div .planner-container>
     <div .planner-background>
     <div .planner-header>

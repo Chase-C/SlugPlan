@@ -1,0 +1,9 @@
+<body .base-layout>
+  <h1.jumbotron .header-lg>
+    Upload a File
+
+  <br>
+  <form method=post action=@{UploadR}#form enctype=#{uploadEnctype}>
+    ^{uploadWidget}
+    <button .btn .btn-primary type="submit">
+        Upload! <span class="glyphicon glyphicon-upload"></span>

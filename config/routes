@@ -5,7 +5,6 @@
 /robots.txt RobotsR GET
 
 /                     HomeR         GET POST
-/pdf                  PdfR              POST
 /comments             CommentR          POST
 /planner              PlannerR      GET
 /planner/course       NewCourseR    GET POST PUT DELETE
@@ -14,91 +13,9 @@
 /allCourses           AllCoursesR   GET POST
 /allCourses2          AllCourses2R  GET
 /course/#CourseId     CourseR       GET
+/upload               UploadR       GET POST
 
-/acen				  AcenR			GET
-/anth                 AnthR			GET
-/aplx				  AplxR			GET
-/ams				  AmsR			GET
-/art				  ArtR			GET
-/artg				  ArtgR			GET
-/astr				  AstrR			GET
-/bioc				  BiocR			GET
-/biol				  BiolR			GET
-/bme				  BmeR			GET
-/chem				  ChemR			GET
-/chin				  ChinR			GET
-/clei				  CleiR			GET
-/clni				  ClniR			GET
-/clte				  ClteR			GET
-/cmmu				  CmmuR			GET
-/cmpm				  CmpmR			GET
-/cmpe				  CmpeR			GET
-/cmps				  CmpsR			GET
-/cowl				  CowlR			GET
-/ltcr				  LtcrR			GET
-/cres				  CresR			GET
-/crwn				  CrwnR			GET
-/danm				  DanmR			GET
-/eart				  EartR			GET
-/bioe				  BioeR			GET
-/econ				  EconR			GET
-/educ				  EducR			GET
-/et					  EtR			GET
-/ltel				  LtelR			GET
-/envs				  EnvsR			GET
-/fmst				  FmstR			GET
-/film				  FilmR			GET
-/fren				  FrenR			GET
-/ltfr				  LtfrR			GET
-/game				  GameR			GET
-/germ				  GermR			GET
-/ltge				  LtgeR			GET
-/gree				  GreeR			GET
-/ltgr				  LtgrR			GET
-/hebr				  HebrR			GET
-/hist				  HistR			GET
-/havc				  HavcR			GET
-/hisc				  HiscR			GET
-/ital			      ItalR			GET
-/ltit				  LtitR			GET
-/japn				  JapnR			GET
-/krsg				  KrsgR			GET
-/laad				  LaadR			GET
-/latn				  LatnR			GET
-/lals				  LalsR			GET
-/ltin				  LtinR			GET
-/lgst				  LgstR			GET
-/lling				  LlingR		GET
-/lit				  LitR			GET
-/math				  MathR			GET
-/merr				  MerrR			GET
-/metx				  MetxR			GET
-/ltmo				  LtmoR			GET
-/musc				  MuscR			GET
-/oaks				  OaksR			GET
-/ocea				  OceaR			GET
-/phil				  PhilR			GET
-/phye				  PhyeR			GET
-/phys				  PhysR			GET
-/poli				  PoliR			GET
-/prtr				  PrtrR			GET
-/port				  PortR			GET
-/ltpr				  LtprR			GET
-/psyc				  PsycR			GET
-/russ				  RussR			GET
-/scic				  ScicR			GET
-/socd				  SocdR			GET
-/socy				  SocyR			GET
-/span				  SpanR			GET
-/sphs				  SphsR			GET
-/ltsp				  LtspR			GET
-/stev				  StevR			GET
-/tim			      TimR			GET
-/thea				  TheaR			GET
-/ucdc				  UcdcR			GET
-/ltwl				  LtwlR			GET
-/writ				  WritR			GET
-/yidd				  YiddR			GET
+/department/#Text     DepartmentR   GET
 
 /progress			  ProgressR		GET
 

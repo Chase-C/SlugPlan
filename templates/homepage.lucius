@@ -72,14 +72,20 @@ footer {
     text-align: center
 }
 .base-layout{
-    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods_jpg});
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods2_jpg});
     background-size:100%;
     background-attachment: fixed;
 }
 .base-layout2{
     background-color: rgba(0,0,0,0.4);
 }
+.base-layout3{
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods3_jpg});
+    background-size:100%;
+    background-attachment: fixed;
+}
 .header-lg{
+    margin:20px;
     color:white;
     font-size:70px;
     text-shadow: 5px 5px black;
@@ -96,7 +102,7 @@ footer {
     color:white;
     font-size:45px;
     text-shadow: 1px 1px black;
-    background-color:rgba(0, 0, 0, 0.5);
+    background-color:rgba(0, 0, 0, 0.0);
     margin-right:10px;
 }
 .header-sm{

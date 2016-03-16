@@ -1,8 +1,22 @@
 <body .base-layout>
     <div .base-layout2>
+        <br>
         <h1.jumbotron .header-lg>
             Welcome to SlugPlan!
+        <br>
         
+        <h1.jumbotron .header-md>
+            Just three steps to glory!
+
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <img src=@{StaticR img_redwoods3_jpg} alt="Smiley face" height="840" width="420">
+        
+        <br>
+        <br>
         <hr>
 
         <br>

@@ -72,7 +72,7 @@ footer {
     text-align: center
 }
 .base-layout{
-    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods_jpg});
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),url(@{StaticR img_redwoods2_jpg});
     background-size:100%;
     background-attachment: fixed;
 }

@@ -7,6 +7,8 @@
 /                     HomeR         GET POST
 /pdf                  PdfR              POST
 /comments             CommentR          POST
+/signUp               RootR         GET
+/input                InputR        GET
 /planner              PlannerR      GET
 /planner/course       NewCourseR    GET POST PUT DELETE
 /planner/quarter      NewQuarterR       POST

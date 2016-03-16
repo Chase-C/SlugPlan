@@ -24,6 +24,7 @@ library
                      Handler.Home
                      Handler.Comment
                      Handler.Planner
+                     Handler.SignUp
                      Scraper.UCSC
                      Scraper.Subjects
                      Handler.Majors

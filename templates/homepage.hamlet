@@ -3,6 +3,11 @@
     Welcome to SlugPlan!
 
   <br>
+  <a .btn .btn-primary href=@{RootR} .header-lg2>Sign Up
+  <a .btn .btn-primary href=@{RootR} .header-lg2>Login
+
+  <br>
+  <br>
 
   <a .btn .btn-primary href=@{PlannerR} .header-lg2>Plan Your Courses
   <a .btn .btn-primary href=@{AllCourses2R} .header-lg2>Browse Courses

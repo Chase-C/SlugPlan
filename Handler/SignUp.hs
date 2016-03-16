@@ -47,8 +47,16 @@ getRootR = do
 
 postInputR :: Handler Html
 postInputR = do
-    person <- runInputGet $Person
+    username <- runInputPost $ ireq textField "name"
+    userpassword <-  runInputPost $ ireq textField "password"
+    runDB $ insert $ Person username userpassword
+    setMessage "You have registered!!!"      --defaultLayout [whamlet|<p>#{show person}|]
+    redirect RootR
+
+
+getInputR :: Handler Html
+getInputR = do
+    person <- runInputGet $ Person
                 <$> ireq textField "name"
                 <*> ireq textField "password"
-    runDB $ insert person
     defaultLayout [whamlet|<p>#{show person}|]

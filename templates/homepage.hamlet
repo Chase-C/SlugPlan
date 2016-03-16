@@ -3,56 +3,21 @@
         <br>
         <h1.jumbotron .header-lg>
             Welcome to SlugPlan!
-        <br>
-        
-        <h1.jumbotron .header-md>
-            Just three steps to glory!
 
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <img src=@{StaticR img_redwoods3_jpg} alt="Smiley face" height="840" width="420">
+        <img src=@{StaticR img_redwoods3_jpg} alt="Smiley face" height="520" width="420">
         
         <br>
-        <br>
-        <hr>
 
         <br>
 
         <a .btn .btn-primary href=@{PlannerR} .header-lg2>Plan Your Courses
         <a .btn .btn-primary href=@{AllCourses2R} .header-lg2>Browse Courses
         <a .btn .btn-primary href=@{ProgressR} .header-lg2>View Majors
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
         <br>
         <br>
         <br>
